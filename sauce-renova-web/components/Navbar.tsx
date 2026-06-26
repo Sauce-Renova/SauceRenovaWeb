@@ -17,7 +17,7 @@ export default function Navbar() {
     const [solarOpen, setSolarOpen] = useState(false);
 
     return (
-        <header className="px-12 py-6">
+        <header className="px-12 py-4">
             <nav className="w-full px-3 py-2 flex items-center rounded-full bg-gradient-to-r from-green to-blue">
                 <div className="w-12 h-12 rounded-full bg-white flex-shrink-0" />
 

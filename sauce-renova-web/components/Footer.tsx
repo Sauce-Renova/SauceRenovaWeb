@@ -1,5 +1,5 @@
 export default function Footer() {
-  const bgFooter = "linear-gradient(135deg, #6b8c3a 0%, #2857c8 100%)";
+  const bgFooter = "linear-gradient(135deg, #78a83f 0%, #0354bf 100%)";
 
   const columns = [
     {

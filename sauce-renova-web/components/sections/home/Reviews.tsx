@@ -11,7 +11,7 @@ const reviewsData = [
 ];
 
 export default function Reviews({ isDark }: Props) {
-  const bgReviews = isDark ? "#6b8c3a" : "#2857c8";
+  const bgReviews = isDark ? "#78a83f" : "#0354bf";
   const titleColor = isDark ? "#1a2235" : "white";
 
   return (

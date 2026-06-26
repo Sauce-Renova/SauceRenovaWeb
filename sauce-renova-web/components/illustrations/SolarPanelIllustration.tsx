@@ -3,9 +3,9 @@ interface Props {
 }
 
 export default function SolarPanelIllustration({ isDark }: Props) {
-  const c = isDark ? "#f5f5dc" : "#1e2d45";
-  const accent = "#2857c8";
-  const green = "#6b8c3a";
+  const c = isDark ? "#fafad6" : "#1e2d45";
+  const accent = "#0354bf";
+  const green = "#78a83f";
 
   return (
     <svg viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "100%" }}>

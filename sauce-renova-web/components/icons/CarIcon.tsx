@@ -1,4 +1,4 @@
-export default function CarIcon({ size = 48, color = "#2857c8" }) {
+export default function CarIcon({ size = 48, color = "#0354bf" }) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none">
       <path d="M8 36 L14 22 L50 22 L56 36 L56 48 L8 48 Z" stroke={color} strokeWidth="3" fill={color} opacity="0.1" strokeLinejoin="round" />

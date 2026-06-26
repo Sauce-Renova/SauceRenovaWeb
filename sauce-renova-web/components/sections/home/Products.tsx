@@ -7,11 +7,11 @@ interface Props {
 }
 
 export default function Products({ isDark }: Props) {
-  const accent = isDark ? "#6b8c3a" : "#2857c8";
-  const accentAlt = isDark ? "#2857c8" : "#6b8c3a";
-  const bgCard = isDark ? "#f5f5dc" : "#1e2d45";
+  const accent = isDark ? "#78a83f" : "#0354bf";
+  const accentAlt = isDark ? "#0354bf" : "#78a83f";
+  const bgCard = isDark ? "#fafad6" : "#1e2d45";
   const textMuted = isDark ? "#a0aec0" : "#4a5568";
-  const btnSecondary = isDark ? "#6b8c3a" : "#2857c8";
+  const btnSecondary = isDark ? "#78a83f" : "#0354bf";
 
   const verMasStyle = {
     color: "white",
@@ -91,7 +91,7 @@ export default function Products({ isDark }: Props) {
           </h2>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "start" }}>
             <div style={{
-              background: isDark ? "#f5f5dc" : "#1e2d45",
+              background: isDark ? "#fafad6" : "#1e2d45",
               borderRadius: 16,
               minHeight: 200,
               display: "flex",
@@ -100,8 +100,8 @@ export default function Products({ isDark }: Props) {
               overflow: "hidden",
             }}>
               <div style={{ padding: 24, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 12 }}>
-                <BatteryIcon size={64} color={isDark ? "#1e2d45" : "#f5f5dc"} />
-                <HomeIcon size={56} color="#6b8c3a" />
+                <BatteryIcon size={64} color={isDark ? "#1e2d45" : "#fafad6"} />
+                <HomeIcon size={56} color="#78a83f" />
               </div>
             </div>
             <div>

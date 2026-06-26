@@ -8,15 +8,15 @@ interface Props {
 }
 
 export default function Benefits({ isDark }: Props) {
-  const benefitsBg = isDark ? "#2857c8" : "#6b8c3a";
+  const benefitsBg = isDark ? "#0354bf" : "#78a83f";
   const benefitsCard = isDark ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.15)";
   const benefitsCardHover = isDark ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.25)";
-  const iconColor = isDark ? "#6b8c3a" : "#2857c8";
+  const iconColor = isDark ? "#78a83f" : "#0354bf";
 
   const benefits = [
     { icon: <HomeIcon size={52} color={iconColor} />, text: "Reduce tu factura eléctrica hasta un 80% con instalación fotovoltaica en tu hogar." },
     { icon: <BoltIcon size={52} color={iconColor} />, text: "Genera tu propia energía limpia y vende el excedente a la red eléctrica." },
-    { icon: <LeafIcon size={52} color={isDark ? "#2857c8" : "#6b8c3a"} />, text: "Contribuye al medio ambiente reduciendo tu huella de carbono cada día." },
+    { icon: <LeafIcon size={52} color={isDark ? "#0354bf" : "#78a83f"} />, text: "Contribuye al medio ambiente reduciendo tu huella de carbono cada día." },
     { icon: <BatteryIcon size={52} color={iconColor} />, text: "Almacena energía en baterías de última generación para total autonomía." },
   ];
 
@@ -68,7 +68,7 @@ export default function Benefits({ isDark }: Props) {
                 {b.text}
               </p>
               <button style={{
-                background: isDark ? "#f5f5dc" : "white",
+                background: isDark ? "#fafad6" : "white",
                 color: benefitsBg,
                 border: "none",
                 borderRadius: 50,

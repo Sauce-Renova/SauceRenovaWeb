@@ -1,4 +1,5 @@
-import SolarPanelIllustration from "@/components/illustrations/SolarPanelIllustration";
+import Image from "next/image";
+import principalImg from "@/components/illustrations/principal.webp";
 
 interface Props {
   isDark: boolean;
@@ -27,23 +28,24 @@ export default function Hero({ isDark }: Props) {
   const theme = isDark ? t.dark : t.light;
 
   return (
-    <section style={{ background: theme.bg }} id="inicio">
+    <section style={{ background: theme.bg, minHeight: "92vh", display: "flex", flexDirection: "column" }} id="inicio">
       <div style={{
         display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        maxWidth: "90rem",
-        margin: "0 auto",
-        padding: "4% 4%",
-        gap: "4%",
-        alignItems: "center",
+        gridTemplateColumns: "55fr 45fr",
+        flex: 1,
+        minHeight: "92vh",
+        maxWidth: "100%",
+        padding: "4vw 5vw 2vw 6vw",
+        gap: "4vw",
+        alignItems: "start",
       }}>
-        <div style={{ padding: "4% 0" }}>
+        <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
           <h1 style={{
-            fontSize: "clamp(2rem, 4.5vw, 4.5rem)",
+            fontSize: "clamp(2.5rem, 5.5vw, 5.5rem)",
             fontWeight: 900,
             color: theme.accent,
-            lineHeight: 1,
-            margin: "0 0 1.5rem",
+            lineHeight: 1.0,
+            margin: "0 0 1rem",
             textTransform: "uppercase",
             letterSpacing: "-0.02em",
             fontFamily: "var(--font-shrikhand), sans-serif",
@@ -51,57 +53,72 @@ export default function Hero({ isDark }: Props) {
             Ahorro<br />desde el primer rayo
           </h1>
           <p style={{
-            fontSize: "clamp(0.9rem, 1.2vw, 1.125rem)",
+            fontSize: "clamp(0.9rem, 1.1vw, 1.05rem)",
             color: theme.textMuted,
-            lineHeight: 1.7,
-            maxWidth: "32rem",
+            lineHeight: 1.6,
+            maxWidth: "30rem",
             marginBottom: "2.5rem",
           }}>
-            Instalamos, mantenemos y optimizamos sistemas fotovoltaicos para hogares y empresas en toda España. Ahorra desde el primer día.
+            Elegir la energía solar es apostar por un futuro con menos gastos, más independencia y un mayor control sobre lo que pagas cada mes. Es convertir cada mañana en una oportunidad para ahorrar, aumentar el valor de tu vivienda y contribuir a un modelo energético más sostenible.
           </p>
-          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", flexDirection: "row", gap: "1.25rem", flexWrap: "wrap", justifyContent: "center" }}>
             <button style={{
-              background: theme.btnPrimary,
+              background: "#78a83f",
               color: "white",
               border: "none",
               borderRadius: "9999px",
-              padding: "1em 2em",
-              fontWeight: 800,
-              fontSize: "clamp(0.7rem, 0.9vw, 0.875rem)",
-              letterSpacing: "0.1em",
+              padding: "1.4em 2em",
+              fontWeight: 400,
+              fontSize: "clamp(1.1rem, 1.5vw, 1.4rem)",
+              letterSpacing: "0.08em",
               textTransform: "uppercase",
               cursor: "pointer",
+              fontFamily: "var(--font-poppins), sans-serif",
+              lineHeight: 1.2,
+              whiteSpace: "nowrap",
             }}>
               Preguntas Frecuentes
             </button>
             <button style={{
-              background: theme.btnSecondary,
+              background: "#78a83f",
               color: "white",
               border: "none",
               borderRadius: "9999px",
-              padding: "1em 2em",
-              fontWeight: 800,
-              fontSize: "clamp(0.7rem, 0.9vw, 0.875rem)",
-              letterSpacing: "0.1em",
+              padding: "1.4em 2em",
+              fontWeight: 400,
+              fontSize: "clamp(1.1rem, 1.5vw, 1.4rem)",
+              letterSpacing: "0.08em",
               textTransform: "uppercase",
               cursor: "pointer",
+              fontFamily: "var(--font-poppins), sans-serif",
+              lineHeight: 1.2,
+              whiteSpace: "nowrap",
             }}>
               Presupuesto
             </button>
           </div>
         </div>
 
+        {/* Ilustración: escalada proporcionalmente, crece hacia abajo */}
         <div style={{
-          background: theme.bgCard,
+          background: "#fafad6",
           borderRadius: "1.5rem",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          aspectRatio: "4 / 3",
-          overflow: "hidden",
-          padding: "5%",
+          aspectRatio: "1 / 1",
+          width: "115%",
+          padding: 0,
+          position: "relative",
+          alignSelf: "start",
+          top: "-5vw",
         }}>
-          <SolarPanelIllustration isDark={isDark} />
+          <Image
+            src={principalImg}
+            alt="Ilustración principal"
+            fill
+            style={{ objectFit: "contain", borderRadius: "1.5rem" }}
+          />
         </div>
       </div>
     </section>

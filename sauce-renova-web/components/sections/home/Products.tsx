@@ -1,4 +1,5 @@
-import EVChargerIllustration from "@/components/illustrations/EVChargerIllustration";
+import Image from "next/image";
+import cargadorImg from "@/components/illustrations/Cargador ve.webp";
 import BatteryIcon from "@/components/icons/BatteryIcon";
 import HomeIcon from "@/components/icons/HomeIcon";
 
@@ -7,66 +8,74 @@ interface Props {
 }
 
 export default function Products({ isDark }: Props) {
+  const bg = isDark ? "#1a2235" : "#fafad6";
   const accent = isDark ? "#78a83f" : "#0354bf";
   const accentAlt = isDark ? "#0354bf" : "#78a83f";
-  const bgCard = isDark ? "#fafad6" : "#1e2d45";
-  const textMuted = isDark ? "#a0aec0" : "#4a5568";
-  const btnSecondary = isDark ? "#78a83f" : "#0354bf";
+  const textMuted = isDark ? "#4a5568" : "#4a5568";
+  const cardBg = isDark ? "#fafad6" : "#1e2d45";
 
-  const verMasStyle = {
+  const btnStyle = {
     color: "white",
     border: "none",
-    borderRadius: 50,
-    padding: "12px 28px",
+    borderRadius: "9999px",
+    padding: "0.85em 2.2em",
     fontWeight: 800,
-    fontSize: 13,
+    fontSize: "clamp(0.75rem, 0.9vw, 0.875rem)",
     letterSpacing: "0.1em",
     textTransform: "uppercase" as const,
     cursor: "pointer",
-    display: "inline-block",
-    marginTop: 16,
     transition: "transform 0.15s",
+    display: "inline-block",
+    marginTop: "1.5rem",
   };
 
   return (
-    <section style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px" }} id="cargadores">
+    <section style={{ background: bg, padding: "5vw 5vw" }} id="cargadores">
       <div style={{
+        maxWidth: "90rem",
+        margin: "0 auto",
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
-        gap: 64,
-        marginTop: 40,
+        gap: "5vw",
       }}>
         {/* Cargadores VE */}
         <div>
           <h2 style={{
-            fontSize: "clamp(28px, 3vw, 44px)",
+            fontSize: "clamp(1.75rem, 3.5vw, 3.5rem)",
             fontWeight: 900,
-            fontStyle: "italic",
             color: accent,
             textTransform: "uppercase",
-            marginBottom: 16,
+            marginBottom: "1.25rem",
             lineHeight: 1,
+            fontFamily: "var(--font-shrikhand), sans-serif",
           }}>
             Cargadores VE
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", alignItems: "start" }}>
+            {/* Imagen tall */}
             <div style={{
-              background: bgCard,
-              borderRadius: 16,
-              minHeight: 200,
+              background: cardBg,
+              borderRadius: "1rem",
+              aspectRatio: "3 / 4",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               overflow: "hidden",
+              position: "relative",
             }}>
-              <EVChargerIllustration isDark={isDark} />
+              <Image
+                src={cargadorImg}
+                alt="Cargador VE"
+                fill
+                style={{ objectFit: "contain" }}
+              />
             </div>
-            <div>
-              <p style={{ fontSize: 15, fontStyle: "italic", lineHeight: 1.7, color: textMuted }}>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <p style={{ fontSize: "clamp(0.85rem, 1vw, 1rem)", fontStyle: "italic", lineHeight: 1.75, color: textMuted }}>
                 Instalamos puntos de recarga para vehículos eléctricos en garajes, comunidades de vecinos y empresas. Soluciones compatibles con todos los modelos del mercado.
               </p>
               <button
-                style={{ ...verMasStyle, background: btnSecondary }}
+                style={{ ...btnStyle, background: accent }}
                 onMouseEnter={e => e.currentTarget.style.transform = "scale(1.04)"}
                 onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
               >
@@ -79,37 +88,39 @@ export default function Products({ isDark }: Props) {
         {/* Placas y Baterías */}
         <div>
           <h2 style={{
-            fontSize: "clamp(28px, 3vw, 44px)",
+            fontSize: "clamp(1.75rem, 3.5vw, 3.5rem)",
             fontWeight: 900,
-            fontStyle: "italic",
             color: accentAlt,
             textTransform: "uppercase",
-            marginBottom: 16,
+            marginBottom: "1.25rem",
             lineHeight: 1,
+            fontFamily: "var(--font-shrikhand), sans-serif",
           }}>
             Placas y Baterías
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", alignItems: "start" }}>
+            {/* Imagen tall */}
             <div style={{
-              background: isDark ? "#fafad6" : "#1e2d45",
-              borderRadius: 16,
-              minHeight: 200,
+              background: cardBg,
+              borderRadius: "1rem",
+              aspectRatio: "3 / 4",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               overflow: "hidden",
+              flexDirection: "column",
+              gap: "1rem",
+              padding: "1.5rem",
             }}>
-              <div style={{ padding: 24, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 12 }}>
-                <BatteryIcon size={64} color={isDark ? "#1e2d45" : "#fafad6"} />
-                <HomeIcon size={56} color="#78a83f" />
-              </div>
+              <BatteryIcon size={64} color={isDark ? "#fafad6" : "#1e2d45"} />
+              <HomeIcon size={56} color="#78a83f" />
             </div>
-            <div>
-              <p style={{ fontSize: 15, fontStyle: "italic", lineHeight: 1.7, color: textMuted }}>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <p style={{ fontSize: "clamp(0.85rem, 1vw, 1rem)", fontStyle: "italic", lineHeight: 1.75, color: textMuted }}>
                 Suministramos e instalamos placas solares de alta eficiencia y baterías de almacenamiento para maximizar tu independencia energética.
               </p>
               <button
-                style={{ ...verMasStyle, background: accentAlt }}
+                style={{ ...btnStyle, background: accentAlt }}
                 onMouseEnter={e => e.currentTarget.style.transform = "scale(1.04)"}
                 onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
               >

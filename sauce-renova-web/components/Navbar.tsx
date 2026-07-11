@@ -19,16 +19,24 @@ const navLinks = [
 export default function Navbar() {
     const [solarOpen, setSolarOpen] = useState(false);
     const { isDark, toggleTheme } = useTheme();
-
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         setMounted(true);
     }, []);
 
+    const navBg = mounted && isDark
+        ? "linear-gradient(to right, #0454be, #1f4408)"
+        : "linear-gradient(to right, #6FA050, #0454be)";
+
+    const dropdownBg = mounted && isDark ? "#1a2235" : "#6FA050";
+
     return (
         <header className="px-12 py-4">
-            <nav className="w-full pl-3 pr-3 py-2 flex items-center rounded-full bg-gradient-to-r from-green to-blue">
+            <nav
+                className="w-full pl-3 pr-3 py-2 flex items-center rounded-full"
+                style={{ background: navBg, transition: "background 0.4s" }}
+            >
                 <Link href="/">
                     <div className="w-12 h-12 rounded-full bg-white flex-shrink-0" />
                 </Link>
@@ -53,9 +61,12 @@ export default function Navbar() {
                                     className={`absolute top-full left-0 pt-3 z-10 transition-all duration-300 ease-out ${solarOpen
                                         ? "opacity-100 translate-y-0 pointer-events-auto"
                                         : "opacity-0 -translate-y-2 pointer-events-none"
-                                        }`}
+                                    }`}
                                 >
-                                    <ul className="bg-green rounded-xl py-2 min-w-max">
+                                    <ul
+                                        className="rounded-xl py-2 min-w-max"
+                                        style={{ background: dropdownBg }}
+                                    >
                                         {link.dropdown.map((item) => (
                                             <li key={item}>
                                                 <Link

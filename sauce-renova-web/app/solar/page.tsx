@@ -1,10 +1,21 @@
+"use client";
+
 import Link from "next/link";
+import { useTheme } from "@/context/ThemeContext";
+import CTABanner from "@/components/ui/CTABanner";
 import SolarPanelIllustration from "@/components/illustrations/SolarPanelIllustration";
 
 export default function SolarPage() {
+  const { isDark } = useTheme();
+
+  const bg = isDark ? "#1a2235" : "#f5f5dc";
+  const heroBg = isDark ? "#0d1520" : "#1e2d45";
+  const cardBg = isDark ? "#243050" : "white";
   const accent = "#2857c8";
   const accentAlt = "#6b8c3a";
-  const textMuted = "#4a5568";
+  const textMuted = isDark ? "#a0aec0" : "#4a5568";
+  const titleColor = isDark ? "#9BC97A" : accent;
+  const cardTitleColor = isDark ? "#9BC97A" : accentAlt;
 
   const servicios = [
     {
@@ -25,9 +36,8 @@ export default function SolarPage() {
   ];
 
   return (
-    <main style={{ background: "#f5f5dc", minHeight: "100vh" }}>
-      {/* Hero */}
-      <section style={{ background: "#1e2d45", padding: "80px 24px" }}>
+    <main style={{ background: bg, minHeight: "100vh" }}>
+      <section style={{ background: heroBg, padding: "80px 24px" }}>
         <div style={{
           maxWidth: 1200,
           margin: "0 auto",
@@ -74,7 +84,7 @@ export default function SolarPage() {
             </Link>
           </div>
           <div style={{
-            background: "#f5f5dc",
+            background: isDark ? "#1a2235" : "#f5f5dc",
             borderRadius: 24,
             padding: 24,
             minHeight: 300,
@@ -82,19 +92,18 @@ export default function SolarPage() {
             alignItems: "center",
             justifyContent: "center",
           }}>
-            <SolarPanelIllustration isDark={false} />
+            <SolarPanelIllustration isDark={isDark} />
           </div>
         </div>
       </section>
 
-      {/* Servicios */}
       <section style={{ padding: "80px 24px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <h2 style={{
             fontSize: "clamp(28px, 3.5vw, 48px)",
             fontWeight: 900,
             fontStyle: "italic",
-            color: accent,
+            color: titleColor,
             textTransform: "uppercase",
             marginBottom: 48,
           }}>
@@ -107,7 +116,7 @@ export default function SolarPage() {
           }}>
             {servicios.map((s, i) => (
               <div key={i} style={{
-                background: "white",
+                background: cardBg,
                 borderRadius: 20,
                 padding: "40px 32px",
                 borderLeft: `4px solid ${accentAlt}`,
@@ -119,7 +128,7 @@ export default function SolarPage() {
                   fontSize: 22,
                   fontWeight: 800,
                   fontStyle: "italic",
-                  color: accentAlt,
+                  color: cardTitleColor,
                   textTransform: "uppercase",
                   margin: 0,
                 }}>
@@ -135,7 +144,7 @@ export default function SolarPage() {
                   {s.descripcion}
                 </p>
                 <Link href={s.href} style={{
-                  color: accentAlt,
+                  color: cardTitleColor,
                   fontWeight: 800,
                   fontSize: 13,
                   letterSpacing: "0.08em",
@@ -151,43 +160,7 @@ export default function SolarPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section style={{ background: accentAlt, padding: "64px 24px" }}>
-        <div style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: 24,
-        }}>
-          <h2 style={{
-            fontSize: "clamp(24px, 3vw, 40px)",
-            fontWeight: 900,
-            fontStyle: "italic",
-            color: "white",
-            textTransform: "uppercase",
-            margin: 0,
-          }}>
-            ¿Listo para empezar a ahorrar?
-          </h2>
-          <Link href="/contacto" style={{
-            background: "white",
-            color: accentAlt,
-            borderRadius: 50,
-            padding: "16px 40px",
-            fontWeight: 800,
-            fontSize: 14,
-            letterSpacing: "0.1em",
-            textTransform: "uppercase",
-            textDecoration: "none",
-            display: "inline-block",
-          }}>
-            Contáctanos
-          </Link>
-        </div>
-      </section>
+      <CTABanner titulo="¿Listo para empezar a ahorrar?" color={accentAlt} />
     </main>
   );
 }

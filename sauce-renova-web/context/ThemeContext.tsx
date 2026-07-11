@@ -31,7 +31,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <ThemeContext.Provider value={{ isDark: mounted ? isDark : false, toggleTheme }}>
-      {children}
+      <div style={{
+        background: mounted && isDark ? "#1a2235" : "#f5f2d0",
+        minHeight: "100vh",
+        transition: "background 0.4s",
+      }}>
+        {children}
+      </div>
     </ThemeContext.Provider>
   );
 }

@@ -1,10 +1,21 @@
+"use client";
+
 import Link from "next/link";
+import { useTheme } from "@/context/ThemeContext";
+import CTABanner from "@/components/ui/CTABanner";
 import EVChargerIllustration from "@/components/illustrations/EVChargerIllustration";
 
 export default function CargadoresPage() {
+  const { isDark } = useTheme();
+
+  const bg = isDark ? "#1a2235" : "#f5f5dc";
+  const heroBg = isDark ? "#0d1520" : "#1e2d45";
+  const cardBg = isDark ? "#243050" : "white";
   const accent = "#2857c8";
   const accentAlt = "#6b8c3a";
-  const textMuted = "#4a5568";
+  const textMuted = isDark ? "#a0aec0" : "#4a5568";
+  const titleColor = isDark ? "#9BC97A" : accent;
+  const cardTitleColor = isDark ? "#9BC97A" : accent;
 
   const tipos = [
     {
@@ -26,9 +37,8 @@ export default function CargadoresPage() {
   ];
 
   return (
-    <main style={{ background: "#f5f5dc", minHeight: "100vh" }}>
-      {/* Hero */}
-      <section style={{ background: "#1e2d45", padding: "80px 24px" }}>
+    <main style={{ background: bg, minHeight: "100vh" }}>
+      <section style={{ background: heroBg, padding: "80px 24px" }}>
         <div style={{
           maxWidth: 1200,
           margin: "0 auto",
@@ -75,7 +85,7 @@ export default function CargadoresPage() {
             </Link>
           </div>
           <div style={{
-            background: "#f5f5dc",
+            background: isDark ? "#1a2235" : "#f5f5dc",
             borderRadius: 24,
             padding: 24,
             minHeight: 300,
@@ -83,19 +93,18 @@ export default function CargadoresPage() {
             alignItems: "center",
             justifyContent: "center",
           }}>
-            <EVChargerIllustration isDark={false} />
+            <EVChargerIllustration isDark={isDark} />
           </div>
         </div>
       </section>
 
-      {/* Tipos */}
       <section style={{ padding: "80px 24px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <h2 style={{
             fontSize: "clamp(28px, 3.5vw, 48px)",
             fontWeight: 900,
             fontStyle: "italic",
-            color: accent,
+            color: titleColor,
             textTransform: "uppercase",
             marginBottom: 48,
           }}>
@@ -108,7 +117,7 @@ export default function CargadoresPage() {
           }}>
             {tipos.map((t, i) => (
               <div key={i} style={{
-                background: "white",
+                background: cardBg,
                 borderRadius: 20,
                 padding: "40px 32px",
                 borderLeft: `4px solid ${accent}`,
@@ -117,7 +126,7 @@ export default function CargadoresPage() {
                   fontSize: 22,
                   fontWeight: 800,
                   fontStyle: "italic",
-                  color: accent,
+                  color: cardTitleColor,
                   textTransform: "uppercase",
                   marginBottom: 12,
                 }}>
@@ -138,8 +147,7 @@ export default function CargadoresPage() {
         </div>
       </section>
 
-      {/* Plan MOVES */}
-      <section style={{ background: accent, padding: "64px 24px" }}>
+      <section style={{ background: isDark ? "#0d1520" : accent, padding: "64px 24px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <h2 style={{
             fontSize: "clamp(28px, 3.5vw, 48px)",
@@ -177,6 +185,8 @@ export default function CargadoresPage() {
           </Link>
         </div>
       </section>
+
+      <CTABanner titulo="¿Quieres instalar un cargador?" color={accentAlt} />
     </main>
   );
 }

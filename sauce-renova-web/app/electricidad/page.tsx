@@ -1,9 +1,20 @@
+"use client";
+
 import Link from "next/link";
+import { useTheme } from "@/context/ThemeContext";
+import CTABanner from "@/components/ui/CTABanner";
 
 export default function ElectricidadPage() {
+  const { isDark } = useTheme();
+
+  const bg = isDark ? "#1a2235" : "#f5f5dc";
+  const heroBg = isDark ? "#0d1520" : "#1e2d45";
+  const cardBg = isDark ? "#243050" : "white";
   const accent = "#2857c8";
   const accentAlt = "#6b8c3a";
-  const textMuted = "#4a5568";
+  const textMuted = isDark ? "#a0aec0" : "#4a5568";
+  const titleColor = isDark ? "#9BC97A" : accent;
+  const cardTitleColor = isDark ? "#9BC97A" : accent;
 
   const servicios = [
     {
@@ -25,9 +36,8 @@ export default function ElectricidadPage() {
   ];
 
   return (
-    <main style={{ background: "#f5f5dc", minHeight: "100vh" }}>
-      {/* Hero */}
-      <section style={{ background: "#1e2d45", padding: "80px 24px" }}>
+    <main style={{ background: bg, minHeight: "100vh" }}>
+      <section style={{ background: heroBg, padding: "80px 24px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <h1 style={{
             fontSize: "clamp(48px, 6vw, 88px)",
@@ -67,14 +77,13 @@ export default function ElectricidadPage() {
         </div>
       </section>
 
-      {/* Servicios */}
       <section style={{ padding: "80px 24px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <h2 style={{
             fontSize: "clamp(28px, 3.5vw, 48px)",
             fontWeight: 900,
             fontStyle: "italic",
-            color: accent,
+            color: titleColor,
             textTransform: "uppercase",
             marginBottom: 48,
           }}>
@@ -87,7 +96,7 @@ export default function ElectricidadPage() {
           }}>
             {servicios.map((s, i) => (
               <div key={i} style={{
-                background: "white",
+                background: cardBg,
                 borderRadius: 20,
                 padding: "40px 32px",
                 borderLeft: `4px solid ${accent}`,
@@ -96,7 +105,7 @@ export default function ElectricidadPage() {
                   fontSize: 22,
                   fontWeight: 800,
                   fontStyle: "italic",
-                  color: accent,
+                  color: cardTitleColor,
                   textTransform: "uppercase",
                   marginBottom: 12,
                 }}>
@@ -116,35 +125,7 @@ export default function ElectricidadPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section style={{ background: accent, padding: "64px 24px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 24 }}>
-          <h2 style={{
-            fontSize: "clamp(24px, 3vw, 40px)",
-            fontWeight: 900,
-            fontStyle: "italic",
-            color: "white",
-            textTransform: "uppercase",
-            margin: 0,
-          }}>
-            ¿Tienes un proyecto en mente?
-          </h2>
-          <Link href="/contacto" style={{
-            background: "white",
-            color: accent,
-            borderRadius: 50,
-            padding: "16px 40px",
-            fontWeight: 800,
-            fontSize: 14,
-            letterSpacing: "0.1em",
-            textTransform: "uppercase",
-            textDecoration: "none",
-            display: "inline-block",
-          }}>
-            Contáctanos
-          </Link>
-        </div>
-      </section>
+      <CTABanner titulo="¿Tienes un proyecto en mente?" color={accent} />
     </main>
   );
 }

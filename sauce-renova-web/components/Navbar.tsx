@@ -6,7 +6,11 @@ import { useTheme } from "@/context/ThemeContext";
 import SunIcon from "@/components/icons/SunIcon";
 import MoonIcon from "@/components/icons/MoonIcon";
 
-const solarDropdown = ["Instalación", "Mantenimiento", "Baterías"];
+const solarDropdown = [
+    { label: "Instalación", href: "/solar/instalacion" },
+    { label: "Mantenimiento", href: "/solar/mantenimiento" },
+    { label: "Baterías", href: "/solar/baterias" },
+];
 
 const navLinks = [
     { label: "Contactanos", href: "/contacto" },
@@ -61,19 +65,19 @@ export default function Navbar() {
                                     className={`absolute top-full left-0 pt-3 z-10 transition-all duration-300 ease-out ${solarOpen
                                         ? "opacity-100 translate-y-0 pointer-events-auto"
                                         : "opacity-0 -translate-y-2 pointer-events-none"
-                                    }`}
+                                        }`}
                                 >
                                     <ul
                                         className="rounded-xl py-2 min-w-max"
                                         style={{ background: dropdownBg }}
                                     >
                                         {link.dropdown.map((item) => (
-                                            <li key={item}>
+                                            <li key={item.label}>
                                                 <Link
-                                                    href={`/solar/${item.toLowerCase()}`}
+                                                    href={item.href}
                                                     className="block px-5 py-2 text-white font-bold text-2xl hover:opacity-80 transition-opacity"
                                                 >
-                                                    {item.toUpperCase()}
+                                                    {item.label.toUpperCase()}
                                                 </Link>
                                             </li>
                                         ))}

@@ -1,7 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useTheme } from "@/context/ThemeContext";
+import SunIcon from "@/components/icons/SunIcon";
+import MoonIcon from "@/components/icons/MoonIcon";
 
 const solarDropdown = ["Instalación", "Mantenimiento", "Baterías"];
 
@@ -15,10 +18,17 @@ const navLinks = [
 
 export default function Navbar() {
     const [solarOpen, setSolarOpen] = useState(false);
+    const { isDark, toggleTheme } = useTheme();
+
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     return (
         <header className="px-12 py-4">
-            <nav className="w-full pl-3 pr-8 py-2 flex items-center rounded-full bg-gradient-to-r from-green to-blue">
+            <nav className="w-full pl-3 pr-3 py-2 flex items-center rounded-full bg-gradient-to-r from-green to-blue">
                 <Link href="/">
                     <div className="w-12 h-12 rounded-full bg-white flex-shrink-0" />
                 </Link>
@@ -40,11 +50,10 @@ export default function Navbar() {
 
                             {link.dropdown && (
                                 <div
-                                    className={`absolute top-full left-0 pt-3 z-10 transition-all duration-300 ease-out ${
-                                        solarOpen
-                                            ? "opacity-100 translate-y-0 pointer-events-auto"
-                                            : "opacity-0 -translate-y-2 pointer-events-none"
-                                    }`}
+                                    className={`absolute top-full left-0 pt-3 z-10 transition-all duration-300 ease-out ${solarOpen
+                                        ? "opacity-100 translate-y-0 pointer-events-auto"
+                                        : "opacity-0 -translate-y-2 pointer-events-none"
+                                        }`}
                                 >
                                     <ul className="bg-green rounded-xl py-2 min-w-max">
                                         {link.dropdown.map((item) => (
@@ -63,6 +72,14 @@ export default function Navbar() {
                         </li>
                     ))}
                 </ul>
+
+                <button
+                    onClick={toggleTheme}
+                    className="ml-6 w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors flex-shrink-0"
+                    aria-label="Cambiar tema"
+                >
+                    {mounted && (isDark ? <SunIcon size={18} color="white" /> : <MoonIcon size={18} color="white" />)}
+                </button>
             </nav>
         </header>
     );

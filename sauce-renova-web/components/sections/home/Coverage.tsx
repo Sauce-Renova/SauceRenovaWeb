@@ -14,7 +14,7 @@ export default function Coverage({ isDark }: Props) {
     <section style={{ background: bg, padding: "80px 24px" }} id="tramites">
       <div style={{
         maxWidth: 1200,
-        marginLeft: 0,
+        marginLeft: "auto",
         marginRight: "auto",
         display: "grid",
         gridTemplateColumns: "1fr 2fr",

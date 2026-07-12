@@ -28,16 +28,16 @@ export default function Hero({ isDark }: Props) {
   const theme = isDark ? t.dark : t.light;
 
   return (
-    <section style={{ background: theme.bg, minHeight: "92vh", display: "flex", flexDirection: "column" }} id="inicio">
+    <section style={{ background: theme.bg, minHeight: "75vh", display: "flex", flexDirection: "column" }} id="inicio">
       <div style={{
         display: "grid",
         gridTemplateColumns: "55fr 45fr",
         flex: 1,
-        minHeight: "92vh",
+        minHeight: "75vh",
         maxWidth: "100%",
         padding: "4vw 5vw 2vw 6vw",
         gap: "4vw",
-        alignItems: "start",
+        alignItems: "center",
       }}>
         <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
           <h1 style={{
@@ -99,7 +99,6 @@ export default function Hero({ isDark }: Props) {
           </div>
         </div>
 
-        {/* Ilustración: escalada proporcionalmente, crece hacia abajo */}
         <div style={{
           background: "#fafad6",
           borderRadius: "1.5rem",
@@ -107,11 +106,9 @@ export default function Hero({ isDark }: Props) {
           alignItems: "center",
           justifyContent: "center",
           aspectRatio: "1 / 1",
-          width: "115%",
+          width: "100%",
           padding: 0,
           position: "relative",
-          alignSelf: "start",
-          top: "-5vw",
         }}>
           <Image
             src={principalImg}

@@ -1,8 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function ContactPage() {
+  const { isDark } = useTheme();
+
+  const bg = isDark ? "#1a2235" : "#f5f5dc";
+  const labelColor = isDark ? "#f5f5dc" : "#1e2d45";
+  const textMuted = isDark ? "#a0aec0" : "#4a5568";
+  const titleColor = isDark ? "#9BC97A" : "#2857c8";
+  const inputBg = isDark ? "#243050" : "white";
+  const inputBorder = isDark ? "#3a4d6b" : "#e2e8f0";
+  const inputColor = isDark ? "#f5f5dc" : "#1e2d45";
+
   const [form, setForm] = useState({
     nombre: "",
     telefono: "",
@@ -34,22 +45,24 @@ export default function ContactPage() {
     width: "100%",
     padding: "14px 18px",
     borderRadius: 12,
-    border: "2px solid #e2e8f0",
+    border: `2px solid ${inputBorder}`,
     fontSize: 15,
     fontFamily: "inherit",
     outline: "none",
     transition: "border-color 0.2s",
     boxSizing: "border-box" as const,
+    background: inputBg,
+    color: inputColor,
   };
 
   return (
-    <main style={{ background: "#f5f5dc", minHeight: "100vh", padding: "80px 24px" }}>
+    <main style={{ background: bg, minHeight: "100vh", padding: "80px 24px" }}>
       <div style={{ maxWidth: 640, margin: "0 auto" }}>
         <h1 style={{
           fontSize: "clamp(40px, 6vw, 72px)",
           fontWeight: 900,
           fontStyle: "italic",
-          color: "#2857c8",
+          color: titleColor,
           textTransform: "uppercase",
           lineHeight: 0.95,
           marginBottom: 16,
@@ -59,7 +72,7 @@ export default function ContactPage() {
         <p style={{
           fontSize: 16,
           fontStyle: "italic",
-          color: "#4a5568",
+          color: textMuted,
           lineHeight: 1.7,
           marginBottom: 48,
         }}>
@@ -68,7 +81,7 @@ export default function ContactPage() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div>
-            <label style={{ display: "block", fontWeight: 700, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1e2d45", marginBottom: 8 }}>
+            <label style={{ display: "block", fontWeight: 700, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", color: labelColor, marginBottom: 8 }}>
               Nombre
             </label>
             <input
@@ -82,7 +95,7 @@ export default function ContactPage() {
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             <div>
-              <label style={{ display: "block", fontWeight: 700, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1e2d45", marginBottom: 8 }}>
+              <label style={{ display: "block", fontWeight: 700, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", color: labelColor, marginBottom: 8 }}>
                 Teléfono
               </label>
               <input
@@ -94,7 +107,7 @@ export default function ContactPage() {
               />
             </div>
             <div>
-              <label style={{ display: "block", fontWeight: 700, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1e2d45", marginBottom: 8 }}>
+              <label style={{ display: "block", fontWeight: 700, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", color: labelColor, marginBottom: 8 }}>
                 Email
               </label>
               <input
@@ -108,7 +121,7 @@ export default function ContactPage() {
           </div>
 
           <div>
-            <label style={{ display: "block", fontWeight: 700, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1e2d45", marginBottom: 8 }}>
+            <label style={{ display: "block", fontWeight: 700, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", color: labelColor, marginBottom: 8 }}>
               Mensaje
             </label>
             <textarea

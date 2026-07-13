@@ -1,3 +1,6 @@
+"use client";
+import { useRef } from "react";
+
 interface Props {
   isDark: boolean;
 }
@@ -8,6 +11,9 @@ const reviewsData = [
   { stars: 5, text: "Rápidos, eficientes y con un precio muy competitivo. La mejor decisión que hemos tomado." },
   { stars: 5, text: "Excelente servicio postventa. Ante cualquier consulta responden al instante. 10/10." },
   { stars: 4, text: "Muy contentos con el resultado. Las placas llevan 6 meses funcionando perfectamente." },
+  { stars: 5, text: "El proceso fue sencillo y el equipo resolvió todos nuestros trámites. Sin complicaciones." },
+  { stars: 5, text: "Desde el primer día notamos la diferencia en la factura. Muy recomendables." },
+  { stars: 4, text: "Profesionales y puntuales. La instalación quedó perfecta y el trato fue excelente." },
 ];
 
 export default function Reviews({ isDark }: Props) {
@@ -15,6 +21,30 @@ export default function Reviews({ isDark }: Props) {
   const bgBox = isDark ? "#78a83f" : "#0354bf";
   const titleColor = bgBox;
   const cardBg = isDark ? "rgba(26,34,53,0.25)" : "rgba(255,255,255,0.18)";
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (dir: "left" | "right") => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: dir === "right" ? 300 : -300, behavior: "smooth" });
+    }
+  };
+
+  const arrowStyle = {
+    background: "rgba(255,255,255,0.25)",
+    border: "none",
+    borderRadius: "50%",
+    width: 44,
+    height: 44,
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+    transition: "background 0.2s",
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+  } as const;
 
   return (
     <section style={{ background: bgOuter, padding: "3vw 5px" }}>
@@ -33,29 +63,59 @@ export default function Reviews({ isDark }: Props) {
         background: bgBox,
         borderRadius: "2rem",
         padding: "2.5vw 2vw",
-        maxWidth: "90rem",
-        margin: "0 auto",
+        margin: "0 40px",
       }}>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(5, 1fr)",
-          gap: 16,
-        }}>
-          {reviewsData.map((r, i) => (
-            <div key={i} style={{
-              background: cardBg,
-              borderRadius: 16,
-              padding: "20px 16px",
-              border: "1px solid rgba(255,255,255,0.25)",
-            }}>
-              <div style={{ color: "#f5b942", fontSize: 16, marginBottom: 8 }}>
-                {"★".repeat(r.stars)}{"☆".repeat(5 - r.stars)}
+        {/* Flechas + scroll */}
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <button
+            style={arrowStyle}
+            onClick={() => scroll("left")}
+            onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.4)"}
+            onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.25)"}
+          >
+            ‹
+          </button>
+
+          <div ref={scrollRef} style={{
+            display: "flex",
+            gap: 16,
+            overflowX: "auto",
+            paddingBottom: "0.5rem",
+            scrollbarWidth: "none",
+            flex: 1,
+          }}>
+            {reviewsData.map((r, i) => (
+              <div key={i} style={{
+                background: cardBg,
+                borderRadius: 16,
+                padding: "32px 24px",
+                border: "1px solid rgba(255,255,255,0.25)",
+                minWidth: "280px",
+                maxWidth: "280px",
+                minHeight: "240px",
+                display: "flex",
+                flexDirection: "column",
+                gap: 14,
+                flexShrink: 0,
+              }}>
+                <div style={{ color: "#f5b942", fontSize: 22 }}>
+                  {"★".repeat(r.stars)}{"☆".repeat(5 - r.stars)}
+                </div>
+                <p style={{ color: "white", fontSize: 15, lineHeight: 1.75, flex: 1 }}>
+                  {r.text}
+                </p>
               </div>
-              <p style={{ color: "white", fontSize: 13, lineHeight: 1.6 }}>
-                {r.text}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <button
+            style={arrowStyle}
+            onClick={() => scroll("right")}
+            onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.4)"}
+            onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.25)"}
+          >
+            ›
+          </button>
         </div>
       </div>
     </section>

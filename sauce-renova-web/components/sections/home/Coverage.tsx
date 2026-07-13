@@ -7,7 +7,7 @@ interface Props {
 
 export default function Coverage({ isDark }: Props) {
   const bg = isDark ? "#1a2235" : "#fafad6";
-  const accentAlt = isDark ? "#0354bf" : "#78a83f";
+  const accentAlt = isDark ? "#fafad6" : "#78a83f";
   const textMuted = isDark ? "#a0aec0" : "#4a5568";
 
   return (
@@ -52,7 +52,7 @@ export default function Coverage({ isDark }: Props) {
           <button
             style={{
               background: accentAlt,
-              color: "white",
+              color: isDark ? "#1a2235" : "white",
               border: "none",
               borderRadius: 50,
               padding: "14px 36px",

@@ -50,7 +50,7 @@ export default function Benefits({ isDark }: Props) {
             <div
               key={i}
               style={{
-                background: "#afcf89",
+                background: isDark ? "#d1e5ff" : "#afcf89",
                 borderRadius: "1.25rem",
                 padding: "2.5rem 1.5rem",
                 display: "flex",
@@ -92,8 +92,8 @@ export default function Benefits({ isDark }: Props) {
                 {b.text}
               </p>
               <button style={{
-                background: "#fafad6",
-                color: benefitsBg,
+                background: isDark ? "#0354bf" : "#fafad6",
+                color: isDark ? "#fafad6" : benefitsBg,
                 border: "none",
                 borderRadius: "9999px",
                 padding: "0.75em 2em",

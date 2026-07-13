@@ -10,8 +10,8 @@ interface Props {
 export default function Products({ isDark }: Props) {
   const bg = isDark ? "#1a2235" : "#fafad6";
   const accent = isDark ? "#78a83f" : "#0354bf";
-  const accentAlt = isDark ? "#0354bf" : "#78a83f";
-  const textMuted = isDark ? "#4a5568" : "#4a5568";
+  const accentAlt = isDark ? "#78a83f" : "#0354bf";
+  const textMuted = isDark ? "#a0aec0" : "#4a5568";
   const cardBg = isDark ? "#fafad6" : "#1e2d45";
 
   const btnStyle = {

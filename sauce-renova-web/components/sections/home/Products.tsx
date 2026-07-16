@@ -1,18 +1,19 @@
 import Image from "next/image";
-import cargadorImg from "@/components/illustrations/Cargador ve.webp";
-import BatteryIcon from "@/components/icons/BatteryIcon";
-import HomeIcon from "@/components/icons/HomeIcon";
+import cargadorImg from "@/components/illustrations/cargador-ve.webp";
+import cargadorOscuroImg from "@/components/illustrations/Cargador-ve-oscuro.webp";
+import placasImg from "@/components/illustrations/placas-y-baterias.webp";
+import placasOscuroImg from "@/components/illustrations/placas-y-baterias-oscuro.webp";
 
 interface Props {
   isDark: boolean;
 }
 
 export default function Products({ isDark }: Props) {
-  const bg = isDark ? "#1a2235" : "#fafad6";
+  const bg = isDark ? "#203147" : "#fafad6";
   const accent = isDark ? "#78a83f" : "#0354bf";
   const accentAlt = isDark ? "#78a83f" : "#0354bf";
   const textMuted = isDark ? "#a0aec0" : "#4a5568";
-  const cardBg = isDark ? "#fafad6" : "#1e2d45";
+  const cardBg = isDark ? "#203147" : "#1e2d45";
 
   const btnStyle = {
     color: "white",
@@ -52,19 +53,15 @@ export default function Products({ isDark }: Props) {
             Cargadores VE
           </h2>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", alignItems: "start" }}>
-            {/* Imagen tall */}
             <div style={{
               background: cardBg,
               borderRadius: "1rem",
               aspectRatio: "3 / 4",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
               overflow: "hidden",
               position: "relative",
             }}>
               <Image
-                src={cargadorImg}
+                src={isDark ? cargadorOscuroImg : cargadorImg}
                 alt="Cargador VE"
                 fill
                 style={{ objectFit: "contain" }}
@@ -99,21 +96,19 @@ export default function Products({ isDark }: Props) {
             Placas y Baterías
           </h2>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", alignItems: "start" }}>
-            {/* Imagen tall */}
             <div style={{
               background: cardBg,
               borderRadius: "1rem",
               aspectRatio: "3 / 4",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
               overflow: "hidden",
-              flexDirection: "column",
-              gap: "1rem",
-              padding: "1.5rem",
+              position: "relative",
             }}>
-              <BatteryIcon size={64} color={isDark ? "#fafad6" : "#1e2d45"} />
-              <HomeIcon size={56} color="#78a83f" />
+              <Image
+                src={isDark ? placasOscuroImg : placasImg}
+                alt="Placas y Baterías"
+                fill
+                style={{ objectFit: "contain" }}
+              />
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <p style={{ fontSize: "clamp(0.85rem, 1vw, 1rem)", fontStyle: "italic", lineHeight: 1.75, color: textMuted }}>

@@ -8,7 +8,7 @@ import SolarPanelIllustration from "@/components/illustrations/SolarPanelIllustr
 export default function SolarPage() {
   const { isDark } = useTheme();
 
-  const bg = isDark ? "#1a2235" : "#f5f5dc";
+  const bg = isDark ? "#203147" : "#f5f5dc";
   const heroBg = isDark ? "#0d1520" : "#1e2d45";
   const cardBg = isDark ? "#243050" : "white";
   const accent = "#2857c8";
@@ -84,7 +84,7 @@ export default function SolarPage() {
             </Link>
           </div>
           <div style={{
-            background: isDark ? "#1a2235" : "#f5f5dc",
+            background: isDark ? "#203147" : "#f5f5dc",
             borderRadius: 24,
             padding: 24,
             minHeight: 300,

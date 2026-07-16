@@ -6,7 +6,7 @@ import { useTheme } from "@/context/ThemeContext";
 export default function ContactPage() {
   const { isDark } = useTheme();
 
-  const bg = isDark ? "#1a2235" : "#f5f5dc";
+  const bg = isDark ? "#203147" : "#f5f5dc";
   const labelColor = isDark ? "#f5f5dc" : "#1e2d45";
   const textMuted = isDark ? "#a0aec0" : "#4a5568";
   const titleColor = isDark ? "#9BC97A" : "#2857c8";

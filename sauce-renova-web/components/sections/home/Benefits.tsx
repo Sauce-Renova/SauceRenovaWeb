@@ -1,7 +1,12 @@
-import HomeIcon from "@/components/icons/HomeIcon";
-import BoltIcon from "@/components/icons/BoltIcon";
-import LeafIcon from "@/components/icons/LeafIcon";
-import BatteryIcon from "@/components/icons/BatteryIcon";
+import Image from "next/image";
+import hogarAzul from "@/components/illustrations/hogar-azul.svg";
+import hogarVerde from "@/components/illustrations/casa-verde.svg";
+import empresaAzul from "@/components/illustrations/Empresa-azulsvg.svg";
+import empresaVerde from "@/components/illustrations/Empresa-verde.svg";
+import comunidadAzul from "@/components/illustrations/comunidad-azul.svg";
+import comunidadVerde from "@/components/illustrations/comunidad-verde.svg";
+import hotelAzul from "@/components/illustrations/Hotel-azul.svg";
+import hotelVerde from "@/components/illustrations/Hotel-verde.svg";
 
 interface Props {
   isDark: boolean;
@@ -9,18 +14,32 @@ interface Props {
 
 export default function Benefits({ isDark }: Props) {
   const benefitsBg = isDark ? "#0354bf" : "#78a83f";
-  const iconColor = isDark ? "#78a83f" : "#0354bf";
 
   const benefits = [
-    { icon: <HomeIcon size={56} color={iconColor} />, subtitle: "Casa", text: "Reduce tu factura eléctrica hasta un 80% con instalación fotovoltaica en tu hogar." },
-    { icon: <BoltIcon size={56} color={iconColor} />, subtitle: "Empresa", text: "Genera tu propia energía limpia y vende el excedente a la red eléctrica." },
-    { icon: <LeafIcon size={56} color={isDark ? "#0354bf" : "#78a83f"} />, subtitle: "Comunidad", text: "Contribuye al medio ambiente reduciendo tu huella de carbono cada día." },
-    { icon: <BatteryIcon size={56} color={iconColor} />, subtitle: "Hoteles", text: "Almacena energía en baterías de última generación para total autonomía." },
+    {
+      subtitle: "Casa",
+      icon: isDark ? hogarAzul : hogarVerde,
+      text: "Reduce tu factura eléctrica hasta un 80% con instalación fotovoltaica en tu hogar.",
+    },
+    {
+      subtitle: "Empresa",
+      icon: isDark ? empresaAzul : empresaVerde,
+      text: "Genera tu propia energía limpia y vende el excedente a la red eléctrica.",
+    },
+    {
+      subtitle: "Comunidad",
+      icon: isDark ? comunidadAzul : comunidadVerde,
+      text: "Contribuye al medio ambiente reduciendo tu huella de carbono cada día.",
+    },
+    {
+      subtitle: "Hoteles",
+      icon: isDark ? hotelAzul : hotelVerde,
+      text: "Almacena energía en baterías de última generación para total autonomía.",
+    },
   ];
 
   return (
-    /* Fondo crema exterior, la caja verde flota con margen */
-    <section style={{ background: isDark ? "#1a2235" : "#fafad6", padding: "0.25rem 0" }} id="solar">
+    <section style={{ background: isDark ? "#203147" : "#fafad6", padding: "0.25rem 0" }} id="solar">
       <div style={{
         background: benefitsBg,
         borderRadius: "2rem",
@@ -57,18 +76,21 @@ export default function Benefits({ isDark }: Props) {
                 flexDirection: "column",
                 alignItems: "center",
                 textAlign: "center",
-                gap: "1.25rem",
+                gap: "1rem",
                 cursor: "pointer",
                 transition: "transform 0.2s",
               }}
-              onMouseEnter={e => {
-                e.currentTarget.style.transform = "translateY(-4px)";
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.transform = "translateY(0)";
-              }}
+              onMouseEnter={e => e.currentTarget.style.transform = "translateY(-4px)"}
+              onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
             >
-              <div>{b.icon}</div>
+              <div style={{ width: 72, height: 72, position: "relative" }}>
+                <Image
+                  src={b.icon}
+                  alt={b.subtitle}
+                  fill
+                  style={{ objectFit: "contain" }}
+                />
+              </div>
               <h3 style={{
                 color: "#1e2d45",
                 fontSize: "clamp(1rem, 1.2vw, 1.2rem)",
@@ -86,7 +108,6 @@ export default function Benefits({ isDark }: Props) {
                 fontStyle: "normal",
                 fontWeight: 400,
                 lineHeight: 1.6,
-                opacity: 0.92,
                 flex: 1,
               }}>
                 {b.text}

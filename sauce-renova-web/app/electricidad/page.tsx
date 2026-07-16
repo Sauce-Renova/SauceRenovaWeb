@@ -7,7 +7,7 @@ import CTABanner from "@/components/ui/CTABanner";
 export default function ElectricidadPage() {
   const { isDark } = useTheme();
 
-  const bg = isDark ? "#1a2235" : "#f5f5dc";
+  const bg = isDark ? "#203147" : "#f5f5dc";
   const heroBg = isDark ? "#0d1520" : "#1e2d45";
   const cardBg = isDark ? "#243050" : "white";
   const accent = "#2857c8";

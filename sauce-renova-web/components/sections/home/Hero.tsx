@@ -1,5 +1,6 @@
 import Image from "next/image";
 import principalImg from "@/components/illustrations/principal.webp";
+import principalOscuroImg from "@/components/illustrations/IMG_PRINCIPAL_oscuro.webp";
 
 interface Props {
   isDark: boolean;
@@ -15,7 +16,7 @@ const t = {
     bgCard: "#1e2d45",
   },
   dark: {
-    bg: "#1a2235",
+    bg: "#203147",
     accent: "#78a83f",
     textMuted: "#a0aec0",
     btnPrimary: "#0354bf",
@@ -28,15 +29,15 @@ export default function Hero({ isDark }: Props) {
   const theme = isDark ? t.dark : t.light;
 
   return (
-    <section style={{ background: theme.bg, minHeight: "75vh", display: "flex", flexDirection: "column" }} id="inicio">
+    <section style={{ background: theme.bg, minHeight: "auto", display: "flex", flexDirection: "column" }} id="inicio">
       <div style={{
         display: "grid",
         gridTemplateColumns: "55fr 45fr",
         flex: 1,
-        minHeight: "75vh",
+        minHeight: "auto",
         maxWidth: "100%",
-        padding: "4vw 5vw 2vw 6vw",
-        gap: "4vw",
+        padding: "1.5vw 5vw 2vw 6vw",
+        gap: "3vw",
         alignItems: "center",
       }}>
         <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -100,18 +101,20 @@ export default function Hero({ isDark }: Props) {
         </div>
 
         <div style={{
-          background: "#fafad6",
+          background: isDark ? "#203147" : "#fafad6",
           borderRadius: "1.5rem",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          aspectRatio: "1 / 1",
+          aspectRatio: "3 / 4",
           width: "100%",
           padding: 0,
           position: "relative",
+          alignSelf: "start",
+          marginTop: "0.5vw",
         }}>
           <Image
-            src={principalImg}
+            src={isDark ? principalOscuroImg : principalImg}
             alt="Ilustración principal"
             fill
             style={{ objectFit: "contain", borderRadius: "1.5rem" }}

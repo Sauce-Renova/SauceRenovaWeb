@@ -33,10 +33,10 @@ export default function Navbar() {
         ? "linear-gradient(to right, #0454be, #1f4408)"
         : "linear-gradient(to right, #6FA050, #0454be)";
 
-    const dropdownBg = mounted && isDark ? "#1a2235" : "#6FA050";
+    const dropdownBg = mounted && isDark ? "#203147" : "#6FA050";
 
     return (
-        <header className="px-12 py-4">
+        <header className="px-12 py-4" style={{ background: mounted && isDark ? "#203147" : "#fafad6" }}>
             <nav
                 className="w-full pl-3 pr-3 py-2 flex items-center rounded-full"
                 style={{ background: navBg, transition: "background 0.4s" }}

@@ -1,12 +1,13 @@
 import Image from "next/image";
 import mapaImg from "@/components/illustrations/mapa.webp";
+import mapaOscuroImg from "@/components/illustrations/mapa-oscuro.webp";
 
 interface Props {
   isDark: boolean;
 }
 
 export default function Coverage({ isDark }: Props) {
-  const bg = isDark ? "#1a2235" : "#fafad6";
+  const bg = isDark ? "#203147" : "#fafad6";
   const accentAlt = isDark ? "#fafad6" : "#78a83f";
   const textMuted = isDark ? "#a0aec0" : "#4a5568";
 
@@ -14,7 +15,7 @@ export default function Coverage({ isDark }: Props) {
     <section style={{ background: bg, padding: "80px 24px" }} id="tramites">
       <div style={{
         maxWidth: 1200,
-        marginLeft: "auto",
+        marginLeft: 0,
         marginRight: "auto",
         display: "grid",
         gridTemplateColumns: "1fr 2fr",
@@ -23,7 +24,7 @@ export default function Coverage({ isDark }: Props) {
       }}>
         <div style={{ position: "relative", width: "100%", aspectRatio: "1 / 1" }}>
           <Image
-            src={mapaImg}
+            src={isDark ? mapaOscuroImg : mapaImg}
             alt="Mapa de cobertura"
             fill
             style={{ objectFit: "contain" }}
@@ -52,7 +53,7 @@ export default function Coverage({ isDark }: Props) {
           <button
             style={{
               background: accentAlt,
-              color: isDark ? "#1a2235" : "white",
+              color: isDark ? "#203147" : "white",
               border: "none",
               borderRadius: 50,
               padding: "14px 36px",

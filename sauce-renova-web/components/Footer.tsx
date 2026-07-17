@@ -1,5 +1,16 @@
+"use client";
+
+import { useTheme } from "@/context/ThemeContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp, faInstagram, faFacebook, faTiktok, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
+
 export default function Footer() {
-  const bgFooter = "linear-gradient(135deg, #78a83f 0%, #0354bf 100%)";
+  const { isDark } = useTheme();
+
+  const footerBg = isDark
+    ? "linear-gradient(135deg, #0d1520 0%, #2857c8 100%)"
+    : "linear-gradient(135deg, #6b8c3a 0%, #2857c8 100%)";
 
   const columns = [
     {
@@ -10,12 +21,13 @@ export default function Footer() {
             Empresa especializada en energía solar fotovoltaica, cargadores para vehículos eléctricos y gestión de trámites con la administración.
           </p>
           {[
-            { icon: "📞", text: "666 666 666" },
-            { icon: "💬", text: "666 666 666" },
-            { icon: "✉️", text: "info@solar.com" },
+            { icon: faPhone, text: "123 456 789" },
+            { icon: faWhatsapp, text: "987 654 321" },
+            { icon: faEnvelope, text: "info@saucerenova.com" },
           ].map((c, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, color: "rgba(255,255,255,0.9)", fontSize: 14, fontStyle: "italic", marginTop: 8 }}>
-              {c.icon} <span>{c.text}</span>
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, color: "rgba(255,255,255,0.9)", fontSize: 14, fontStyle: "italic", marginTop: 10 }}>
+              <FontAwesomeIcon icon={c.icon} style={{ width: 16, height: 16 }} />
+              <span>{c.text}</span>
             </div>
           ))}
         </>
@@ -40,10 +52,17 @@ export default function Footer() {
     {
       heading: "Redes",
       content: (
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-          {["📷 Instagram", "👤 Facebook", "🎵 TikTok", "𝕏 Twitter / X", "▶️ YouTube"].map((s, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, color: "rgba(255,255,255,0.85)", fontSize: 14, fontStyle: "italic", cursor: "pointer" }}>
-              {s}
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          {[
+            { icon: faInstagram, label: "Instagram" },
+            { icon: faFacebook, label: "Facebook" },
+            { icon: faTiktok, label: "TikTok" },
+            { icon: faXTwitter, label: "Twitter / X" },
+            { icon: faYoutube, label: "YouTube" },
+          ].map((s, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, color: "rgba(255,255,255,0.85)", fontSize: 14, fontStyle: "italic", cursor: "pointer" }}>
+              <FontAwesomeIcon icon={s.icon} style={{ width: 16, height: 16 }} />
+              <span>{s.label}</span>
             </div>
           ))}
         </div>
@@ -52,7 +71,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer style={{ background: bgFooter, padding: "60px 24px 32px" }} id="contacto">
+    <footer style={{ background: footerBg, padding: "60px 24px 32px", transition: "background 0.4s" }} id="contacto">
       <div style={{
         maxWidth: 1200,
         margin: "0 auto",
@@ -86,7 +105,7 @@ export default function Footer() {
         fontStyle: "italic",
         textAlign: "center",
       }}>
-        © 2025 Solar Energy. Todos los derechos reservados.
+        © 2026 Sauce Renova. Todos los derechos reservados.
       </p>
     </footer>
   );

@@ -1,4 +1,4 @@
-export default function HomeIcon({ size = 48, color = "#2857c8" }) {
+export default function HomeIcon({ size = 48, color = "#0354bf" }) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none">
       <path d="M8 32 L32 10 L56 32" stroke={color} strokeWidth="4" strokeLinecap="round" />

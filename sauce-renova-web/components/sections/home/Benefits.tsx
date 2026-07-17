@@ -1,84 +1,130 @@
-import HomeIcon from "@/components/icons/HomeIcon";
-import BoltIcon from "@/components/icons/BoltIcon";
-import LeafIcon from "@/components/icons/LeafIcon";
-import BatteryIcon from "@/components/icons/BatteryIcon";
+import Image from "next/image";
+import hogarAzul from "@/components/illustrations/hogar-azul.svg";
+import hogarVerde from "@/components/illustrations/casa-verde.svg";
+import empresaAzul from "@/components/illustrations/Empresa-azulsvg.svg";
+import empresaVerde from "@/components/illustrations/Empresa-verde.svg";
+import comunidadAzul from "@/components/illustrations/comunidad-azul.svg";
+import comunidadVerde from "@/components/illustrations/comunidad-verde.svg";
+import hotelAzul from "@/components/illustrations/Hotel-azul.svg";
+import hotelVerde from "@/components/illustrations/Hotel-verde.svg";
 
 interface Props {
   isDark: boolean;
 }
 
 export default function Benefits({ isDark }: Props) {
-  const benefitsBg = isDark ? "#2857c8" : "#6b8c3a";
-  const benefitsCard = isDark ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.15)";
-  const benefitsCardHover = isDark ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.25)";
-  const iconColor = isDark ? "#6b8c3a" : "#2857c8";
+  const benefitsBg = isDark ? "#0354bf" : "#78a83f";
 
   const benefits = [
-    { icon: <HomeIcon size={52} color={iconColor} />, text: "Reduce tu factura eléctrica hasta un 80% con instalación fotovoltaica en tu hogar." },
-    { icon: <BoltIcon size={52} color={iconColor} />, text: "Genera tu propia energía limpia y vende el excedente a la red eléctrica." },
-    { icon: <LeafIcon size={52} color={isDark ? "#2857c8" : "#6b8c3a"} />, text: "Contribuye al medio ambiente reduciendo tu huella de carbono cada día." },
-    { icon: <BatteryIcon size={52} color={iconColor} />, text: "Almacena energía en baterías de última generación para total autonomía." },
+    {
+      subtitle: "Casa",
+      icon: isDark ? hogarAzul : hogarVerde,
+      text: "Reduce tu factura eléctrica hasta un 80% con instalación fotovoltaica en tu hogar.",
+    },
+    {
+      subtitle: "Empresa",
+      icon: isDark ? empresaAzul : empresaVerde,
+      text: "Genera tu propia energía limpia y vende el excedente a la red eléctrica.",
+    },
+    {
+      subtitle: "Comunidad",
+      icon: isDark ? comunidadAzul : comunidadVerde,
+      text: "Contribuye al medio ambiente reduciendo tu huella de carbono cada día.",
+    },
+    {
+      subtitle: "Hoteles",
+      icon: isDark ? hotelAzul : hotelVerde,
+      text: "Almacena energía en baterías de última generación para total autonomía.",
+    },
   ];
 
   return (
-    <section style={{ background: benefitsBg, padding: "64px 24px" }} id="solar">
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+    <section style={{ background: isDark ? "#203147" : "#fafad6", padding: "0.25rem 0" }} id="solar">
+      <div style={{
+        background: benefitsBg,
+        borderRadius: "2rem",
+        padding: "3.5vw 3vw",
+        maxWidth: "100%",
+        margin: "0 40px",
+      }}>
         <h2 style={{
-          fontSize: "clamp(32px, 4vw, 52px)",
+          fontSize: "clamp(1.75rem, 3.5vw, 3.5rem)",
           fontWeight: 900,
-          fontStyle: "italic",
-          color: "white",
+          fontStyle: "normal",
+          color: "#fafad6",
+          textAlign: "center",
           textTransform: "uppercase",
           letterSpacing: "-0.01em",
-          marginBottom: 40,
+          marginBottom: "2.5vw",
+          fontFamily: "var(--font-shrikhand), sans-serif",
         }}>
           Beneficios de la Energía Solar
         </h2>
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 20,
+          gap: "1.5vw",
         }}>
           {benefits.map((b, i) => (
             <div
               key={i}
               style={{
-                background: benefitsCard,
-                borderRadius: 20,
-                padding: "32px 20px",
+                background: isDark ? "#d1e5ff" : "#afcf89",
+                borderRadius: "1.25rem",
+                padding: "2.5rem 1.5rem",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 textAlign: "center",
-                gap: 16,
-                transition: "background 0.2s, transform 0.2s",
+                gap: "1rem",
                 cursor: "pointer",
+                transition: "transform 0.2s",
               }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = benefitsCardHover;
-                e.currentTarget.style.transform = "translateY(-4px)";
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = benefitsCard;
-                e.currentTarget.style.transform = "translateY(0)";
-              }}
+              onMouseEnter={e => e.currentTarget.style.transform = "translateY(-4px)"}
+              onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
             >
-              {b.icon}
-              <p style={{ color: "white", fontSize: 14, fontStyle: "italic", lineHeight: 1.6, opacity: 0.9 }}>
+              <div style={{ width: 72, height: 72, position: "relative" }}>
+                <Image
+                  src={b.icon}
+                  alt={b.subtitle}
+                  fill
+                  style={{ objectFit: "contain" }}
+                />
+              </div>
+              <h3 style={{
+                color: "#1e2d45",
+                fontSize: "clamp(1rem, 1.2vw, 1.2rem)",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
+                fontFamily: "var(--font-poppins), sans-serif",
+                margin: 0,
+              }}>
+                {b.subtitle}
+              </h3>
+              <p style={{
+                color: "#1e2d45",
+                fontSize: "clamp(0.85rem, 1vw, 1rem)",
+                fontStyle: "normal",
+                fontWeight: 400,
+                lineHeight: 1.6,
+                flex: 1,
+              }}>
                 {b.text}
               </p>
               <button style={{
-                background: isDark ? "#f5f5dc" : "white",
-                color: benefitsBg,
+                background: isDark ? "#0354bf" : "#fafad6",
+                color: isDark ? "#fafad6" : benefitsBg,
                 border: "none",
-                borderRadius: 50,
-                padding: "10px 24px",
-                fontWeight: 800,
-                fontSize: 13,
+                borderRadius: "9999px",
+                padding: "0.75em 2em",
+                fontWeight: 700,
+                fontSize: "clamp(0.75rem, 0.85vw, 0.875rem)",
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
                 cursor: "pointer",
                 marginTop: "auto",
+                fontStyle: "normal",
               }}>
                 Ver más
               </button>

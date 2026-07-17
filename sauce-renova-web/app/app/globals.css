@@ -2,9 +2,9 @@
 
 @theme {
   --color-navy: #1C2B41;
-  --color-green: #78a83f;
-  --color-green-light: #78a83f;
-  --color-cream: #fafad6;
+  --color-green: #6FA050;
+  --color-green-light: #9BC97A;
+  --color-cream: #F5F2D0;
   --color-blue: #0354bf;
   --color-blue-dark: #0354bf;
 }
@@ -15,8 +15,4 @@ body {
 
 .font-shrikhand {
   font-family: var(--font-shrikhand), sans-serif;
-}
-
-* {
-  transition: background-color 0.4s, color 0.4s, border-color 0.4s;
 }

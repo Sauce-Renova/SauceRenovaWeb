@@ -27,10 +27,6 @@ export default function TramitesPage() {
       descripcion: "Tramitamos la legalización técnica de la instalación fotovoltaica ante Industria de forma rápida y sin complicaciones.",
     },
     {
-      titulo: "Ayudas Europeas",
-      descripcion: "Gestionamos las ayudas Next Generation para reducir los costes de tu instalación. Incluye ayudas por placas, baterías y cargadores.",
-    },
-    {
       titulo: "IBI",
       descripcion: "Tramitamos la deducción del IBI según el ayuntamiento correspondiente. En comunidades de propietarios el precio es por participante.",
     },
@@ -46,9 +42,11 @@ export default function TramitesPage() {
 
   const precios = [
     { rango: "Hasta 10 kW", precio: "950€", incluye: ["Permiso de Obra", "Boletín CIE", "IBI", "Punto de acceso y conexión", "Visita técnica"] },
-    { rango: "10 - 25 kW", precio: "1.600€", incluye: ["Proyecto", "Permiso de Obra", "Boletín CIE", "Ayudas Europeas", "IBI", "Punto de acceso y conexión", "Visitas de obra", "OCA"] },
-    { rango: "25 - 50 kW", precio: "2.200€", incluye: ["Proyecto", "Permiso de Obra", "Boletín CIE", "Ayudas Europeas", "IBI", "Punto de acceso y conexión", "Visitas de obra", "OCA"] },
-    { rango: "+100 kW", precio: "2,5% presupuesto", incluye: ["Proyecto", "Permiso de Obra", "Boletín CIE", "Ayudas Europeas", "IBI", "Punto de acceso y conexión", "Visitas de obra", "OCA"] },
+    { rango: "10 - 25 kW", precio: "1.600€", incluye: ["Proyecto", "Permiso de Obra", "Boletín CIE", "IBI", "Punto de acceso y conexión", "Visitas de obra", "OCA"] },
+    { rango: "25 - 50 kW", precio: "2.200€", incluye: ["Proyecto", "Permiso de Obra", "Boletín CIE", "IBI", "Punto de acceso y conexión", "Visitas de obra", "OCA"] },
+    { rango: "50 - 75 kW", precio: "2.400€", incluye: ["Proyecto", "Permiso de Obra", "Boletín CIE", "IBI", "Punto de acceso y conexión", "Visita dirección de obra", "Visita final de obra", "OCA"] },
+    { rango: "75 - 100 kW", precio: "2.650€", incluye: ["Proyecto", "Permiso de Obra", "Boletín CIE", "IBI", "Punto de acceso y conexión", "Visita dirección de obra", "Visita final de obra", "OCA"] },
+    { rango: "+100 kW", precio: "2,5% presupuesto", incluye: ["Proyecto", "Permiso de Obra", "Boletín CIE", "IBI", "Punto de acceso y conexión", "Visitas de obra", "OCA"] },
   ];
 
   return (
@@ -74,7 +72,7 @@ export default function TramitesPage() {
             maxWidth: 600,
             marginBottom: 40,
           }}>
-            Nos encargamos de toda la burocracia para que tú solo tengas que disfrutar del ahorro. Gestionamos permisos, legalizaciones y ayudas europeas en toda España.
+            Nos encargamos de toda la burocracia para que tú solo tengas que disfrutar del ahorro. Gestionamos permisos y legalizaciones en toda España.
           </p>
           <Link href="/contacto" style={{
             background: accentAlt,
@@ -150,21 +148,13 @@ export default function TramitesPage() {
             fontStyle: "italic",
             color: "#f5f5dc",
             textTransform: "uppercase",
-            marginBottom: 16,
+            marginBottom: 48,
           }}>
             Tarifas
           </h2>
-          <p style={{
-            fontSize: 15,
-            fontStyle: "italic",
-            color: "rgba(245,245,220,0.6)",
-            marginBottom: 48,
-          }}>
-            Precios para la Comunidad Valenciana. Para otras provincias consultar precio.
-          </p>
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
+            gridTemplateColumns: "repeat(3, 1fr)",
             gap: 24,
           }}>
             {precios.map((p, i) => (

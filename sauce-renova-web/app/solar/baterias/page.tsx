@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { useTheme } from "@/context/ThemeContext";
 import CTABanner from "@/components/ui/CTABanner";
@@ -7,6 +8,7 @@ import BatteryIcon from "@/components/icons/BatteryIcon";
 
 export default function BateriasPage() {
   const { isDark } = useTheme();
+  const [conInstalacion, setConInstalacion] = useState(true);
 
   const bg = isDark ? "#203147" : "#f5f5dc";
   const heroBg = isDark ? "#0d1520" : "#1e2d45";
@@ -17,7 +19,7 @@ export default function BateriasPage() {
   const titleColor = isDark ? "#9BC97A" : accent;
   const cardTitleColor = isDark ? "#9BC97A" : accent;
 
-  const ventajas = [
+  const ventajasCon = [
     {
       titulo: "Independencia Total",
       descripcion: "Almacena la energía que generas durante el día y úsala por la noche. Reduce tu dependencia de la red eléctrica al mínimo.",
@@ -35,6 +37,23 @@ export default function BateriasPage() {
       descripcion: "Trabajamos con baterías de última generación con garantías de hasta 10 años y una vida útil superior a los 6.000 ciclos.",
     },
   ];
+
+  const ventajasSin = [
+    {
+      titulo: "Autonomía e Independencia Eléctrica",
+      descripcion: "Protección instantánea ante apagones y microcortes, eliminando la dependencia total de la red convencional para proteger tu tranquilidad y tus equipos.",
+    },
+    {
+      titulo: "Funcionamiento Inteligente, Ahorro Energético",
+      descripcion: "Carga la batería en horarios de tarifa reducida (valle) y abastece consumos en horas de mayor costo (punta), pudiendo llegar a reducir de forma sustancial la factura de luz.",
+    },
+    {
+      titulo: "Diseño Integrado",
+      descripcion: "Inversor Híbrido y Batería LiFePO4 de máxima seguridad montados en un ecosistema compacto con canalizaciones ocultas, libre de marañas de cables.",
+    },
+  ];
+
+  const ventajas = conInstalacion ? ventajasCon : ventajasSin;
 
   const tipos = [
     {
@@ -101,7 +120,7 @@ export default function BateriasPage() {
               lineHeight: 0.95,
               marginBottom: 24,
             }}>
-              Baterías<br />Solares
+              Baterías
             </h1>
             <p style={{
               fontSize: 18,
@@ -145,16 +164,67 @@ export default function BateriasPage() {
       {/* Ventajas */}
       <section style={{ padding: "80px 24px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <h2 style={{
-            fontSize: "clamp(28px, 3.5vw, 48px)",
-            fontWeight: 900,
-            fontStyle: "italic",
-            color: titleColor,
-            textTransform: "uppercase",
-            marginBottom: 48,
+                    <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: 16,
+            marginBottom: 40,
           }}>
-            Ventajas del Almacenamiento
-          </h2>
+            <h2 style={{
+              fontSize: "clamp(28px, 3.5vw, 48px)",
+              fontWeight: 900,
+              fontStyle: "italic",
+              color: titleColor,
+              textTransform: "uppercase",
+              margin: 0,
+            }}>
+              Ventajas del Almacenamiento
+            </h2>
+
+            <div style={{
+              display: "inline-flex",
+              background: cardBg,
+              borderRadius: 50,
+              padding: 4,
+              border: `1px solid ${isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.1)"}`,
+            }}>
+              <button
+                onClick={() => setConInstalacion(true)}
+                style={{
+                  background: conInstalacion ? accent : "transparent",
+                  color: conInstalacion ? "white" : textMuted,
+                  border: "none",
+                  borderRadius: 50,
+                  padding: "10px 20px",
+                  fontWeight: 700,
+                  fontSize: 13,
+                  cursor: "pointer",
+                  transition: "background 0.2s",
+                }}
+              >
+                Con autoconsumo
+              </button>
+              <button
+                onClick={() => setConInstalacion(false)}
+                style={{
+                  background: !conInstalacion ? accent : "transparent",
+                  color: !conInstalacion ? "white" : textMuted,
+                  border: "none",
+                  borderRadius: 50,
+                  padding: "10px 20px",
+                  fontWeight: 700,
+                  fontSize: 13,
+                  cursor: "pointer",
+                  transition: "background 0.2s",
+                }}
+              >
+                Sin autoconsumo
+              </button>
+            </div>
+          </div>
+
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 32 }}>
             {ventajas.map((v, i) => (
               <div key={i} style={{

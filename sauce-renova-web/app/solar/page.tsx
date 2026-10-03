@@ -35,6 +35,13 @@ export default function SolarPage() {
     },
   ];
 
+  const beneficios = [
+    "Reduce tu factura eléctrica desde el primer día",
+    "Produce tu propia energía y gana independencia de la red",
+    "Aprovecha el sol como recurso gratuito y renovable",
+    "Protégete frente a futuras subidas del precio de la energía",
+  ];
+
   return (
     <main style={{ background: bg, minHeight: "100vh" }}>
       <section style={{ background: heroBg, padding: "80px 24px" }}>
@@ -66,7 +73,7 @@ export default function SolarPage() {
               maxWidth: 500,
               marginBottom: 40,
             }}>
-              Instalamos, mantenemos y optimizamos sistemas fotovoltaicos para hogares y empresas en toda España. Ahorra desde el primer día.
+              ¿Y si pudieras gastar menos sin renunciar a nada? Con una instalación de autoconsumo fotovoltaico empiezas a producir tu propia electricidad desde el primer día, reduciendo tu factura y tu dependencia de la red.
             </p>
             <Link href="/contacto" style={{
               background: accentAlt,
@@ -94,6 +101,26 @@ export default function SolarPage() {
           }}>
             <SolarPanelIllustration isDark={isDark} />
           </div>
+        </div>
+      </section>
+
+      {/* Beneficios */}
+      <section style={{ padding: "56px 24px 0" }}>
+        <div style={{
+          maxWidth: 1200,
+          margin: "0 auto",
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gap: "12px 32px",
+        }}>
+          {beneficios.map((b, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+              <span style={{ color: accentAlt, fontWeight: 900, fontSize: 16, lineHeight: 1.6 }}>✓</span>
+              <span style={{ fontSize: 15, fontStyle: "italic", color: textMuted, lineHeight: 1.6 }}>
+                {b}
+              </span>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -160,7 +187,7 @@ export default function SolarPage() {
         </div>
       </section>
 
-      <CTABanner titulo="¿Listo para empezar a ahorrar?" color={accentAlt} />
+      <CTABanner titulo="Descubre cuánto podrías ahorrar con tu tejado" color={accentAlt} />
     </main>
   );
 }

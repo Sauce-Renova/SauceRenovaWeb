@@ -21,14 +21,27 @@ export default function Footer() {
             Empresa especializada en energía solar fotovoltaica, cargadores para vehículos eléctricos y gestión de trámites con la administración.
           </p>
           {[
-            { icon: faPhone, text: "123 456 789" },
-            { icon: faWhatsapp, text: "987 654 321" },
-            { icon: faEnvelope, text: "info@saucerenova.com" },
+            { icon: faPhone, text: "613 115 981", href: "tel:+34613115981" },
+            { icon: faWhatsapp, text: "613 115 981", href: "https://wa.me/34613115981" },
+            { icon: faEnvelope, text: "comercial@saucerenova.com", href: "mailto:comercial@saucerenova.com" },
           ].map((c, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, color: "rgba(255,255,255,0.9)", fontSize: 14, fontStyle: "italic", marginTop: 10 }}>
+            <a
+              key={i}
+              href={c.href}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                color: "rgba(255,255,255,0.9)",
+                fontSize: 14,
+                fontStyle: "italic",
+                marginTop: 10,
+                textDecoration: "none",
+              }}
+            >
               <FontAwesomeIcon icon={c.icon} style={{ width: 16, height: 16 }} />
               <span>{c.text}</span>
-            </div>
+            </a>
           ))}
         </>
       ),

@@ -30,10 +30,6 @@ export default function CargadoresPage() {
       titulo: "Empresa",
       descripcion: "Mejora la imagen de tu empresa y atrae talento ofreciendo puntos de carga a empleados y clientes. Aprovecha los incentivos fiscales disponibles.",
     },
-    {
-      titulo: "Hotel",
-      descripcion: "Ofrece a tus huéspedes un servicio diferencial con puntos de carga para vehículos eléctricos. Un valor añadido que marca la diferencia.",
-    },
   ];
 
   return (
@@ -67,7 +63,8 @@ export default function CargadoresPage() {
               maxWidth: 500,
               marginBottom: 40,
             }}>
-              Instalamos y legalizamos puntos de recarga para vehículos eléctricos en hogares, garajes comunitarios, empresas y hoteles. Compatibles con todos los modelos del mercado.
+              Instalamos y legalizamos puntos de recarga para vehículos eléctricos en hogares, garajes comunitarios y empresas. Compatibles con todos los modelos del mercado.
+              {" "}Si además tienes <Link href="/solar" style={{ color: "inherit", textDecoration: "underline" }}>placas solares</Link>, puedes cargar tu coche con energía propia y reducir también tu gasto en combustible.
             </p>
             <Link href="/contacto" style={{
               background: accentAlt,

@@ -42,16 +42,20 @@ export default function InstalacionPage() {
 
   const tipos = [
     {
-      titulo: "Residencial",
-      descripcion: "Instalaciones para viviendas unifamiliares y pisos. Reduce tu factura hasta un 80% y aumenta el valor de tu propiedad.",
+      titulo: "Vivienda",
+      descripcion: "Instalamos tus paneles solares para que tengan un rendimiento óptimo y ahorres lo máximo en tu factura de luz, aumentando el valor de tu propiedad.",
     },
     {
-      titulo: "Empresarial",
-      descripcion: "Soluciones para pymes y grandes empresas. Reduce tus costes energéticos y mejora tu imagen de marca.",
+      titulo: "Comercio/Industria",
+      descripcion: "Soluciones fotovoltaicas para autónomos, pymes y grandes empresas. Reduce tus costes energéticos, gana independencia energética y haz tu negocio más sostenible y competitivo.",
     },
     {
-      titulo: "Comunidades",
-      descripcion: "Autoconsumo colectivo para comunidades de vecinos. Reparte el ahorro entre todos los participantes.",
+      titulo: "Compartida",
+      descripcion: "Instalaciones fotovoltaicas compartidas para comunidades de propietarios, viviendas, comercios y empresas.",
+    },
+    {
+      titulo: "Aislada",
+      descripcion: "Estas instalaciones te permiten disponer de energía eléctrica sin estar conectado a la red eléctrica. Gracias a los paneles solares y a las baterías, puedes generar y almacenar tu propia electricidad para utilizarla cuando la necesites.",
     },
   ];
 
@@ -142,7 +146,7 @@ export default function InstalacionPage() {
           </h2>
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
+            gridTemplateColumns: "repeat(2, 1fr)",
             gap: 32,
           }}>
             {tipos.map((t, i) => (

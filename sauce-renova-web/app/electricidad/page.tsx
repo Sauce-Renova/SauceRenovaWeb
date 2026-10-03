@@ -17,22 +17,11 @@ export default function ElectricidadPage() {
   const cardTitleColor = isDark ? "#9BC97A" : accent;
 
   const servicios = [
-    {
-      titulo: "Ingeniería Fotovoltaica",
-      descripcion: "Diseñamos y dimensionamos tu instalación desde cero. Preinformes, proyectos, estudios de producción y consumo, tramitación de permisos y legalizaciones.",
-    },
-    {
-      titulo: "Integración de Placas",
-      descripcion: "Integramos las placas solares en tu edificación de forma estética y eficiente, combinando rendimiento y diseño arquitectónico.",
-    },
-    {
-      titulo: "Autoconsumo Fotovoltaico",
-      descripcion: "Genera tu propia energía y reduce tu dependencia de la red eléctrica. Soluciones para hogares, empresas y comunidades de vecinos.",
-    },
-    {
-      titulo: "Legalización de Instalaciones",
-      descripcion: "Gestionamos todos los trámites necesarios: permisos de obra, boletines, ayudas europeas Next Generation, IBI y punto de acceso y conexión.",
-    },
+    { icono: "⚡", titulo: "Instalaciones y reparaciones eléctricas" },
+    { icono: "🔌", titulo: "Cambios y aumentos de potencia" },
+    { icono: "📋", titulo: "Tramitación y emisión de CIE / Boletín Eléctrico" },
+    { icono: "🏠", titulo: "Instalaciones para viviendas, locales y negocios" },
+    { icono: "🛠️", titulo: "Adaptación y renovación de instalaciones eléctricas" },
   ];
 
   return (
@@ -91,34 +80,32 @@ export default function ElectricidadPage() {
           </h2>
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
+            gridTemplateColumns: "repeat(3, 1fr)",
             gap: 32,
           }}>
             {servicios.map((s, i) => (
               <div key={i} style={{
                 background: cardBg,
                 borderRadius: 20,
-                padding: "40px 32px",
+                padding: "32px 28px",
                 borderLeft: `4px solid ${accent}`,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 20,
               }}>
+                <span style={{ fontSize: 30, lineHeight: 1, flexShrink: 0 }}>{s.icono}</span>
                 <h3 style={{
-                  fontSize: 22,
-                  fontWeight: 800,
-                  fontStyle: "italic",
+                  fontSize: 20,
+                  fontWeight: 700,
+                  fontStyle: "normal",
                   color: cardTitleColor,
-                  textTransform: "uppercase",
-                  marginBottom: 12,
+                  textTransform: "none",
+                  lineHeight: 1.4,
+                  margin: 0,
                 }}>
                   {s.titulo}
                 </h3>
-                <p style={{
-                  fontSize: 15,
-                  fontStyle: "italic",
-                  color: textMuted,
-                  lineHeight: 1.7,
-                }}>
-                  {s.descripcion}
-                </p>
               </div>
             ))}
           </div>

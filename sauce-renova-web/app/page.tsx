@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { useTheme } from "@/context/ThemeContext";
-import Footer from "@/components/Footer";
 
 import principalImg from "@/components/illustrations/principal.webp";
 import principalOscuroImg from "@/components/illustrations/IMG_PRINCIPAL_oscuro.webp";
@@ -560,8 +559,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </main>
   );
 }

@@ -78,11 +78,7 @@ export default function ElectricidadPage() {
           }}>
             Nuestros Servicios
           </h2>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 32,
-          }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 32 }}>
             {servicios.map((s, i) => (
               <div key={i} style={{
                 background: cardBg,

@@ -54,7 +54,7 @@ export default function TramitesPage() {
       <section style={{ background: heroBg, padding: "80px 24px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <h1 style={{
-            fontSize: "clamp(48px, 6vw, 88px)",
+            fontSize: "clamp(2rem, 9vw, 88px)",
             fontWeight: 900,
             fontStyle: "italic",
             color: "#f5f5dc",
@@ -103,11 +103,7 @@ export default function TramitesPage() {
           }}>
             Qué Gestionamos
           </h2>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 32,
-          }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 32 }}>
             {tramites.map((t, i) => (
               <div key={i} style={{
                 background: cardBg,
@@ -152,11 +148,7 @@ export default function TramitesPage() {
           }}>
             Tarifas
           </h2>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 24,
-          }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 24 }}>
             {precios.map((p, i) => (
               <div key={i} style={{
                 background: "rgba(255,255,255,0.08)",

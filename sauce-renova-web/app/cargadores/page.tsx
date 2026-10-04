@@ -35,14 +35,15 @@ export default function CargadoresPage() {
   return (
     <main style={{ background: bg, minHeight: "100vh" }}>
       <section style={{ background: heroBg, padding: "80px 24px" }}>
-        <div style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 48,
-          alignItems: "center",
-        }}>
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2"
+          style={{
+            maxWidth: 1200,
+            margin: "0 auto",
+            gap: 48,
+            alignItems: "center",
+          }}
+        >
           <div>
             <h1 style={{
               fontSize: "clamp(48px, 6vw, 88px)",
@@ -107,11 +108,7 @@ export default function CargadoresPage() {
           }}>
             ¿Dónde Instalamos?
           </h2>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 32,
-          }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 32 }}>
             {tipos.map((t, i) => (
               <div key={i} style={{
                 background: cardBg,

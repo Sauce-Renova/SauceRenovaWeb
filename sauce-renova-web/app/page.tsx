@@ -127,9 +127,6 @@ export default function Home() {
     width: 44,
     height: 44,
     cursor: "pointer",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
     flexShrink: 0,
     transition: "background 0.2s",
     color: "white",
@@ -141,16 +138,16 @@ export default function Home() {
     <main>
       {/* Hero */}
       <section style={{ background: theme.bg, minHeight: "auto", display: "flex", flexDirection: "column" }} id="inicio">
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "55fr 45fr",
-          flex: 1,
-          minHeight: "auto",
-          maxWidth: "100%",
-          padding: "1.5vw 5vw 2vw 6vw",
-          gap: "3vw",
-          alignItems: "center",
-        }}>
+        <div
+          className="grid grid-cols-1 lg:grid-cols-[55fr_45fr]"
+          style={{
+            flex: 1,
+            minHeight: "auto",
+            maxWidth: "100%",
+            padding: "1.5vw 5vw 2vw 6vw",
+            alignItems: "center",
+          }}
+        >
           <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
             <h1 style={{
               fontSize: "clamp(2.5rem, 5.5vw, 5.5rem)",
@@ -236,13 +233,15 @@ export default function Home() {
 
       {/* Benefits */}
       <section style={{ background: isDark ? "#203147" : "#fafad6", padding: "0.25rem 0" }} id="solar">
-        <div style={{
-          background: benefitsBg,
-          borderRadius: "2rem",
-          padding: "3.5vw 3vw",
-          maxWidth: "100%",
-          margin: "0 40px",
-        }}>
+        <div
+          className="mx-4 md:mx-10"
+          style={{
+            background: benefitsBg,
+            borderRadius: "2rem",
+            padding: "3.5vw 3vw",
+            maxWidth: "100%",
+          }}
+        >
           <h2 style={{
             fontSize: "clamp(1.75rem, 3.5vw, 3.5rem)",
             fontWeight: 900,
@@ -256,11 +255,10 @@ export default function Home() {
           }}>
             Beneficios de la Energía Solar
           </h2>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "1.5vw",
-          }}>
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+            style={{ gap: "1.5vw" }}
+          >
             {benefitsList.map((b, i) => (
               <div
                 key={i}
@@ -332,13 +330,14 @@ export default function Home() {
 
       {/* Products */}
       <section style={{ background: productsBg, padding: "5vw 5vw" }} id="cargadores">
-        <div style={{
-          maxWidth: "90rem",
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "5vw",
-        }}>
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2"
+          style={{
+            maxWidth: "90rem",
+            margin: "0 auto",
+            gap: "5vw",
+          }}
+        >
           <div>
             <h2 style={{
               fontSize: "clamp(1.75rem, 3.5vw, 3.5rem)",
@@ -351,7 +350,7 @@ export default function Home() {
             }}>
               Cargadores VE
             </h2>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", alignItems: "start" }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: "1.5rem", alignItems: "start" }}>
               <div style={{
                 background: productsCardBg,
                 borderRadius: "1rem",
@@ -367,7 +366,7 @@ export default function Home() {
                 />
               </div>
               <div style={{ display: "flex", flexDirection: "column" }}>
-                <p style={{ fontSize: "clamp(0.85rem, 1vw, 1rem)", fontStyle: "italic", lineHeight: 1.75, color: productsTextMuted }}>
+                <p style={{ fontSize: "clamp(1.1rem, 1.3vw, 1.3rem)", fontStyle: "italic", lineHeight: 1.75, color: productsTextMuted }}>
                   Instalamos puntos de recarga para vehículos eléctricos en garajes, comunidades de vecinos y empresas. Soluciones compatibles con todos los modelos del mercado.
                 </p>
                 <button
@@ -393,7 +392,7 @@ export default function Home() {
             }}>
               Placas y Baterías
             </h2>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", alignItems: "start" }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: "1.5rem", alignItems: "start" }}>
               <div style={{
                 background: productsCardBg,
                 borderRadius: "1rem",
@@ -409,7 +408,7 @@ export default function Home() {
                 />
               </div>
               <div style={{ display: "flex", flexDirection: "column" }}>
-                <p style={{ fontSize: "clamp(0.85rem, 1vw, 1rem)", fontStyle: "italic", lineHeight: 1.75, color: productsTextMuted }}>
+                <p style={{ fontSize: "clamp(1.1rem, 1.3vw, 1.3rem)", fontStyle: "italic", lineHeight: 1.75, color: productsTextMuted }}>
                   Suministramos e instalamos placas solares de alta eficiencia y baterías de almacenamiento para maximizar tu independencia energética.
                 </p>
                 <button
@@ -500,14 +499,17 @@ export default function Home() {
         }}>
           ¿Qué dicen de nosotros?
         </h2>
-        <div style={{
-          background: reviewsBgBox,
-          borderRadius: "2rem",
-          padding: "2.5vw 2vw",
-          margin: "0 40px",
-        }}>
+        <div
+          className="mx-4 md:mx-10"
+          style={{
+            background: reviewsBgBox,
+            borderRadius: "2rem",
+            padding: "2.5vw 2vw",
+          }}
+        >
           <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
             <button
+              className="hidden sm:flex items-center justify-center"
               style={reviewArrowStyle}
               onClick={() => scroll("left")}
               onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.4)"}
@@ -516,28 +518,31 @@ export default function Home() {
               ‹
             </button>
 
-            <div ref={scrollRef} style={{
-              display: "flex",
-              gap: 16,
-              overflowX: "auto",
-              paddingBottom: "0.5rem",
-              scrollbarWidth: "none",
-              flex: 1,
-            }}>
+            <div
+              ref={scrollRef}
+              className="flex flex-col sm:flex-row gap-4 overflow-visible sm:overflow-x-auto"
+              style={{
+                paddingBottom: "0.5rem",
+                scrollbarWidth: "none",
+                flex: 1,
+              }}
+            >
               {reviewsData.map((r, i) => (
-                <div key={i} style={{
-                  background: isDark ? "rgba(26,34,53,0.25)" : "rgba(255,255,255,0.18)",
-                  borderRadius: 16,
-                  padding: "32px 24px",
-                  border: "1px solid rgba(255,255,255,0.25)",
-                  minWidth: "280px",
-                  maxWidth: "280px",
-                  minHeight: "240px",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 14,
-                  flexShrink: 0,
-                }}>
+                <div
+                  key={i}
+                  className="w-full sm:min-w-[280px] sm:max-w-[280px]"
+                  style={{
+                    background: isDark ? "rgba(26,34,53,0.25)" : "rgba(255,255,255,0.18)",
+                    borderRadius: 16,
+                    padding: "32px 24px",
+                    border: "1px solid rgba(255,255,255,0.25)",
+                    minHeight: "240px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 14,
+                    flexShrink: 0,
+                  }}
+                >
                   <div style={{ color: "#f5b942", fontSize: 22 }}>
                     {"★".repeat(r.stars)}{"☆".repeat(5 - r.stars)}
                   </div>
@@ -549,6 +554,7 @@ export default function Home() {
             </div>
 
             <button
+              className="hidden sm:flex items-center justify-center"
               style={reviewArrowStyle}
               onClick={() => scroll("right")}
               onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.4)"}

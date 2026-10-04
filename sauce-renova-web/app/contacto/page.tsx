@@ -87,7 +87,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main style={{ background: bg, padding: "80px 24px" }}>
+    <main className="py-12 md:py-20" style={{ background: bg, padding: "80px 24px" }}>
       <div style={{ maxWidth: 640, margin: "0 auto" }}>
         <h1 style={{
           fontSize: "clamp(40px, 6vw, 72px)",

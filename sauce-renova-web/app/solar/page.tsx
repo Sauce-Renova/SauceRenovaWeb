@@ -45,14 +45,15 @@ export default function SolarPage() {
   return (
     <main style={{ background: bg, minHeight: "100vh" }}>
       <section style={{ background: heroBg, padding: "80px 24px" }}>
-        <div style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 48,
-          alignItems: "center",
-        }}>
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2"
+          style={{
+            maxWidth: 1200,
+            margin: "0 auto",
+            gap: 48,
+            alignItems: "center",
+          }}
+        >
           <div>
             <h1 style={{
               fontSize: "clamp(48px, 6vw, 88px)",
@@ -86,6 +87,8 @@ export default function SolarPage() {
               textTransform: "uppercase",
               textDecoration: "none",
               display: "inline-block",
+              width: "100%",
+              textAlign: "center",
             }}>
               Solicitar presupuesto
             </Link>
@@ -106,13 +109,14 @@ export default function SolarPage() {
 
       {/* Beneficios */}
       <section style={{ padding: "56px 24px 0" }}>
-        <div style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gap: "12px 32px",
-        }}>
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2"
+          style={{
+            maxWidth: 1200,
+            margin: "0 auto",
+            gap: "12px 32px",
+          }}
+        >
           {beneficios.map((b, i) => (
             <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
               <span style={{ color: accentAlt, fontWeight: 900, fontSize: 16, lineHeight: 1.6 }}>✓</span>
@@ -136,11 +140,10 @@ export default function SolarPage() {
           }}>
             Nuestros Servicios
           </h2>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 32,
-          }}>
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+            style={{ gap: 32 }}
+          >
             {servicios.map((s, i) => (
               <div key={i} style={{
                 background: cardBg,

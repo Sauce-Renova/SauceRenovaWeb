@@ -76,7 +76,7 @@ export default function MantenimientoPage() {
             Solar → Mantenimiento
           </p>
           <h1 style={{
-            fontSize: "clamp(48px, 6vw, 88px)",
+            fontSize: "clamp(2rem, 9vw, 88px)",
             fontWeight: 900,
             fontStyle: "italic",
             color: "#f5f5dc",
@@ -126,7 +126,7 @@ export default function MantenimientoPage() {
           }}>
             Por Qué Mantener tu Instalación
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 32 }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 32 }}>
             {beneficios.map((b, i) => (
               <div key={i} style={{
                 background: cardBg,
@@ -166,7 +166,7 @@ export default function MantenimientoPage() {
           }}>
             Qué Incluye
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 24 }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 24 }}>
             {incluye.map((item, i) => (
               <div key={i} style={{
                 background: "rgba(255,255,255,0.08)",
@@ -206,7 +206,7 @@ export default function MantenimientoPage() {
           }}>
             Cómo Funciona
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 24 }}>
             {pasos.map((p, i) => (
               <div key={i} style={{
                 background: cardBg,

@@ -62,14 +62,15 @@ export default function InstalacionPage() {
   return (
     <main style={{ background: bg, minHeight: "100vh" }}>
       <section style={{ background: heroBg, padding: "80px 24px" }}>
-        <div style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 48,
-          alignItems: "center",
-        }}>
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2"
+          style={{
+            maxWidth: 1200,
+            margin: "0 auto",
+            gap: 48,
+            alignItems: "center",
+          }}
+        >
           <div>
             <p style={{
               fontSize: 13,
@@ -144,11 +145,10 @@ export default function InstalacionPage() {
           }}>
             ¿Para Quién?
           </h2>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 32,
-          }}>
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2"
+            style={{ gap: 32 }}
+          >
             {tipos.map((t, i) => (
               <div key={i} style={{
                 background: cardBg,
@@ -194,11 +194,10 @@ export default function InstalacionPage() {
           }}>
             Cómo Trabajamos
           </h2>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: 24,
-          }}>
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+            style={{ gap: 24 }}
+          >
             {pasos.map((p, i) => (
               <div key={i} style={{
                 background: "rgba(255,255,255,0.08)",

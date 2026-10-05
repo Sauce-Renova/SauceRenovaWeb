@@ -9,6 +9,10 @@
   --color-blue-dark: #0354bf;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   font-family: "Segoe UI", system-ui, sans-serif;
 }

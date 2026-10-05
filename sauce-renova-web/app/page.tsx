@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { useTheme } from "@/context/ThemeContext";
+import { useLanguage } from "@/context/LanguageContext";
+import { homeCopy } from "@/lib/i18n/home";
 
 import principalImg from "@/components/illustrations/principal.webp";
 import principalOscuroImg from "@/components/illustrations/IMG_PRINCIPAL_oscuro.webp";
@@ -40,31 +42,11 @@ const heroTheme = {
   },
 };
 
-const benefitsList = [
-  {
-    subtitle: "Casa",
-    iconLight: "hogarVerde",
-    iconDark: "hogarAzul",
-    text: "Reduce tu factura eléctrica hasta un 80% con instalación fotovoltaica en tu hogar.",
-  },
-  {
-    subtitle: "Empresa",
-    iconLight: "empresaVerde",
-    iconDark: "empresaAzul",
-    text: "Genera tu propia energía limpia y vende el excedente a la red eléctrica.",
-  },
-  {
-    subtitle: "Comunidad",
-    iconLight: "comunidadVerde",
-    iconDark: "comunidadAzul",
-    text: "Contribuye al medio ambiente reduciendo tu huella de carbono cada día.",
-  },
-  {
-    subtitle: "Hoteles",
-    iconLight: "hotelVerde",
-    iconDark: "hotelAzul",
-    text: "Almacena energía en baterías de última generación para total autonomía.",
-  },
+const benefitIconsConfig = [
+  { iconLight: "hogarVerde", iconDark: "hogarAzul" },
+  { iconLight: "empresaVerde", iconDark: "empresaAzul" },
+  { iconLight: "comunidadVerde", iconDark: "comunidadAzul" },
+  { iconLight: "hotelVerde", iconDark: "hotelAzul" },
 ];
 
 const benefitIcons: Record<string, typeof hogarAzul> = {
@@ -72,19 +54,10 @@ const benefitIcons: Record<string, typeof hogarAzul> = {
   comunidadAzul, comunidadVerde, hotelAzul, hotelVerde,
 };
 
-const reviewsData = [
-  { stars: 5, text: "Instalación impecable. El equipo fue muy profesional y resolvieron todas mis dudas antes y después." },
-  { stars: 5, text: "Ahorro visible desde el primer mes. Totalmente recomendable para cualquier hogar o empresa." },
-  { stars: 5, text: "Rápidos, eficientes y con un precio muy competitivo. La mejor decisión que hemos tomado." },
-  { stars: 5, text: "Excelente servicio postventa. Ante cualquier consulta responden al instante. 10/10." },
-  { stars: 4, text: "Muy contentos con el resultado. Las placas llevan 6 meses funcionando perfectamente." },
-  { stars: 5, text: "El proceso fue sencillo y el equipo resolvió todos nuestros trámites. Sin complicaciones." },
-  { stars: 5, text: "Desde el primer día notamos la diferencia en la factura. Muy recomendables." },
-  { stars: 4, text: "Profesionales y puntuales. La instalación quedó perfecta y el trato fue excelente." },
-];
-
 export default function Home() {
   const { isDark } = useTheme();
+  const { lang } = useLanguage();
+  const copy = homeCopy[lang];
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const theme = isDark ? heroTheme.dark : heroTheme.light;
@@ -159,7 +132,7 @@ export default function Home() {
               letterSpacing: "-0.02em",
               fontFamily: "var(--font-shrikhand), sans-serif",
             }}>
-              Ahorro<br />desde el primer rayo
+              {copy.hero.titleLine1}<br />{copy.hero.titleLine2}
             </h1>
             <p style={{
               fontSize: "clamp(0.9rem, 1.1vw, 1.05rem)",
@@ -168,7 +141,7 @@ export default function Home() {
               maxWidth: "30rem",
               marginBottom: "2.5rem",
             }}>
-              Elegir la energía solar es apostar por un futuro con menos gastos, más independencia y un mayor control sobre lo que pagas cada mes. Es convertir cada mañana en una oportunidad para ahorrar, aumentar el valor de tu vivienda y contribuir a un modelo energético más sostenible.
+              {copy.hero.text}
             </p>
             <div style={{ display: "flex", flexDirection: "row", gap: "1.25rem", flexWrap: "wrap", justifyContent: "center" }}>
               <button style={{
@@ -186,7 +159,7 @@ export default function Home() {
                 lineHeight: 1.2,
                 whiteSpace: "nowrap",
               }}>
-                Preguntas Frecuentes
+                {copy.hero.btnFaq}
               </button>
               <button style={{
                 background: "#78a83f",
@@ -203,7 +176,7 @@ export default function Home() {
                 lineHeight: 1.2,
                 whiteSpace: "nowrap",
               }}>
-                Presupuesto
+                {copy.hero.btnPresupuesto}
               </button>
             </div>
           </div>
@@ -223,7 +196,7 @@ export default function Home() {
           }}>
             <Image
               src={isDark ? principalOscuroImg : principalImg}
-              alt="Ilustración principal"
+              alt={copy.hero.altPrincipal}
               fill
               style={{ objectFit: "contain", borderRadius: "1.5rem" }}
             />
@@ -253,77 +226,80 @@ export default function Home() {
             marginBottom: "2.5vw",
             fontFamily: "var(--font-shrikhand), sans-serif",
           }}>
-            Beneficios de la Energía Solar
+            {copy.benefits.heading}
           </h2>
           <div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
             style={{ gap: "1.5vw" }}
           >
-            {benefitsList.map((b, i) => (
-              <div
-                key={i}
-                style={{
-                  background: isDark ? "#d1e5ff" : "#afcf89",
-                  borderRadius: "1.25rem",
-                  padding: "2.5rem 1.5rem",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
-                  gap: "1rem",
-                  cursor: "pointer",
-                  transition: "transform 0.2s",
-                }}
-                onMouseEnter={e => e.currentTarget.style.transform = "translateY(-4px)"}
-                onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
-              >
-                <div style={{ width: 72, height: 72, position: "relative" }}>
-                  <Image
-                    src={benefitIcons[isDark ? b.iconDark : b.iconLight]}
-                    alt={b.subtitle}
-                    fill
-                    style={{ objectFit: "contain" }}
-                  />
+            {copy.benefits.items.map((b, i) => {
+              const iconConfig = benefitIconsConfig[i];
+              return (
+                <div
+                  key={i}
+                  style={{
+                    background: isDark ? "#d1e5ff" : "#afcf89",
+                    borderRadius: "1.25rem",
+                    padding: "2.5rem 1.5rem",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    textAlign: "center",
+                    gap: "1rem",
+                    cursor: "pointer",
+                    transition: "transform 0.2s",
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.transform = "translateY(-4px)"}
+                  onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
+                >
+                  <div style={{ width: 72, height: 72, position: "relative" }}>
+                    <Image
+                      src={benefitIcons[isDark ? iconConfig.iconDark : iconConfig.iconLight]}
+                      alt={b.subtitle}
+                      fill
+                      style={{ objectFit: "contain" }}
+                    />
+                  </div>
+                  <h3 style={{
+                    color: "#1e2d45",
+                    fontSize: "clamp(1rem, 1.2vw, 1.2rem)",
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
+                    fontFamily: "var(--font-poppins), sans-serif",
+                    margin: 0,
+                  }}>
+                    {b.subtitle}
+                  </h3>
+                  <p style={{
+                    color: "#1e2d45",
+                    fontSize: "clamp(0.85rem, 1vw, 1rem)",
+                    fontStyle: "normal",
+                    fontWeight: 400,
+                    lineHeight: 1.6,
+                    flex: 1,
+                  }}>
+                    {b.text}
+                  </p>
+                  <button style={{
+                    background: isDark ? "#0354bf" : "#fafad6",
+                    color: isDark ? "#fafad6" : benefitsBg,
+                    border: "none",
+                    borderRadius: "9999px",
+                    padding: "0.75em 2em",
+                    fontWeight: 700,
+                    fontSize: "clamp(0.75rem, 0.85vw, 0.875rem)",
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    cursor: "pointer",
+                    marginTop: "auto",
+                    fontStyle: "normal",
+                  }}>
+                    {copy.benefits.btnVerMas}
+                  </button>
                 </div>
-                <h3 style={{
-                  color: "#1e2d45",
-                  fontSize: "clamp(1rem, 1.2vw, 1.2rem)",
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.05em",
-                  fontFamily: "var(--font-poppins), sans-serif",
-                  margin: 0,
-                }}>
-                  {b.subtitle}
-                </h3>
-                <p style={{
-                  color: "#1e2d45",
-                  fontSize: "clamp(0.85rem, 1vw, 1rem)",
-                  fontStyle: "normal",
-                  fontWeight: 400,
-                  lineHeight: 1.6,
-                  flex: 1,
-                }}>
-                  {b.text}
-                </p>
-                <button style={{
-                  background: isDark ? "#0354bf" : "#fafad6",
-                  color: isDark ? "#fafad6" : benefitsBg,
-                  border: "none",
-                  borderRadius: "9999px",
-                  padding: "0.75em 2em",
-                  fontWeight: 700,
-                  fontSize: "clamp(0.75rem, 0.85vw, 0.875rem)",
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  cursor: "pointer",
-                  marginTop: "auto",
-                  fontStyle: "normal",
-                }}>
-                  Ver más
-                </button>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -348,7 +324,7 @@ export default function Home() {
               lineHeight: 1,
               fontFamily: "var(--font-shrikhand), sans-serif",
             }}>
-              Cargadores VE
+              {copy.products.evHeading}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: "1.5rem", alignItems: "start" }}>
               <div style={{
@@ -360,21 +336,21 @@ export default function Home() {
               }}>
                 <Image
                   src={isDark ? cargadorOscuroImg : cargadorImg}
-                  alt="Cargador VE"
+                  alt={copy.products.evAlt}
                   fill
                   style={{ objectFit: "contain" }}
                 />
               </div>
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <p style={{ fontSize: "clamp(1.1rem, 1.3vw, 1.3rem)", fontStyle: "italic", lineHeight: 1.75, color: productsTextMuted }}>
-                  Instalamos puntos de recarga para vehículos eléctricos en garajes, comunidades de vecinos y empresas. Soluciones compatibles con todos los modelos del mercado.
+                  {copy.products.evText}
                 </p>
                 <button
                   style={{ ...productBtnStyle, background: productsAccent }}
                   onMouseEnter={e => e.currentTarget.style.transform = "scale(1.04)"}
                   onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
                 >
-                  Ver Más
+                  {copy.products.evBtn}
                 </button>
               </div>
             </div>
@@ -390,7 +366,7 @@ export default function Home() {
               lineHeight: 1,
               fontFamily: "var(--font-shrikhand), sans-serif",
             }}>
-              Placas y Baterías
+              {copy.products.solarHeading}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: "1.5rem", alignItems: "start" }}>
               <div style={{
@@ -402,21 +378,21 @@ export default function Home() {
               }}>
                 <Image
                   src={isDark ? placasOscuroImg : placasImg}
-                  alt="Placas y Baterías"
+                  alt={copy.products.solarAlt}
                   fill
                   style={{ objectFit: "contain" }}
                 />
               </div>
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <p style={{ fontSize: "clamp(1.1rem, 1.3vw, 1.3rem)", fontStyle: "italic", lineHeight: 1.75, color: productsTextMuted }}>
-                  Suministramos e instalamos placas solares de alta eficiencia y baterías de almacenamiento para maximizar tu independencia energética.
+                  {copy.products.solarText}
                 </p>
                 <button
                   style={{ ...productBtnStyle, background: productsAccent }}
                   onMouseEnter={e => e.currentTarget.style.transform = "scale(1.04)"}
                   onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
                 >
-                  Ver Más
+                  {copy.products.solarBtn}
                 </button>
               </div>
             </div>
@@ -438,7 +414,7 @@ export default function Home() {
           <div style={{ position: "relative", width: "100%", aspectRatio: "1 / 1" }}>
             <Image
               src={isDark ? mapaOscuroImg : mapaImg}
-              alt="Mapa de cobertura"
+              alt={copy.coverage.mapAlt}
               fill
               style={{ objectFit: "contain" }}
             />
@@ -453,7 +429,7 @@ export default function Home() {
               marginBottom: 24,
               fontFamily: "var(--font-shrikhand), sans-serif",
             }}>
-              El dinero no crece de los árboles,<br />pero el ahorro en sauce sí.
+              {copy.coverage.headingLine1}<br />{copy.coverage.headingLine2}
             </h2>
             <p style={{
               fontSize: 16,
@@ -461,7 +437,7 @@ export default function Home() {
               lineHeight: 1.7,
               marginBottom: 32,
             }}>
-              Cada instalación, cada mantenimiento y cada proyecto nos han enseñado que hacer las cosas bien es la mejor garantía. Porque cuando eliges energía Sauce Renova, también eliges la tranquilidad de estar en buenas manos. Conoce algunos de nuestros proyectos y descubre por qué cada vez más personas apuestan por la economía del sol.
+              {copy.coverage.text}
             </p>
             <button
               style={{
@@ -480,7 +456,7 @@ export default function Home() {
               onMouseEnter={e => e.currentTarget.style.transform = "scale(1.04)"}
               onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
             >
-              Otros Proyectos
+              {copy.coverage.btn}
             </button>
           </div>
         </div>
@@ -497,7 +473,7 @@ export default function Home() {
           marginBottom: 24,
           fontFamily: "var(--font-shrikhand), sans-serif",
         }}>
-          ¿Qué dicen de nosotros?
+          {copy.reviews.heading}
         </h2>
         <div
           className="mx-4 md:mx-10"
@@ -527,7 +503,7 @@ export default function Home() {
                 flex: 1,
               }}
             >
-              {reviewsData.map((r, i) => (
+              {copy.reviews.items.map((r, i) => (
                 <div
                   key={i}
                   className="w-full sm:min-w-[280px] sm:max-w-[280px]"

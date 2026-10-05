@@ -2,11 +2,15 @@
 
 import Link from "next/link";
 import { useTheme } from "@/context/ThemeContext";
+import { useLanguage } from "@/context/LanguageContext";
+import { instalacionCopy } from "@/lib/i18n/instalacion";
 import CTABanner from "@/components/ui/CTABanner";
 import SolarPanelIllustration from "@/components/illustrations/SolarPanelIllustration";
 
 export default function InstalacionPage() {
   const { isDark } = useTheme();
+  const { lang } = useLanguage();
+  const copy = instalacionCopy[lang];
 
   const bg = isDark ? "#203147" : "#f5f5dc";
   const heroBg = isDark ? "#0d1520" : "#1e2d45";
@@ -16,48 +20,6 @@ export default function InstalacionPage() {
   const textMuted = isDark ? "#a0aec0" : "#4a5568";
   const titleColor = isDark ? "#9BC97A" : accent;
   const cardTitleColor = isDark ? "#9BC97A" : accent;
-
-  const pasos = [
-    {
-      numero: "01",
-      titulo: "Consulta inicial",
-      descripcion: "Analizamos tu consumo energético y las características de tu vivienda o empresa para diseñar la instalación más eficiente.",
-    },
-    {
-      numero: "02",
-      titulo: "Proyecto y permisos",
-      descripcion: "Elaboramos el proyecto técnico y gestionamos todos los permisos necesarios ante las administraciones locales y la distribuidora.",
-    },
-    {
-      numero: "03",
-      titulo: "Instalación",
-      descripcion: "Nuestro equipo de técnicos certificados instala los paneles, el inversor y el sistema de monitorización en el tiempo acordado.",
-    },
-    {
-      numero: "04",
-      titulo: "Legalización y puesta en marcha",
-      descripcion: "Tramitamos la legalización ante Industria y la conexión con la distribuidora. Tu instalación queda lista para generar energía.",
-    },
-  ];
-
-  const tipos = [
-    {
-      titulo: "Vivienda",
-      descripcion: "Instalamos tus paneles solares para que tengan un rendimiento óptimo y ahorres lo máximo en tu factura de luz, aumentando el valor de tu propiedad.",
-    },
-    {
-      titulo: "Comercio/Industria",
-      descripcion: "Soluciones fotovoltaicas para autónomos, pymes y grandes empresas. Reduce tus costes energéticos, gana independencia energética y haz tu negocio más sostenible y competitivo.",
-    },
-    {
-      titulo: "Compartida",
-      descripcion: "Instalaciones fotovoltaicas compartidas para comunidades de propietarios, viviendas, comercios y empresas.",
-    },
-    {
-      titulo: "Aislada",
-      descripcion: "Estas instalaciones te permiten disponer de energía eléctrica sin estar conectado a la red eléctrica. Gracias a los paneles solares y a las baterías, puedes generar y almacenar tu propia electricidad para utilizarla cuando la necesites.",
-    },
-  ];
 
   return (
     <main style={{ background: bg, minHeight: "100vh" }}>
@@ -80,7 +42,7 @@ export default function InstalacionPage() {
               color: accentAlt,
               marginBottom: 16,
             }}>
-              Solar → Instalación
+              {copy.hero.breadcrumb}
             </p>
             <h1 style={{
               fontSize: "clamp(48px, 6vw, 88px)",
@@ -91,7 +53,7 @@ export default function InstalacionPage() {
               lineHeight: 0.95,
               marginBottom: 24,
             }}>
-              Instalación<br />de Placas
+              {copy.hero.titleLine1}<br />{copy.hero.titleLine2}
             </h1>
             <p style={{
               fontSize: 18,
@@ -101,7 +63,7 @@ export default function InstalacionPage() {
               maxWidth: 500,
               marginBottom: 40,
             }}>
-              Instalamos paneles solares de alta eficiencia para hogares y empresas en toda España. Nos encargamos de todo el proceso, desde el diseño hasta la puesta en marcha.
+              {copy.hero.intro}
             </p>
             <Link href="/contacto" style={{
               background: accentAlt,
@@ -115,7 +77,7 @@ export default function InstalacionPage() {
               textDecoration: "none",
               display: "inline-block",
             }}>
-              Solicitar presupuesto
+              {copy.hero.btnPresupuesto}
             </Link>
           </div>
           <div style={{
@@ -143,13 +105,13 @@ export default function InstalacionPage() {
             textTransform: "uppercase",
             marginBottom: 48,
           }}>
-            ¿Para Quién?
+            {copy.tipos.heading}
           </h2>
           <div
             className="grid grid-cols-1 sm:grid-cols-2"
             style={{ gap: 32 }}
           >
-            {tipos.map((t, i) => (
+            {copy.tipos.items.map((t, i) => (
               <div key={i} style={{
                 background: cardBg,
                 borderRadius: 20,
@@ -192,13 +154,13 @@ export default function InstalacionPage() {
             textTransform: "uppercase",
             marginBottom: 48,
           }}>
-            Cómo Trabajamos
+            {copy.proceso.heading}
           </h2>
           <div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
             style={{ gap: 24 }}
           >
-            {pasos.map((p, i) => (
+            {copy.proceso.pasos.map((p, i) => (
               <div key={i} style={{
                 background: "rgba(255,255,255,0.08)",
                 borderRadius: 20,
@@ -240,7 +202,7 @@ export default function InstalacionPage() {
         </div>
       </section>
 
-      <CTABanner titulo="¿Quieres instalar placas solares?" color={accentAlt} />
+      <CTABanner titulo={copy.ctaBanner} color={accentAlt} />
     </main>
   );
 }

@@ -2,10 +2,14 @@
 
 import Link from "next/link";
 import { useTheme } from "@/context/ThemeContext";
+import { useLanguage } from "@/context/LanguageContext";
+import { mantenimientoCopy } from "@/lib/i18n/mantenimiento";
 import CTABanner from "@/components/ui/CTABanner";
 
 export default function MantenimientoPage() {
   const { isDark } = useTheme();
+  const { lang } = useLanguage();
+  const copy = mantenimientoCopy[lang];
 
   const bg = isDark ? "#203147" : "#f5f5dc";
   const heroBg = isDark ? "#0d1520" : "#1e2d45";
@@ -15,51 +19,6 @@ export default function MantenimientoPage() {
   const textMuted = isDark ? "#a0aec0" : "#4a5568";
   const titleColor = isDark ? "#9BC97A" : accent;
   const cardTitleColor = isDark ? "#9BC97A" : accent;
-
-  const beneficios = [
-    {
-      titulo: "Máximo Rendimiento",
-      descripcion: "Una instalación limpia y bien mantenida produce hasta un 25% más de energía que una descuidada. Maximizamos tu retorno de inversión.",
-    },
-    {
-      titulo: "Detección Temprana",
-      descripcion: "Identificamos y solucionamos problemas antes de que se conviertan en averías graves, evitando costosas reparaciones.",
-    },
-    {
-      titulo: "Mayor Vida Útil",
-      descripcion: "Un mantenimiento regular puede extender la vida útil de tu instalación más allá de los 25 años estimados por el fabricante.",
-    },
-    {
-      titulo: "Tranquilidad Total",
-      descripcion: "Con nuestro servicio de mantenimiento periódico, tú solo te preocupas de disfrutar del ahorro en tu factura.",
-    },
-  ];
-
-  const incluye = [
-    {
-      titulo: "Limpieza de Paneles",
-      descripcion: "Eliminamos el polvo, hojas, excrementos de aves y cualquier suciedad que reduzca la eficiencia de tus placas.",
-    },
-    {
-      titulo: "Revisión Eléctrica",
-      descripcion: "Comprobamos el estado del cableado, conexiones, inversor y cuadro eléctrico para garantizar un funcionamiento seguro.",
-    },
-    {
-      titulo: "Análisis de Producción",
-      descripcion: "Revisamos los datos de producción y los comparamos con los valores esperados para detectar posibles pérdidas de rendimiento.",
-    },
-    {
-      titulo: "Informe Técnico",
-      descripcion: "Tras cada visita te entregamos un informe detallado del estado de tu instalación y las acciones realizadas.",
-    },
-  ];
-
-  const pasos = [
-    { numero: "01", titulo: "Contacto", descripcion: "Nos describes tu instalación y acordamos la frecuencia de mantenimiento más adecuada para tu caso." },
-    { numero: "02", titulo: "Presupuesto", descripcion: "Te enviamos un presupuesto detallado adaptado al tamaño y características de tu instalación." },
-    { numero: "03", titulo: "Visita", descripcion: "Nuestro técnico se desplaza a tu instalación en la fecha acordada, adaptándonos a tu horario." },
-    { numero: "04", titulo: "Informe", descripcion: "Recibes un informe completo con el estado de tu instalación y recomendaciones para optimizar el rendimiento." },
-  ];
 
   return (
     <main style={{ background: bg, minHeight: "100vh" }}>
@@ -73,7 +32,7 @@ export default function MantenimientoPage() {
             color: accentAlt,
             marginBottom: 16,
           }}>
-            Solar → Mantenimiento
+            {copy.hero.breadcrumb}
           </p>
           <h1 style={{
             fontSize: "clamp(2rem, 9vw, 88px)",
@@ -84,7 +43,7 @@ export default function MantenimientoPage() {
             lineHeight: 0.95,
             marginBottom: 24,
           }}>
-            Mantenimiento<br />Solar
+            {copy.hero.titleLine1}<br />{copy.hero.titleLine2}
           </h1>
           <p style={{
             fontSize: 18,
@@ -94,7 +53,7 @@ export default function MantenimientoPage() {
             maxWidth: 600,
             marginBottom: 40,
           }}>
-            Mantenemos tu instalación en óptimas condiciones para garantizar el máximo rendimiento a lo largo del tiempo. Revisiones periódicas, limpieza y asistencia técnica especializada.
+            {copy.hero.intro}
           </p>
           <Link href="/contacto" style={{
             background: accentAlt,
@@ -108,7 +67,7 @@ export default function MantenimientoPage() {
             textDecoration: "none",
             display: "inline-block",
           }}>
-            Solicitar mantenimiento
+            {copy.hero.btnMantenimiento}
           </Link>
         </div>
       </section>
@@ -124,10 +83,10 @@ export default function MantenimientoPage() {
             textTransform: "uppercase",
             marginBottom: 48,
           }}>
-            Por Qué Mantener tu Instalación
+            {copy.beneficios.heading}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 32 }}>
-            {beneficios.map((b, i) => (
+            {copy.beneficios.items.map((b, i) => (
               <div key={i} style={{
                 background: cardBg,
                 borderRadius: 20,
@@ -164,10 +123,10 @@ export default function MantenimientoPage() {
             textTransform: "uppercase",
             marginBottom: 48,
           }}>
-            Qué Incluye
+            {copy.incluye.heading}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 24 }}>
-            {incluye.map((item, i) => (
+            {copy.incluye.items.map((item, i) => (
               <div key={i} style={{
                 background: "rgba(255,255,255,0.08)",
                 borderRadius: 20,
@@ -204,10 +163,10 @@ export default function MantenimientoPage() {
             textTransform: "uppercase",
             marginBottom: 48,
           }}>
-            Cómo Funciona
+            {copy.proceso.heading}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 24 }}>
-            {pasos.map((p, i) => (
+            {copy.proceso.pasos.map((p, i) => (
               <div key={i} style={{
                 background: cardBg,
                 borderRadius: 20,
@@ -243,7 +202,7 @@ export default function MantenimientoPage() {
         </div>
       </section>
 
-      <CTABanner titulo="¿Necesitas mantenimiento para tu instalación?" color={accentAlt} />
+      <CTABanner titulo={copy.ctaBanner} color={accentAlt} />
     </main>
   );
 }

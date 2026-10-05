@@ -1,11 +1,15 @@
 "use client";
 
-import { useTheme } from "@/context/ThemeContext";
-import CTABanner from "@/components/ui/CTABanner";
 import Link from "next/link";
+import { useTheme } from "@/context/ThemeContext";
+import { useLanguage } from "@/context/LanguageContext";
+import { tramitesCopy } from "@/lib/i18n/tramites";
+import CTABanner from "@/components/ui/CTABanner";
 
 export default function TramitesPage() {
   const { isDark } = useTheme();
+  const { lang } = useLanguage();
+  const copy = tramitesCopy[lang];
 
   const bg = isDark ? "#203147" : "#f5f5dc";
   const heroBg = isDark ? "#0d1520" : "#1e2d45";
@@ -16,38 +20,6 @@ export default function TramitesPage() {
   const textMuted = isDark ? "#a0aec0" : "#4a5568";
   const titleColor = isDark ? "#9BC97A" : accent;
   const cardTitleColor = isDark ? "#9BC97A" : accent;
-
-  const tramites = [
-    {
-      titulo: "Permiso de Obra",
-      descripcion: "Gestionamos el permiso de obra necesario para tu sistema fotovoltaico, cumpliendo con todas las regulaciones locales.",
-    },
-    {
-      titulo: "Legalización (Boletín)",
-      descripcion: "Tramitamos la legalización técnica de la instalación fotovoltaica ante Industria de forma rápida y sin complicaciones.",
-    },
-    {
-      titulo: "IBI",
-      descripcion: "Tramitamos la deducción del IBI según el ayuntamiento correspondiente. En comunidades de propietarios el precio es por participante.",
-    },
-    {
-      titulo: "Punto de Acceso y Conexión",
-      descripcion: "Gestionamos el permiso de acceso y conexión con la distribuidora para que puedas inyectar el exceso de energía a la red eléctrica.",
-    },
-    {
-      titulo: "Certificación Energética",
-      descripcion: "Evaluamos y certificamos la eficiencia energética de tu vivienda, otorgándole una calificación de la A a la G.",
-    },
-  ];
-
-  const precios = [
-    { rango: "Hasta 10 kW", precio: "950€", incluye: ["Permiso de Obra", "Boletín CIE", "IBI", "Punto de acceso y conexión", "Visita técnica"] },
-    { rango: "10 - 25 kW", precio: "1.600€", incluye: ["Proyecto", "Permiso de Obra", "Boletín CIE", "IBI", "Punto de acceso y conexión", "Visitas de obra", "OCA"] },
-    { rango: "25 - 50 kW", precio: "2.200€", incluye: ["Proyecto", "Permiso de Obra", "Boletín CIE", "IBI", "Punto de acceso y conexión", "Visitas de obra", "OCA"] },
-    { rango: "50 - 75 kW", precio: "2.400€", incluye: ["Proyecto", "Permiso de Obra", "Boletín CIE", "IBI", "Punto de acceso y conexión", "Visita dirección de obra", "Visita final de obra", "OCA"] },
-    { rango: "75 - 100 kW", precio: "2.650€", incluye: ["Proyecto", "Permiso de Obra", "Boletín CIE", "IBI", "Punto de acceso y conexión", "Visita dirección de obra", "Visita final de obra", "OCA"] },
-    { rango: "+100 kW", precio: "2,5% presupuesto", incluye: ["Proyecto", "Permiso de Obra", "Boletín CIE", "IBI", "Punto de acceso y conexión", "Visitas de obra", "OCA"] },
-  ];
 
   return (
     <main style={{ background: bg, minHeight: "100vh" }}>
@@ -62,7 +34,7 @@ export default function TramitesPage() {
             lineHeight: 0.95,
             marginBottom: 24,
           }}>
-            Trámites y<br />Legalizaciones
+            {copy.hero.titleLine1}<br />{copy.hero.titleLine2}
           </h1>
           <p style={{
             fontSize: 18,
@@ -72,7 +44,7 @@ export default function TramitesPage() {
             maxWidth: 600,
             marginBottom: 40,
           }}>
-            Nos encargamos de toda la burocracia para que tú solo tengas que disfrutar del ahorro. Gestionamos permisos y legalizaciones en toda España.
+            {copy.hero.intro}
           </p>
           <Link href="/contacto" style={{
             background: accentAlt,
@@ -86,7 +58,7 @@ export default function TramitesPage() {
             textDecoration: "none",
             display: "inline-block",
           }}>
-            Solicitar información
+            {copy.hero.btnInformacion}
           </Link>
         </div>
       </section>
@@ -101,10 +73,10 @@ export default function TramitesPage() {
             textTransform: "uppercase",
             marginBottom: 48,
           }}>
-            Qué Gestionamos
+            {copy.tramites.heading}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 32 }}>
-            {tramites.map((t, i) => (
+            {copy.tramites.items.map((t, i) => (
               <div key={i} style={{
                 background: cardBg,
                 borderRadius: 20,
@@ -146,10 +118,10 @@ export default function TramitesPage() {
             textTransform: "uppercase",
             marginBottom: 48,
           }}>
-            Tarifas
+            {copy.precios.heading}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 24 }}>
-            {precios.map((p, i) => (
+            {copy.precios.items.map((p, i) => (
               <div key={i} style={{
                 background: "rgba(255,255,255,0.08)",
                 borderRadius: 20,
@@ -195,7 +167,7 @@ export default function TramitesPage() {
         </div>
       </section>
 
-      <CTABanner titulo="¿Necesitas gestionar tus trámites?" color={accentAlt} />
+      <CTABanner titulo={copy.ctaBanner} color={accentAlt} />
     </main>
   );
 }

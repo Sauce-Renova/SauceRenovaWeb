@@ -2,11 +2,15 @@
 
 import Link from "next/link";
 import { useTheme } from "@/context/ThemeContext";
+import { useLanguage } from "@/context/LanguageContext";
 import CTABanner from "@/components/ui/CTABanner";
 import SolarPanelIllustration from "@/components/illustrations/SolarPanelIllustration";
+import { solarCopy } from "@/lib/i18n/solar";
 
 export default function SolarPage() {
   const { isDark } = useTheme();
+  const { lang } = useLanguage();
+  const copy = solarCopy[lang];
 
   const bg = isDark ? "#203147" : "#f5f5dc";
   const heroBg = isDark ? "#0d1520" : "#1e2d45";
@@ -16,31 +20,6 @@ export default function SolarPage() {
   const textMuted = isDark ? "#a0aec0" : "#4a5568";
   const titleColor = isDark ? "#9BC97A" : accent;
   const cardTitleColor = isDark ? "#9BC97A" : accentAlt;
-
-  const servicios = [
-    {
-      titulo: "Instalación",
-      descripcion: "Montamos tus placas solares con los mejores materiales del mercado. Soluciones para hogares, empresas y comunidades de vecinos.",
-      href: "/solar/instalacion",
-    },
-    {
-      titulo: "Mantenimiento",
-      descripcion: "Mantenemos tu instalación en óptimas condiciones para garantizar el máximo rendimiento a lo largo del tiempo.",
-      href: "/solar/mantenimiento",
-    },
-    {
-      titulo: "Baterías",
-      descripcion: "Almacena la energía que generas y úsala cuando más la necesites. Total independencia energética.",
-      href: "/solar/baterias",
-    },
-  ];
-
-  const beneficios = [
-    "Reduce tu factura eléctrica desde el primer día",
-    "Produce tu propia energía y gana independencia de la red",
-    "Aprovecha el sol como recurso gratuito y renovable",
-    "Protégete frente a futuras subidas del precio de la energía",
-  ];
 
   return (
     <main style={{ background: bg, minHeight: "100vh" }}>
@@ -64,7 +43,7 @@ export default function SolarPage() {
               lineHeight: 0.95,
               marginBottom: 24,
             }}>
-              Energía<br />Solar
+              {copy.heroTitleLine1}<br />{copy.heroTitleLine2}
             </h1>
             <p style={{
               fontSize: 18,
@@ -74,7 +53,7 @@ export default function SolarPage() {
               maxWidth: 500,
               marginBottom: 40,
             }}>
-              ¿Y si pudieras gastar menos sin renunciar a nada? Con una instalación de autoconsumo fotovoltaico empiezas a producir tu propia electricidad desde el primer día, reduciendo tu factura y tu dependencia de la red.
+              {copy.heroText}
             </p>
             <Link href="/contacto" style={{
               background: accentAlt,
@@ -87,10 +66,8 @@ export default function SolarPage() {
               textTransform: "uppercase",
               textDecoration: "none",
               display: "inline-block",
-              width: "100%",
-              textAlign: "center",
             }}>
-              Solicitar presupuesto
+              {copy.ctaPresupuesto}
             </Link>
           </div>
           <div style={{
@@ -117,7 +94,7 @@ export default function SolarPage() {
             gap: "12px 32px",
           }}
         >
-          {beneficios.map((b, i) => (
+          {copy.beneficios.map((b, i) => (
             <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
               <span style={{ color: accentAlt, fontWeight: 900, fontSize: 16, lineHeight: 1.6 }}>✓</span>
               <span style={{ fontSize: 15, fontStyle: "italic", color: textMuted, lineHeight: 1.6 }}>
@@ -138,13 +115,13 @@ export default function SolarPage() {
             textTransform: "uppercase",
             marginBottom: 48,
           }}>
-            Nuestros Servicios
+            {copy.serviciosHeading}
           </h2>
           <div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
             style={{ gap: 32 }}
           >
-            {servicios.map((s, i) => (
+            {copy.servicios.map((s, i) => (
               <div key={i} style={{
                 background: cardBg,
                 borderRadius: 20,
@@ -182,7 +159,7 @@ export default function SolarPage() {
                   textDecoration: "none",
                   marginTop: "auto",
                 }}>
-                  Ver más →
+                  {copy.verMas}
                 </Link>
               </div>
             ))}
@@ -190,7 +167,7 @@ export default function SolarPage() {
         </div>
       </section>
 
-      <CTABanner titulo="Descubre cuánto podrías ahorrar con tu tejado" color={accentAlt} />
+      <CTABanner titulo={copy.ctaBannerTitulo} textoBtn={copy.ctaBannerBoton} color={accentAlt} />
     </main>
   );
 }

@@ -2,22 +2,15 @@
 
 import { useState } from "react";
 import { useTheme } from "@/context/ThemeContext";
+import { useLanguage } from "@/context/LanguageContext";
+import { contactoCopy } from "@/lib/i18n/contacto";
 
 const DESTINO = "comercial@saucerenova.com";
 
-const OPCIONES_INTERES = [
-  "Instalación de placas solares",
-  "Mantenimiento",
-  "Baterías",
-  "Cargadores eléctricos",
-  "Electricidad / Ingeniería",
-  "Trámites y legalizaciones",
-];
-
-const OPCIONES_PROPIEDAD = ["Vivienda", "Empresa", "Comunidad de vecinos"];
-
 export default function ContactPage() {
   const { isDark } = useTheme();
+  const { lang } = useLanguage();
+  const copy = contactoCopy[lang];
 
   const bg = isDark ? "#203147" : "#f5f5dc";
   const heroBg = isDark ? "#0d1520" : "#1e2d45";
@@ -33,8 +26,6 @@ export default function ContactPage() {
   const [tienePlacas, setTienePlacas] = useState<"si" | "no" | null>(null);
   const [interes, setInteres] = useState<string[]>([]);
   const [tipoPropiedad, setTipoPropiedad] = useState<string | null>(null);
-
-  const totalPasos = 3;
 
   const elegirPlacas = (valor: "si" | "no") => {
     setTienePlacas(valor);
@@ -54,15 +45,15 @@ export default function ContactPage() {
   const listo = tienePlacas !== null && interes.length > 0 && tipoPropiedad !== null;
 
   const buildMailtoHref = () => {
-    const subject = "Solicitud de información - SauceRenova";
+    const subject = copy.mail.subject;
     const body = [
-      `¿Tiene instalación de placas solares?: ${tienePlacas === "si" ? "Sí" : "No"}`,
-      `Interesado/a en: ${interes.join(", ")}`,
-      `Tipo de propiedad: ${tipoPropiedad}`,
+      `${copy.mail.tienePlacas}: ${tienePlacas === "si" ? copy.mail.si : copy.mail.no}`,
+      `${copy.mail.interesadoEn}: ${interes.join(", ")}`,
+      `${copy.mail.tipoPropiedad}: ${tipoPropiedad}`,
       "",
-      "Nombre: ",
-      "Teléfono: ",
-      "Comentario adicional: ",
+      `${copy.mail.nombre}: `,
+      `${copy.mail.telefono}: `,
+      `${copy.mail.comentario}: `,
     ].join("\n");
     return `mailto:${DESTINO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
@@ -87,7 +78,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="py-12 md:py-20" style={{ background: bg, padding: "80px 24px" }}>
+    <main style={{ background: bg, padding: "80px 24px" }}>
       <div style={{ maxWidth: 640, margin: "0 auto" }}>
         <h1 style={{
           fontSize: "clamp(40px, 6vw, 72px)",
@@ -98,7 +89,7 @@ export default function ContactPage() {
           lineHeight: 0.95,
           marginBottom: 16,
         }}>
-          Contáctanos
+          {copy.heading}
         </h1>
         <p style={{
           fontSize: 16,
@@ -107,15 +98,15 @@ export default function ContactPage() {
           lineHeight: 1.7,
           marginBottom: 48,
         }}>
-          Cuéntanos en unos clics qué necesitas y te abrimos un correo ya preparado para enviarnos.
+          {copy.intro}
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
           {/* Paso 1 */}
           <div>
-            <p style={pasoLabelStyle}>Paso 1 de {totalPasos}</p>
+            <p style={pasoLabelStyle}>{copy.pasoLabel(1)}</p>
             <label style={{ display: "block", fontWeight: 800, fontSize: 18, fontStyle: "italic", color: labelColor, marginBottom: 16 }}>
-              ¿Ya tienes instalación de placas solares?
+              {copy.pregunta1}
             </label>
             <div style={{ display: "flex", gap: 12 }}>
               <button
@@ -126,7 +117,7 @@ export default function ContactPage() {
                   color: tienePlacas === "si" ? "white" : labelColor,
                 }}
               >
-                Sí, ya tengo
+                {copy.opcion1Si}
               </button>
               <button
                 onClick={() => elegirPlacas("no")}
@@ -136,7 +127,7 @@ export default function ContactPage() {
                   color: tienePlacas === "no" ? "white" : labelColor,
                 }}
               >
-                No, todavía no
+                {copy.opcion1No}
               </button>
             </div>
           </div>
@@ -147,12 +138,12 @@ export default function ContactPage() {
 
               {/* Paso 2 */}
               <div>
-                <p style={pasoLabelStyle}>Paso 2 de {totalPasos}</p>
+                <p style={pasoLabelStyle}>{copy.pasoLabel(2)}</p>
                 <label style={{ display: "block", fontWeight: 800, fontSize: 18, fontStyle: "italic", color: labelColor, marginBottom: 16 }}>
-                  ¿Qué te interesa? (puedes marcar varias)
+                  {copy.pregunta2}
                 </label>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 20 }}>
-                  {OPCIONES_INTERES.map((opcion) => {
+                  {copy.opcionesInteres.map((opcion) => {
                     const activo = interes.includes(opcion);
                     return (
                       <button
@@ -182,7 +173,7 @@ export default function ContactPage() {
                       cursor: interes.length > 0 ? "pointer" : "not-allowed",
                     }}
                   >
-                    Siguiente →
+                    {copy.siguiente}
                   </button>
                 )}
               </div>
@@ -195,12 +186,12 @@ export default function ContactPage() {
 
               {/* Paso 3 */}
               <div>
-                <p style={pasoLabelStyle}>Paso 3 de {totalPasos}</p>
+                <p style={pasoLabelStyle}>{copy.pasoLabel(3)}</p>
                 <label style={{ display: "block", fontWeight: 800, fontSize: 18, fontStyle: "italic", color: labelColor, marginBottom: 16 }}>
-                  ¿Qué tipo de propiedad es?
+                  {copy.pregunta3}
                 </label>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-                  {OPCIONES_PROPIEDAD.map((opcion) => (
+                  {copy.opcionesPropiedad.map((opcion) => (
                     <button
                       key={opcion}
                       onClick={() => elegirPropiedad(opcion)}
@@ -239,7 +230,7 @@ export default function ContactPage() {
               transition: "background 0.2s",
             }}
           >
-            Abrir correo con mis respuestas
+            {copy.abrirCorreo}
           </a>
 
           <div style={{
@@ -249,14 +240,14 @@ export default function ContactPage() {
             marginTop: 8,
           }}>
             <p style={{ fontSize: 13, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", color: accentAlt, marginBottom: 12 }}>
-              ¿Quieres hacerlo tú mismo?
+              {copy.autoServicioHeading}
             </p>
             <p style={{ fontSize: 15, fontStyle: "italic", color: "rgba(245,245,220,0.85)", lineHeight: 1.7, margin: 0 }}>
-              Escríbenos directamente a{" "}
+              {copy.autoServicioPre}{" "}
               <a href={`mailto:${DESTINO}`} style={{ color: "#f5f5dc", textDecoration: "underline" }}>
                 {DESTINO}
               </a>
-              {" "}o llámanos al{" "}
+              {" "}{copy.autoServicioOr}{" "}
               <a href="tel:+34613115981" style={{ color: "#f5f5dc", textDecoration: "underline" }}>
                 613 115 981
               </a>.

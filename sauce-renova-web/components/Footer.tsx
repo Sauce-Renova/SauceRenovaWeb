@@ -1,12 +1,16 @@
 "use client";
 
 import { useTheme } from "@/context/ThemeContext";
+import { useLanguage } from "@/context/LanguageContext";
+import { footerCopy } from "@/lib/i18n/footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp, faInstagram, faFacebook, faTiktok, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
   const { isDark } = useTheme();
+  const { lang } = useLanguage();
+  const copy = footerCopy[lang];
 
   const footerBg = isDark
     ? "linear-gradient(135deg, #0d1520 0%, #2857c8 100%)"
@@ -25,9 +29,6 @@ export default function Footer() {
     { icon: faXTwitter, label: "Twitter / X" },
     { icon: faYoutube, label: "YouTube" },
   ];
-
-  const empresaItems = ["Quiénes somos", "Nuestro equipo", "Proyectos realizados", "Trabaja con nosotros"];
-  const legalItems = ["Aviso legal", "Política de privacidad", "Política de cookies", "Términos de servicio"];
 
   const headingStyle = {
     color: "white",
@@ -63,11 +64,11 @@ export default function Footer() {
 
   const columns = [
     {
-      heading: "Nosotros",
+      heading: copy.nosotros,
       content: (
         <>
           <p style={listTextStyle}>
-            Empresa especializada en energía solar fotovoltaica, cargadores para vehículos eléctricos y gestión de trámites con la administración.
+            {copy.descripcion}
           </p>
           {contactLinks.map((c, i) => (
             <a key={i} href={c.href} style={contactLinkStyle}>
@@ -79,15 +80,15 @@ export default function Footer() {
       ),
     },
     {
-      heading: "Empresa",
-      content: <p style={listTextStyle}>{empresaItems.join(" · ")}</p>,
+      heading: copy.empresa,
+      content: <p style={listTextStyle}>{copy.empresaItems.join(" · ")}</p>,
     },
     {
-      heading: "Legal",
-      content: <p style={listTextStyle}>{legalItems.join(" · ")}</p>,
+      heading: copy.legal,
+      content: <p style={listTextStyle}>{copy.legalItems.join(" · ")}</p>,
     },
     {
-      heading: "Redes",
+      heading: copy.redes,
       content: (
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           {socialLinks.map((s, i) => (
@@ -134,7 +135,7 @@ export default function Footer() {
         }}
       >
         <div>
-          <div style={headingStyle}>Contacto</div>
+          <div style={headingStyle}>{copy.contacto}</div>
           {contactLinks.map((c, i) => (
             <a key={i} href={c.href} style={contactLinkStyle}>
               <FontAwesomeIcon icon={c.icon} style={{ width: 16, height: 16 }} />
@@ -152,11 +153,11 @@ export default function Footer() {
         </div>
 
         <div>
-          <div style={headingStyle}>Información</div>
-          <div style={{ ...subHeadingStyle, marginTop: 0 }}>Empresa</div>
-          <p style={listTextStyle}>{empresaItems.join(" · ")}</p>
-          <div style={subHeadingStyle}>Legal</div>
-          <p style={listTextStyle}>{legalItems.join(" · ")}</p>
+          <div style={headingStyle}>{copy.informacion}</div>
+          <div style={{ ...subHeadingStyle, marginTop: 0 }}>{copy.empresa}</div>
+          <p style={listTextStyle}>{copy.empresaItems.join(" · ")}</p>
+          <div style={subHeadingStyle}>{copy.legal}</div>
+          <p style={listTextStyle}>{copy.legalItems.join(" · ")}</p>
         </div>
       </div>
 
@@ -169,7 +170,7 @@ export default function Footer() {
         fontStyle: "italic",
         textAlign: "center",
       }}>
-        © 2026 Sauce Renova. Todos los derechos reservados.
+        {copy.copyright}
       </p>
     </footer>
   );

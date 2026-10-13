@@ -1,25 +1,23 @@
 "use client";
 
 import Link from "next/link";
-import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { tramitesCopy } from "@/lib/i18n/tramites";
 import CTABanner from "@/components/ui/CTABanner";
 
 export default function TramitesPage() {
-  const { isDark } = useTheme();
   const { lang } = useLanguage();
   const copy = tramitesCopy[lang];
 
-  const bg = isDark ? "#203147" : "#f5f5dc";
-  const heroBg = isDark ? "#0d1520" : "#1e2d45";
-  const cardBg = isDark ? "#243050" : "white";
-  const preciosBg = isDark ? "#0d1520" : "#1e2d45";
-  const accent = "#2857c8";
-  const accentAlt = "#6b8c3a";
-  const textMuted = isDark ? "#a0aec0" : "#4a5568";
-  const titleColor = isDark ? "#9BC97A" : accent;
-  const cardTitleColor = isDark ? "#9BC97A" : accent;
+  const bg = "var(--bg-service)";
+  const heroBg = "var(--hero-bg)";
+  const cardBg = "var(--card-bg)";
+  const preciosBg = "var(--hero-bg)";
+  const accent = "var(--color-blue-mid)";
+  const accentAlt = "var(--color-green-dark)";
+  const textMuted = "var(--text-muted)";
+  const titleColor = "var(--title-color)";
+  const cardTitleColor = "var(--title-color)";
 
   return (
     <main style={{ background: bg, minHeight: "100vh" }}>
@@ -29,7 +27,7 @@ export default function TramitesPage() {
             fontSize: "clamp(2rem, 9vw, 88px)",
             fontWeight: 900,
             fontStyle: "italic",
-            color: "#f5f5dc",
+            color: "var(--color-cream-text)",
             textTransform: "uppercase",
             lineHeight: 0.95,
             marginBottom: 24,
@@ -39,7 +37,7 @@ export default function TramitesPage() {
           <p style={{
             fontSize: 18,
             fontStyle: "italic",
-            color: "rgba(245,245,220,0.75)",
+            color: "var(--on-cream-75)",
             lineHeight: 1.7,
             maxWidth: 600,
             marginBottom: 40,
@@ -114,7 +112,7 @@ export default function TramitesPage() {
             fontSize: "clamp(28px, 3.5vw, 48px)",
             fontWeight: 900,
             fontStyle: "italic",
-            color: "#f5f5dc",
+            color: "var(--color-cream-text)",
             textTransform: "uppercase",
             marginBottom: 48,
           }}>
@@ -123,10 +121,10 @@ export default function TramitesPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 24 }}>
             {copy.precios.items.map((p, i) => (
               <div key={i} style={{
-                background: "rgba(255,255,255,0.08)",
+                background: "var(--on-dark-08)",
                 borderRadius: 20,
                 padding: "32px 24px",
-                border: "1px solid rgba(255,255,255,0.15)",
+                border: "1px solid var(--on-dark-15)",
               }}>
                 <div style={{
                   fontSize: 13,
@@ -142,7 +140,7 @@ export default function TramitesPage() {
                   fontSize: 32,
                   fontWeight: 900,
                   fontStyle: "italic",
-                  color: "#f5f5dc",
+                  color: "var(--color-cream-text)",
                   marginBottom: 24,
                 }}>
                   {p.precio}
@@ -152,7 +150,7 @@ export default function TramitesPage() {
                     <li key={j} style={{
                       fontSize: 13,
                       fontStyle: "italic",
-                      color: "rgba(245,245,220,0.75)",
+                      color: "var(--on-cream-75)",
                       paddingLeft: 16,
                       position: "relative",
                     }}>

@@ -9,7 +9,7 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType>({
   isDark: false,
-  toggleTheme: () => {},
+  toggleTheme: () => { },
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
@@ -20,6 +20,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setIsDark(localStorage.getItem("theme") === "dark");
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    document.documentElement.dataset.theme = isDark ? "dark" : "light";
+  }, [isDark, mounted]);
 
   const toggleTheme = () => {
     setIsDark((prev) => {
@@ -32,7 +37,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
     <ThemeContext.Provider value={{ isDark: mounted ? isDark : false, toggleTheme }}>
       <div style={{
-        background: mounted && isDark ? "#1a2235" : "#f5f2d0",
+        background: "var(--bg-root)",
         minHeight: "100vh",
         transition: "background 0.4s",
       }}>

@@ -23,25 +23,6 @@ import placasOscuroImg from "@/components/illustrations/placas-y-baterias-oscuro
 import mapaImg from "@/components/illustrations/mapa.webp";
 import mapaOscuroImg from "@/components/illustrations/mapa-oscuro.webp";
 
-const heroTheme = {
-  light: {
-    bg: "#fafad6",
-    accent: "#0354bf",
-    textMuted: "#4a5568",
-    btnPrimary: "#78a83f",
-    btnSecondary: "#0354bf",
-    bgCard: "#1e2d45",
-  },
-  dark: {
-    bg: "#203147",
-    accent: "#78a83f",
-    textMuted: "#a0aec0",
-    btnPrimary: "#0354bf",
-    btnSecondary: "#78a83f",
-    bgCard: "#fafad6",
-  },
-};
-
 const benefitIconsConfig = [
   { iconLight: "hogarVerde", iconDark: "hogarAzul" },
   { iconLight: "empresaVerde", iconDark: "empresaAzul" },
@@ -59,18 +40,6 @@ export default function Home() {
   const { lang } = useLanguage();
   const copy = homeCopy[lang];
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  const theme = isDark ? heroTheme.dark : heroTheme.light;
-  const benefitsBg = isDark ? "#0354bf" : "#78a83f";
-  const coverageBg = isDark ? "#203147" : "#fafad6";
-  const coverageAccent = isDark ? "#fafad6" : "#78a83f";
-  const coverageTextMuted = isDark ? "#a0aec0" : "#4a5568";
-  const productsBg = isDark ? "#203147" : "#fafad6";
-  const productsAccent = isDark ? "#78a83f" : "#0354bf";
-  const productsTextMuted = isDark ? "#a0aec0" : "#4a5568";
-  const productsCardBg = isDark ? "#203147" : "#1e2d45";
-  const reviewsBgOuter = isDark ? "#203147" : "#fafad6";
-  const reviewsBgBox = isDark ? "#78a83f" : "#0354bf";
 
   const scroll = (dir: "left" | "right") => {
     if (scrollRef.current) {
@@ -94,7 +63,7 @@ export default function Home() {
   };
 
   const reviewArrowStyle = {
-    background: "rgba(255,255,255,0.25)",
+    background: "var(--on-dark-25)",
     border: "none",
     borderRadius: "50%",
     width: 44,
@@ -110,7 +79,7 @@ export default function Home() {
   return (
     <main>
       {/* Hero */}
-      <section style={{ background: theme.bg, minHeight: "auto", display: "flex", flexDirection: "column" }} id="inicio">
+      <section style={{ background: "var(--bg-page)", minHeight: "auto", display: "flex", flexDirection: "column" }} id="inicio">
         <div
           className="grid grid-cols-1 lg:grid-cols-[55fr_45fr]"
           style={{
@@ -125,7 +94,7 @@ export default function Home() {
             <h1 style={{
               fontSize: "clamp(2.5rem, 5.5vw, 5.5rem)",
               fontWeight: 900,
-              color: theme.accent,
+              color: "var(--accent)",
               lineHeight: 1.0,
               margin: "0 0 1rem",
               textTransform: "uppercase",
@@ -136,7 +105,7 @@ export default function Home() {
             </h1>
             <p style={{
               fontSize: "clamp(0.9rem, 1.1vw, 1.05rem)",
-              color: theme.textMuted,
+              color: "var(--text-muted)",
               lineHeight: 1.6,
               maxWidth: "30rem",
               marginBottom: "2.5rem",
@@ -145,7 +114,7 @@ export default function Home() {
             </p>
             <div style={{ display: "flex", flexDirection: "row", gap: "1.25rem", flexWrap: "wrap", justifyContent: "center" }}>
               <button style={{
-                background: "#78a83f",
+                background: "var(--color-green)",
                 color: "white",
                 border: "none",
                 borderRadius: "9999px",
@@ -162,7 +131,7 @@ export default function Home() {
                 {copy.hero.btnFaq}
               </button>
               <button style={{
-                background: "#78a83f",
+                background: "var(--color-green)",
                 color: "white",
                 border: "none",
                 borderRadius: "9999px",
@@ -182,7 +151,7 @@ export default function Home() {
           </div>
 
           <div style={{
-            background: isDark ? "#203147" : "#fafad6",
+            background: "var(--bg-page)",
             borderRadius: "1.5rem",
             display: "flex",
             alignItems: "center",
@@ -198,6 +167,8 @@ export default function Home() {
               src={isDark ? principalOscuroImg : principalImg}
               alt={copy.hero.altPrincipal}
               fill
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              loading="eager"
               style={{ objectFit: "contain", borderRadius: "1.5rem" }}
             />
           </div>
@@ -205,11 +176,11 @@ export default function Home() {
       </section>
 
       {/* Benefits */}
-      <section style={{ background: isDark ? "#203147" : "#fafad6", padding: "0.25rem 0" }} id="solar">
+      <section style={{ background: "var(--bg-page)", padding: "0.25rem 0" }} id="solar">
         <div
           className="mx-4 md:mx-10"
           style={{
-            background: benefitsBg,
+            background: "var(--band-bg)",
             borderRadius: "2rem",
             padding: "3.5vw 3vw",
             maxWidth: "100%",
@@ -219,7 +190,7 @@ export default function Home() {
             fontSize: "clamp(1.75rem, 3.5vw, 3.5rem)",
             fontWeight: 900,
             fontStyle: "normal",
-            color: "#fafad6",
+            color: "var(--color-cream)",
             textAlign: "center",
             textTransform: "uppercase",
             letterSpacing: "-0.01em",
@@ -238,7 +209,7 @@ export default function Home() {
                 <div
                   key={i}
                   style={{
-                    background: isDark ? "#d1e5ff" : "#afcf89",
+                    background: "var(--band-card)",
                     borderRadius: "1.25rem",
                     padding: "2.5rem 1.5rem",
                     display: "flex",
@@ -257,11 +228,12 @@ export default function Home() {
                       src={benefitIcons[isDark ? iconConfig.iconDark : iconConfig.iconLight]}
                       alt={b.subtitle}
                       fill
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 45vw, 100vw"
                       style={{ objectFit: "contain" }}
                     />
                   </div>
                   <h3 style={{
-                    color: "#1e2d45",
+                    color: "var(--color-navy-800)",
                     fontSize: "clamp(1rem, 1.2vw, 1.2rem)",
                     fontWeight: 700,
                     textTransform: "uppercase",
@@ -272,7 +244,7 @@ export default function Home() {
                     {b.subtitle}
                   </h3>
                   <p style={{
-                    color: "#1e2d45",
+                    color: "var(--color-navy-800)",
                     fontSize: "clamp(0.85rem, 1vw, 1rem)",
                     fontStyle: "normal",
                     fontWeight: 400,
@@ -282,8 +254,8 @@ export default function Home() {
                     {b.text}
                   </p>
                   <button style={{
-                    background: isDark ? "#0354bf" : "#fafad6",
-                    color: isDark ? "#fafad6" : benefitsBg,
+                    background: "var(--band-btn-bg)",
+                    color: "var(--band-btn-text)",
                     border: "none",
                     borderRadius: "9999px",
                     padding: "0.75em 2em",
@@ -305,7 +277,7 @@ export default function Home() {
       </section>
 
       {/* Products */}
-      <section style={{ background: productsBg, padding: "5vw 5vw" }} id="cargadores">
+      <section style={{ background: "var(--bg-page)", padding: "5vw 5vw" }} id="cargadores">
         <div
           className="grid grid-cols-1 lg:grid-cols-2"
           style={{
@@ -318,7 +290,7 @@ export default function Home() {
             <h2 style={{
               fontSize: "clamp(1.75rem, 3.5vw, 3.5rem)",
               fontWeight: 900,
-              color: productsAccent,
+              color: "var(--accent)",
               textTransform: "uppercase",
               marginBottom: "1.25rem",
               lineHeight: 1,
@@ -328,7 +300,7 @@ export default function Home() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: "1.5rem", alignItems: "start" }}>
               <div style={{
-                background: productsCardBg,
+                background: "var(--product-card)",
                 borderRadius: "1rem",
                 aspectRatio: "3 / 4",
                 overflow: "hidden",
@@ -338,15 +310,16 @@ export default function Home() {
                   src={isDark ? cargadorOscuroImg : cargadorImg}
                   alt={copy.products.evAlt}
                   fill
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 45vw, 100vw"
                   style={{ objectFit: "contain" }}
                 />
               </div>
               <div style={{ display: "flex", flexDirection: "column" }}>
-                <p style={{ fontSize: "clamp(1.1rem, 1.3vw, 1.3rem)", fontStyle: "italic", lineHeight: 1.75, color: productsTextMuted }}>
+                <p style={{ fontSize: "clamp(1.1rem, 1.3vw, 1.3rem)", fontStyle: "italic", lineHeight: 1.75, color: "var(--text-muted)" }}>
                   {copy.products.evText}
                 </p>
                 <button
-                  style={{ ...productBtnStyle, background: productsAccent }}
+                  style={{ ...productBtnStyle, background: "var(--accent)" }}
                   onMouseEnter={e => e.currentTarget.style.transform = "scale(1.04)"}
                   onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
                 >
@@ -360,7 +333,7 @@ export default function Home() {
             <h2 style={{
               fontSize: "clamp(1.75rem, 3.5vw, 3.5rem)",
               fontWeight: 900,
-              color: productsAccent,
+              color: "var(--accent)",
               textTransform: "uppercase",
               marginBottom: "1.25rem",
               lineHeight: 1,
@@ -370,7 +343,7 @@ export default function Home() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: "1.5rem", alignItems: "start" }}>
               <div style={{
-                background: productsCardBg,
+                background: "var(--color-navy-800)",
                 borderRadius: "1rem",
                 aspectRatio: "3 / 4",
                 overflow: "hidden",
@@ -380,15 +353,16 @@ export default function Home() {
                   src={isDark ? placasOscuroImg : placasImg}
                   alt={copy.products.solarAlt}
                   fill
+                  sizes="(min-width: 1200px) 400px, 33vw"
                   style={{ objectFit: "contain" }}
                 />
               </div>
               <div style={{ display: "flex", flexDirection: "column" }}>
-                <p style={{ fontSize: "clamp(1.1rem, 1.3vw, 1.3rem)", fontStyle: "italic", lineHeight: 1.75, color: productsTextMuted }}>
+                <p style={{ fontSize: "clamp(1.1rem, 1.3vw, 1.3rem)", fontStyle: "italic", lineHeight: 1.75, color: "var(--text-muted)" }}>
                   {copy.products.solarText}
                 </p>
                 <button
-                  style={{ ...productBtnStyle, background: productsAccent }}
+                  style={{ ...productBtnStyle, background: "var(--accent)" }}
                   onMouseEnter={e => e.currentTarget.style.transform = "scale(1.04)"}
                   onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
                 >
@@ -401,7 +375,7 @@ export default function Home() {
       </section>
 
       {/* Coverage */}
-      <section style={{ background: coverageBg, padding: "80px 24px" }} id="tramites">
+      <section style={{ background: "var(--bg-page)", padding: "80px 24px" }} id="tramites">
         <div style={{
           maxWidth: 1200,
           marginLeft: 0,
@@ -416,6 +390,7 @@ export default function Home() {
               src={isDark ? mapaOscuroImg : mapaImg}
               alt={copy.coverage.mapAlt}
               fill
+              sizes="(min-width: 1200px) 400px, 33vw"
               style={{ objectFit: "contain" }}
             />
           </div>
@@ -423,7 +398,7 @@ export default function Home() {
             <h2 style={{
               fontSize: "clamp(20px, 2.4vw, 34px)",
               fontWeight: 900,
-              color: coverageAccent,
+              color: "var(--accent-2)",
               textTransform: "uppercase",
               lineHeight: 0.95,
               marginBottom: 24,
@@ -433,7 +408,7 @@ export default function Home() {
             </h2>
             <p style={{
               fontSize: 16,
-              color: coverageTextMuted,
+              color: "var(--text-muted)",
               lineHeight: 1.7,
               marginBottom: 32,
             }}>
@@ -441,8 +416,8 @@ export default function Home() {
             </p>
             <button
               style={{
-                background: coverageAccent,
-                color: isDark ? "#203147" : "white",
+                background: "var(--accent-2)",
+                color: "var(--on-accent-2)",
                 border: "none",
                 borderRadius: 50,
                 padding: "14px 36px",
@@ -463,11 +438,11 @@ export default function Home() {
       </section>
 
       {/* Reviews */}
-      <section style={{ background: reviewsBgOuter, padding: "3vw 5px" }}>
+      <section style={{ background: "var(--bg-page)", padding: "3vw 5px" }}>
         <h2 style={{
           fontSize: "clamp(28px, 3.5vw, 48px)",
           fontWeight: 900,
-          color: reviewsBgBox,
+          color: "var(--accent)",
           textAlign: "center",
           textTransform: "uppercase",
           marginBottom: 24,
@@ -478,7 +453,7 @@ export default function Home() {
         <div
           className="mx-4 md:mx-10"
           style={{
-            background: reviewsBgBox,
+            background: "var(--accent)",
             borderRadius: "2rem",
             padding: "2.5vw 2vw",
           }}
@@ -488,8 +463,8 @@ export default function Home() {
               className="hidden sm:flex items-center justify-center"
               style={reviewArrowStyle}
               onClick={() => scroll("left")}
-              onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.4)"}
-              onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.25)"}
+              onMouseEnter={e => e.currentTarget.style.background = "var(--on-dark-40)"}
+              onMouseLeave={e => e.currentTarget.style.background = "var(--on-dark-25)"}
             >
               ‹
             </button>
@@ -508,10 +483,10 @@ export default function Home() {
                   key={i}
                   className="w-full sm:min-w-[280px] sm:max-w-[280px]"
                   style={{
-                    background: isDark ? "rgba(26,34,53,0.25)" : "rgba(255,255,255,0.18)",
+                    background: "var(--review-card-bg)",
                     borderRadius: 16,
                     padding: "32px 24px",
-                    border: "1px solid rgba(255,255,255,0.25)",
+                    border: "1px solid var(--on-dark-25)",
                     minHeight: "240px",
                     display: "flex",
                     flexDirection: "column",
@@ -519,7 +494,7 @@ export default function Home() {
                     flexShrink: 0,
                   }}
                 >
-                  <div style={{ color: "#f5b942", fontSize: 22 }}>
+                  <div style={{ color: "var(--color-gold)", fontSize: 22 }}>
                     {"★".repeat(r.stars)}{"☆".repeat(5 - r.stars)}
                   </div>
                   <p style={{ color: "white", fontSize: 15, lineHeight: 1.75, flex: 1 }}>
@@ -533,8 +508,8 @@ export default function Home() {
               className="hidden sm:flex items-center justify-center"
               style={reviewArrowStyle}
               onClick={() => scroll("right")}
-              onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.4)"}
-              onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.25)"}
+              onMouseEnter={e => e.currentTarget.style.background = "var(--on-dark-40)"}
+              onMouseLeave={e => e.currentTarget.style.background = "var(--on-dark-25)"}
             >
               ›
             </button>

@@ -1,26 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { contactoCopy } from "@/lib/i18n/contacto";
 
 const DESTINO = "comercial@saucerenova.com";
 
 export default function ContactPage() {
-  const { isDark } = useTheme();
   const { lang } = useLanguage();
   const copy = contactoCopy[lang];
 
-  const bg = isDark ? "#203147" : "#f5f5dc";
-  const heroBg = isDark ? "#0d1520" : "#1e2d45";
-  const labelColor = isDark ? "#f5f5dc" : "#1e2d45";
-  const textMuted = isDark ? "#a0aec0" : "#4a5568";
-  const titleColor = isDark ? "#9BC97A" : "#2857c8";
-  const cardBg = isDark ? "#243050" : "white";
-  const cardBorder = isDark ? "#3a4d6b" : "#e2e8f0";
-  const accent = "#2857c8";
-  const accentAlt = "#6b8c3a";
+  const bg = "var(--bg-service)";
+  const heroBg = "var(--hero-bg)";
+  const labelColor = "var(--label-color)";
+  const textMuted = "var(--text-muted)";
+  const titleColor = "var(--title-color)";
+  const cardBg = "var(--card-bg)";
+  const cardBorder = "var(--card-border)";
+  const accent = "var(--color-blue-mid)";
+  const accentAlt = "var(--color-green-dark)";
 
   const [paso, setPaso] = useState(1);
   const [tienePlacas, setTienePlacas] = useState<"si" | "no" | null>(null);
@@ -168,7 +166,7 @@ export default function ContactPage() {
                     style={{
                       ...btnBase,
                       border: "none",
-                      background: interes.length > 0 ? accent : "#a0aec0",
+                      background: interes.length > 0 ? accent : "var(--color-gray-soft)",
                       color: "white",
                       cursor: interes.length > 0 ? "pointer" : "not-allowed",
                     }}
@@ -213,7 +211,7 @@ export default function ContactPage() {
             href={listo ? buildMailtoHref() : undefined}
             aria-disabled={!listo}
             style={{
-              background: listo ? accentAlt : "#a0aec0",
+              background: listo ? accentAlt : "var(--color-gray-soft)",
               color: "white",
               border: "none",
               borderRadius: 50,
@@ -242,13 +240,13 @@ export default function ContactPage() {
             <p style={{ fontSize: 13, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", color: accentAlt, marginBottom: 12 }}>
               {copy.autoServicioHeading}
             </p>
-            <p style={{ fontSize: 15, fontStyle: "italic", color: "rgba(245,245,220,0.85)", lineHeight: 1.7, margin: 0 }}>
+            <p style={{ fontSize: 15, fontStyle: "italic", color: "var(--on-cream-85)", lineHeight: 1.7, margin: 0 }}>
               {copy.autoServicioPre}{" "}
-              <a href={`mailto:${DESTINO}`} style={{ color: "#f5f5dc", textDecoration: "underline" }}>
+              <a href={`mailto:${DESTINO}`} style={{ color: "var(--color-cream-text)", textDecoration: "underline" }}>
                 {DESTINO}
               </a>
               {" "}{copy.autoServicioOr}{" "}
-              <a href="tel:+34613115981" style={{ color: "#f5f5dc", textDecoration: "underline" }}>
+              <a href="tel:+34613115981" style={{ color: "var(--color-cream-text)", textDecoration: "underline" }}>
                 613 115 981
               </a>.
             </p>

@@ -1,15 +1,116 @@
 @import "tailwindcss";
 
-@theme {
-  --color-navy: #1C2B41;
+@theme static {
   --color-green: #78a83f;
-  --color-green-light: #78a83f;
-  --color-cream: #fafad6;
+  --color-cream: #faf9d4;
   --color-blue: #0354bf;
-  --color-blue-dark: #0354bf;
+
+  --color-cream-text: #f5f5dc;
+  --color-cream-bg: #f5f2d0;
+
+  --color-navy-night: #203147;
+  --color-navy-950: #0d1520;
+  --color-navy-900: #1a2235;
+  --color-navy-800: #1e2d45;
+  --color-navy-700: #243050;
+  --color-navy-600: #3a4d6b;
+
+  --color-green-pale: #afcf89;
+  --color-green-soft: #9BC97A;
+  --color-green-dark: #6b8c3a;
+  --color-green-deep: #1f4408;
+
+  --color-blue-mid: #2857c8;
+  --color-blue-pale: #d1e5ff;
+
+  --color-gold: #f5b942;
+
+  --color-gray-soft: #a0aec0;
+  --color-gray-deep: #4a5568;
+  --color-gray-line: #e2e8f0;
 }
 
-html, body {
+:root {
+  --bg-page: var(--color-cream);
+  --accent: var(--color-blue);
+  --accent-2: var(--color-green);
+  --on-accent-2: white;
+  --text-muted: var(--color-gray-deep);
+  --product-card: var(--color-navy-800);
+  --bg-service: var(--color-cream-text);
+  --hero-bg: var(--color-navy-800);
+  --card-bg: white;
+  --title-color: var(--color-blue-mid);
+  --card-title: var(--color-green-dark);
+  --on-cream-75: rgba(245, 245, 220, 0.75);
+  --toggle-border: rgba(0, 0, 0, 0.1);
+  --plan-bg: var(--color-navy-950);
+  --label-color: var(--color-navy-800);
+  --card-border: var(--color-gray-line);
+  --on-cream-85: rgba(245, 245, 220, 0.85);
+  --illus-line: var(--color-navy-800);
+  --bg-root: var(--color-cream-bg);
+
+  --nav-from: var(--color-green);
+  --nav-to: var(--color-blue);
+  --nav-dropdown: var(--color-green);
+
+  --footer-from: var(--color-green-dark);
+  --footer-to: var(--color-blue-mid);
+
+  --band-bg: var(--color-green);
+  --band-card: var(--color-green-pale);
+  --band-btn-bg: var(--color-cream);
+  --band-btn-text: var(--color-green);
+
+  --review-card-bg: rgba(255, 255, 255, 0.2);
+
+  --on-dark-90: rgba(255, 255, 255, 0.9);
+  --on-dark-80: rgba(255, 255, 255, 0.8);
+  --on-dark-70: rgba(255, 255, 255, 0.7);
+  --on-dark-40: rgba(255, 255, 255, 0.4);
+  --on-dark-25: rgba(255, 255, 255, 0.25);
+  --on-dark-20: rgba(255, 255, 255, 0.2);
+  --on-dark-15: rgba(255, 255, 255, 0.15);
+  --on-dark-08: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] {
+  --bg-page: var(--color-navy-night);
+  --accent: var(--color-green);
+  --accent-2: var(--color-cream);
+  --on-accent-2: var(--color-navy-night);
+  --text-muted: var(--color-gray-soft);
+  --product-card: var(--color-navy-night);
+
+  --bg-service: var(--color-navy-night);
+  --hero-bg: var(--color-navy-950);
+  --card-bg: var(--color-navy-700);
+  --title-color: var(--color-green-soft);
+  --card-title: var(--color-green-soft);
+  --toggle-border: var(--on-dark-15);
+  --plan-bg: var(--color-blue-mid);
+  --label-color: var(--color-cream-text);
+  --card-border: var(--color-navy-600);
+  --illus-line: var(--color-cream);
+  --bg-root: var(--color-navy-900);
+  --nav-from: var(--color-blue);
+  --nav-to: var(--color-green-deep);
+  --nav-dropdown: var(--color-navy-night);
+
+
+  --footer-from: var(--color-navy-950);
+
+  --band-bg: var(--color-blue);
+  --band-card: var(--color-blue-pale);
+  --band-btn-bg: var(--color-blue);
+  --band-btn-text: var(--color-cream);
+
+  --review-card-bg: rgba(26, 34, 53, 0.25);
+}
+
+html,
+body {
   overflow-x: hidden;
 }
 

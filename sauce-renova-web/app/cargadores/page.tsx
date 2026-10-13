@@ -1,25 +1,23 @@
 "use client";
 
 import Link from "next/link";
-import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { cargadoresCopy } from "@/lib/i18n/cargadores";
 import CTABanner from "@/components/ui/CTABanner";
 import EVChargerIllustration from "@/components/illustrations/EVChargerIllustration";
 
 export default function CargadoresPage() {
-  const { isDark } = useTheme();
   const { lang } = useLanguage();
   const copy = cargadoresCopy[lang];
 
-  const bg = isDark ? "#203147" : "#f5f5dc";
-  const heroBg = isDark ? "#0d1520" : "#1e2d45";
-  const cardBg = isDark ? "#243050" : "white";
-  const accent = "#2857c8";
-  const accentAlt = "#6b8c3a";
-  const textMuted = isDark ? "#a0aec0" : "#4a5568";
-  const titleColor = isDark ? "#9BC97A" : accent;
-  const cardTitleColor = isDark ? "#9BC97A" : accent;
+  const bg = "var(--bg-service)";
+  const heroBg = "var(--hero-bg)";
+  const cardBg = "var(--card-bg)";
+  const accent = "var(--color-blue-mid)";
+  const accentAlt = "var(--color-green-dark)";
+  const textMuted = "var(--text-muted)";
+  const titleColor = "var(--title-color)";
+  const cardTitleColor = "var(--title-color)";
 
   return (
     <main style={{ background: bg, minHeight: "100vh" }}>
@@ -38,7 +36,7 @@ export default function CargadoresPage() {
               fontSize: "clamp(48px, 6vw, 88px)",
               fontWeight: 900,
               fontStyle: "italic",
-              color: "#f5f5dc",
+              color: "var(--color-cream-text)",
               textTransform: "uppercase",
               lineHeight: 0.95,
               marginBottom: 24,
@@ -48,7 +46,7 @@ export default function CargadoresPage() {
             <p style={{
               fontSize: 18,
               fontStyle: "italic",
-              color: "rgba(245,245,220,0.75)",
+              color: "var(--on-cream-75)",
               lineHeight: 1.7,
               maxWidth: 500,
               marginBottom: 40,
@@ -75,7 +73,7 @@ export default function CargadoresPage() {
             </Link>
           </div>
           <div style={{
-            background: isDark ? "#203147" : "#f5f5dc",
+            background: "var(--bg-service)",
             borderRadius: 24,
             padding: 24,
             minHeight: 300,
@@ -83,7 +81,7 @@ export default function CargadoresPage() {
             alignItems: "center",
             justifyContent: "center",
           }}>
-            <EVChargerIllustration isDark={isDark} />
+            <EVChargerIllustration />
           </div>
         </div>
       </section>
@@ -133,7 +131,7 @@ export default function CargadoresPage() {
         </div>
       </section>
 
-      <section style={{ background: isDark ? "#0d1520" : accent, padding: "64px 24px" }}>
+      <section style={{ background: "var(--plan-bg)", padding: "64px 24px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <h2 style={{
             fontSize: "clamp(28px, 3.5vw, 48px)",
@@ -148,7 +146,7 @@ export default function CargadoresPage() {
           <p style={{
             fontSize: 18,
             fontStyle: "italic",
-            color: "rgba(255,255,255,0.85)",
+            color: "var(--on-dark-90)",
             lineHeight: 1.7,
             maxWidth: 700,
             marginBottom: 40,

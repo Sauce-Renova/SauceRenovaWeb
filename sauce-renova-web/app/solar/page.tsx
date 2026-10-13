@@ -1,25 +1,23 @@
 "use client";
 
 import Link from "next/link";
-import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import CTABanner from "@/components/ui/CTABanner";
 import SolarPanelIllustration from "@/components/illustrations/SolarPanelIllustration";
 import { solarCopy } from "@/lib/i18n/solar";
 
 export default function SolarPage() {
-  const { isDark } = useTheme();
   const { lang } = useLanguage();
   const copy = solarCopy[lang];
 
-  const bg = isDark ? "#203147" : "#f5f5dc";
-  const heroBg = isDark ? "#0d1520" : "#1e2d45";
-  const cardBg = isDark ? "#243050" : "white";
-  const accent = "#2857c8";
-  const accentAlt = "#6b8c3a";
-  const textMuted = isDark ? "#a0aec0" : "#4a5568";
-  const titleColor = isDark ? "#9BC97A" : accent;
-  const cardTitleColor = isDark ? "#9BC97A" : accentAlt;
+  const bg = "var(--bg-service)";
+  const heroBg = "var(--hero-bg)";
+  const cardBg = "var(--card-bg)";
+
+  const accentAlt = "var(--color-green-dark)";
+  const textMuted = "var(--text-muted)";
+  const titleColor = "var(--title-color)";
+  const cardTitleColor = "var(--card-title)";
 
   return (
     <main style={{ background: bg, minHeight: "100vh" }}>
@@ -38,7 +36,7 @@ export default function SolarPage() {
               fontSize: "clamp(48px, 6vw, 88px)",
               fontWeight: 900,
               fontStyle: "italic",
-              color: "#f5f5dc",
+              color: "var(--color-cream-text)",
               textTransform: "uppercase",
               lineHeight: 0.95,
               marginBottom: 24,
@@ -48,7 +46,7 @@ export default function SolarPage() {
             <p style={{
               fontSize: 18,
               fontStyle: "italic",
-              color: "rgba(245,245,220,0.75)",
+              color: "var(--on-cream-75)",
               lineHeight: 1.7,
               maxWidth: 500,
               marginBottom: 40,
@@ -71,7 +69,7 @@ export default function SolarPage() {
             </Link>
           </div>
           <div style={{
-            background: isDark ? "#203147" : "#f5f5dc",
+            background: "var(--bg-service)",
             borderRadius: 24,
             padding: 24,
             minHeight: 300,
@@ -79,7 +77,7 @@ export default function SolarPage() {
             alignItems: "center",
             justifyContent: "center",
           }}>
-            <SolarPanelIllustration isDark={isDark} />
+            <SolarPanelIllustration />
           </div>
         </div>
       </section>

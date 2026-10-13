@@ -36,14 +36,11 @@ export default function Navbar() {
         setMounted(true);
     }, []);
 
-    const navBg = mounted && isDark
-        ? "linear-gradient(to right, #0454be, #1f4408)"
-        : "linear-gradient(to right, #6FA050, #0454be)";
-
-    const dropdownBg = mounted && isDark ? "#203147" : "#6FA050";
+    const navBg = "linear-gradient(to right, var(--nav-from), var(--nav-to))";
+    const dropdownBg = "var(--nav-dropdown)";
 
     return (
-        <header className="px-4 md:px-12 py-4" style={{ background: mounted && isDark ? "#203147" : "#fafad6" }}>
+        <header className="px-4 md:px-12 py-4" style={{ background: "var(--bg-page)" }}>
             <nav
                 className="w-full pl-3 pr-3 py-2 flex items-center rounded-full relative"
                 style={{ background: navBg, transition: "background 0.4s" }}
@@ -103,11 +100,10 @@ export default function Navbar() {
                             <button
                                 key={l.code}
                                 onClick={() => setLang(l.code)}
-                                className={`px-3 py-1 rounded-full text-sm font-bold transition-colors ${
-                                    mounted && lang === l.code
-                                        ? "bg-white text-[#1e2d45]"
-                                        : "text-white hover:bg-white/20"
-                                }`}
+                                className={`px-3 py-1 rounded-full text-sm font-bold transition-colors ${mounted && lang === l.code
+                                    ? "bg-white text-navy-800"
+                                    : "text-white hover:bg-white/20"
+                                    }`}
                             >
                                 {l.label}
                             </button>
@@ -129,11 +125,10 @@ export default function Navbar() {
                             <button
                                 key={l.code}
                                 onClick={() => setLang(l.code)}
-                                className={`px-2.5 py-1 rounded-full text-xs font-bold transition-colors ${
-                                    mounted && lang === l.code
-                                        ? "bg-white text-[#1e2d45]"
-                                        : "text-white"
-                                }`}
+                                className={`px-2.5 py-1 rounded-full text-xs font-bold transition-colors ${mounted && lang === l.code
+                                    ? "bg-white text-navy-800"
+                                    : "text-white"
+                                    }`}
                             >
                                 {l.label}
                             </button>

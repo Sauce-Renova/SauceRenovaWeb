@@ -1,6 +1,5 @@
 "use client";
 
-import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { footerCopy } from "@/lib/i18n/footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,13 +7,10 @@ import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp, faInstagram, faFacebook, faTiktok, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
-  const { isDark } = useTheme();
   const { lang } = useLanguage();
   const copy = footerCopy[lang];
 
-  const footerBg = isDark
-    ? "linear-gradient(135deg, #0d1520 0%, #2857c8 100%)"
-    : "linear-gradient(135deg, #6b8c3a 0%, #2857c8 100%)";
+  const footerBg = "linear-gradient(135deg, var(--footer-from) 0%, var(--footer-to) 100%)";
 
   const contactLinks = [
     { icon: faPhone, text: "613 115 981", href: "tel:+34613115981" },
@@ -40,7 +36,7 @@ export default function Footer() {
   };
 
   const subHeadingStyle = {
-    color: "rgba(255,255,255,0.7)",
+    color: "var(--on-dark-70)",
     fontWeight: 700,
     fontSize: 12,
     letterSpacing: "0.08em",
@@ -49,13 +45,13 @@ export default function Footer() {
     marginBottom: 10,
   };
 
-  const listTextStyle = { color: "rgba(255,255,255,0.8)", fontSize: 14, fontStyle: "italic", lineHeight: 1.7, margin: 0 };
+  const listTextStyle = { color: "var(--on-dark-80)", fontSize: 14, fontStyle: "italic", lineHeight: 1.7, margin: 0 };
 
   const contactLinkStyle = {
     display: "flex",
     alignItems: "center",
     gap: 10,
-    color: "rgba(255,255,255,0.9)",
+    color: "var(--on-dark-90)",
     fontSize: 14,
     fontStyle: "italic",
     marginTop: 10,
@@ -92,7 +88,7 @@ export default function Footer() {
       content: (
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           {socialLinks.map((s, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, color: "rgba(255,255,255,0.85)", fontSize: 14, fontStyle: "italic", cursor: "pointer" }}>
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, color: "var(--on-dark-90)", fontSize: 14, fontStyle: "italic", cursor: "pointer" }}>
               <FontAwesomeIcon icon={s.icon} style={{ width: 16, height: 16 }} />
               <span>{s.label}</span>
             </div>
@@ -144,7 +140,7 @@ export default function Footer() {
           ))}
           <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 16 }}>
             {socialLinks.map((s, i) => (
-              <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, color: "rgba(255,255,255,0.85)", fontSize: 14, fontStyle: "italic" }}>
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, color: "var(--on-dark-90)", fontSize: 14, fontStyle: "italic" }}>
                 <FontAwesomeIcon icon={s.icon} style={{ width: 16, height: 16 }} />
                 <span>{s.label}</span>
               </div>
@@ -161,11 +157,11 @@ export default function Footer() {
         </div>
       </div>
 
-      <hr style={{ borderColor: "rgba(255,255,255,0.2)", margin: "0 0 20px" }} />
+      <hr style={{ borderColor: "var(--on-dark-20)", margin: "0 0 20px" }} />
       <p style={{
         maxWidth: 1200,
         margin: "0 auto",
-        color: "rgba(255,255,255,0.6)",
+        color: "var(--on-dark-70)",
         fontSize: 13,
         fontStyle: "italic",
         textAlign: "center",

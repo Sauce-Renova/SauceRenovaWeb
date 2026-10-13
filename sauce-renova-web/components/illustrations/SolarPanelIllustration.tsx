@@ -1,21 +1,18 @@
-interface Props {
-  isDark: boolean;
-}
-
-export default function SolarPanelIllustration({ isDark }: Props) {
-  const c = isDark ? "#fafad6" : "#1e2d45";
-  const accent = "#0354bf";
-  const green = "#78a83f";
+export default function SolarPanelIllustration() {
+  const c = "var(--illus-line)";
+  const accent = "var(--color-blue)";
+  const green = "var(--color-green)";
+  const gold = "var(--color-gold)";
 
   return (
     <svg viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "100%" }}>
-      <circle cx="260" cy="45" r="28" fill="#f5b942" opacity="0.9" />
-      <line x1="260" y1="5" x2="260" y2="15" stroke="#f5b942" strokeWidth="3" />
-      <line x1="260" y1="75" x2="260" y2="85" stroke="#f5b942" strokeWidth="3" />
-      <line x1="220" y1="45" x2="230" y2="45" stroke="#f5b942" strokeWidth="3" />
-      <line x1="290" y1="45" x2="300" y2="45" stroke="#f5b942" strokeWidth="3" />
-      <line x1="231" y1="16" x2="238" y2="23" stroke="#f5b942" strokeWidth="3" />
-      <line x1="282" y1="67" x2="289" y2="74" stroke="#f5b942" strokeWidth="3" />
+      <circle cx="260" cy="45" r="28" fill={gold} opacity="0.9" />
+      <line x1="260" y1="5" x2="260" y2="15" stroke={gold} strokeWidth="3" />
+      <line x1="260" y1="75" x2="260" y2="85" stroke={gold} strokeWidth="3" />
+      <line x1="220" y1="45" x2="230" y2="45" stroke={gold} strokeWidth="3" />
+      <line x1="290" y1="45" x2="300" y2="45" stroke={gold} strokeWidth="3" />
+      <line x1="231" y1="16" x2="238" y2="23" stroke={gold} strokeWidth="3" />
+      <line x1="282" y1="67" x2="289" y2="74" stroke={gold} strokeWidth="3" />
       <path d="M20 190 Q160 175 300 190 L300 240 L20 240 Z" fill={green} opacity="0.3" />
       <path d="M40 190 L40 130 L80 100 L120 130 L120 190 Z" fill={c} opacity="0.15" stroke={c} strokeWidth="2" />
       <path d="M40 130 L80 100 L120 130" stroke={c} strokeWidth="2" fill="none" />

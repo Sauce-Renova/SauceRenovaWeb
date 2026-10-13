@@ -1,23 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { electricidadCopy } from "@/lib/i18n/electricidad";
 import CTABanner from "@/components/ui/CTABanner";
 
 export default function ElectricidadPage() {
-  const { isDark } = useTheme();
   const { lang } = useLanguage();
   const copy = electricidadCopy[lang];
 
-  const bg = isDark ? "#203147" : "#f5f5dc";
-  const heroBg = isDark ? "#0d1520" : "#1e2d45";
-  const cardBg = isDark ? "#243050" : "white";
-  const accent = "#2857c8";
-  const accentAlt = "#6b8c3a";
-  const titleColor = isDark ? "#9BC97A" : accent;
-  const cardTitleColor = isDark ? "#9BC97A" : accent;
+  const bg = "var(--bg-service)";
+  const heroBg = "var(--hero-bg)";
+  const cardBg = "var(--card-bg)";
+  const accent = "var(--color-blue-mid)";
+  const accentAlt = "var(--color-green-dark)";
+  const titleColor = "var(--title-color)";
+  const cardTitleColor = "var(--title-color)";
 
   return (
     <main style={{ background: bg, minHeight: "100vh" }}>
@@ -27,7 +25,7 @@ export default function ElectricidadPage() {
             fontSize: "clamp(48px, 6vw, 88px)",
             fontWeight: 900,
             fontStyle: "italic",
-            color: "#f5f5dc",
+            color: "var(--color-cream-text)",
             textTransform: "uppercase",
             lineHeight: 0.95,
             marginBottom: 24,
@@ -37,7 +35,7 @@ export default function ElectricidadPage() {
           <p style={{
             fontSize: 18,
             fontStyle: "italic",
-            color: "rgba(245,245,220,0.75)",
+            color: "var(--on-cream-75)",
             lineHeight: 1.7,
             maxWidth: 600,
             marginBottom: 40,

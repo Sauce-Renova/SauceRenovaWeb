@@ -2,92 +2,27 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useTheme } from "@/context/ThemeContext";
+import { useLanguage } from "@/context/LanguageContext";
+import { bateriasCopy } from "@/lib/i18n/baterias";
 import CTABanner from "@/components/ui/CTABanner";
 import BatteryIcon from "@/components/icons/BatteryIcon";
 
 export default function BateriasPage() {
-  const { isDark } = useTheme();
+  const { lang } = useLanguage();
+  const copy = bateriasCopy[lang];
+
   const [conInstalacion, setConInstalacion] = useState(true);
 
-  const bg = isDark ? "#203147" : "#f5f5dc";
-  const heroBg = isDark ? "#0d1520" : "#1e2d45";
-  const cardBg = isDark ? "#243050" : "white";
-  const accent = "#2857c8";
-  const accentAlt = "#6b8c3a";
-  const textMuted = isDark ? "#a0aec0" : "#4a5568";
-  const titleColor = isDark ? "#9BC97A" : accent;
-  const cardTitleColor = isDark ? "#9BC97A" : accent;
+  const bg = "var(--bg-service)";
+  const heroBg = "var(--hero-bg)";
+  const cardBg = "var(--card-bg)";
+  const accent = "var(--color-blue-mid)";
+  const accentAlt = "var(--color-green-dark)";
+  const textMuted = "var(--text-muted)";
+  const titleColor = "var(--title-color)";
+  const cardTitleColor = "var(--title-color)";
 
-  const ventajasCon = [
-    {
-      titulo: "Independencia Total",
-      descripcion: "Almacena la energía que generas durante el día y úsala por la noche. Reduce tu dependencia de la red eléctrica al mínimo.",
-    },
-    {
-      titulo: "Máximo Ahorro",
-      descripcion: "Aprovecha toda la energía que producen tus paneles sin desperdiciar el excedente. Amortiza tu instalación mucho antes.",
-    },
-    {
-      titulo: "Protección ante Apagones",
-      descripcion: "Con una batería de respaldo, tu hogar o empresa seguirá funcionando aunque haya un corte en la red eléctrica.",
-    },
-    {
-      titulo: "Larga Vida Útil",
-      descripcion: "Trabajamos con baterías de última generación con garantías de hasta 10 años y una vida útil superior a los 6.000 ciclos.",
-    },
-  ];
-
-  const ventajasSin = [
-    {
-      titulo: "Autonomía e Independencia Eléctrica",
-      descripcion: "Protección instantánea ante apagones y microcortes, eliminando la dependencia total de la red convencional para proteger tu tranquilidad y tus equipos.",
-    },
-    {
-      titulo: "Funcionamiento Inteligente, Ahorro Energético",
-      descripcion: "Carga la batería en horarios de tarifa reducida (valle) y abastece consumos en horas de mayor costo (punta), pudiendo llegar a reducir de forma sustancial la factura de luz.",
-    },
-    {
-      titulo: "Diseño Integrado",
-      descripcion: "Inversor Híbrido y Batería LiFePO4 de máxima seguridad montados en un ecosistema compacto con canalizaciones ocultas, libre de marañas de cables.",
-    },
-  ];
-
-  const ventajas = conInstalacion ? ventajasCon : ventajasSin;
-
-  const tipos = [
-    {
-      titulo: "Baterías de Litio",
-      descripcion: "La tecnología más avanzada del mercado. Mayor densidad de energía, ciclos de carga más rápidos y mayor vida útil. Ideales para uso residencial y empresarial.",
-    },
-    {
-      titulo: "Sistemas Híbridos",
-      descripcion: "Combinamos placas solares, baterías e inversor híbrido en un único sistema integrado. La solución más eficiente para maximizar el autoconsumo.",
-    },
-    {
-      titulo: "Almacenamiento Industrial",
-      descripcion: "Soluciones de gran capacidad para empresas e instalaciones industriales. Reducción significativa de la demanda punta y los costes energéticos.",
-    },
-  ];
-
-  const faqs = [
-    {
-      pregunta: "¿Cuánto tarda en amortizarse una batería?",
-      respuesta: "Depende del consumo y el tamaño de la instalación, pero en la mayoría de los casos la amortización se produce entre 6 y 10 años.",
-    },
-    {
-      pregunta: "¿Puedo añadir una batería a mi instalación existente?",
-      respuesta: "Sí, en la mayoría de los casos es posible añadir baterías a instalaciones ya existentes. Evaluamos tu caso concreto sin compromiso.",
-    },
-    {
-      pregunta: "¿Qué pasa si la batería se llena?",
-      respuesta: "Cuando la batería está cargada al 100%, el excedente se vierte a la red eléctrica y recibes una compensación económica por ello.",
-    },
-    {
-      pregunta: "¿Hay ayudas para instalar baterías?",
-      respuesta: "Sí, las ayudas europeas Next Generation incluyen subvenciones para la instalación de sistemas de almacenamiento. Te gestionamos todo el proceso.",
-    },
-  ];
+  const ventajas = conInstalacion ? copy.ventajas.conInstalacion : copy.ventajas.sinInstalacion;
 
   return (
     <main style={{ background: bg, minHeight: "100vh" }}>
@@ -110,28 +45,28 @@ export default function BateriasPage() {
               color: accentAlt,
               marginBottom: 16,
             }}>
-              Solar → Baterías
+              {copy.hero.breadcrumb}
             </p>
             <h1 style={{
               fontSize: "clamp(48px, 6vw, 88px)",
               fontWeight: 900,
               fontStyle: "italic",
-              color: "#f5f5dc",
+              color: "var(--color-cream-text)",
               textTransform: "uppercase",
               lineHeight: 0.95,
               marginBottom: 24,
             }}>
-              Baterías
+              {copy.hero.title}
             </h1>
             <p style={{
               fontSize: 18,
               fontStyle: "italic",
-              color: "rgba(245,245,220,0.75)",
+              color: "var(--on-cream-75)",
               lineHeight: 1.7,
               maxWidth: 500,
               marginBottom: 40,
             }}>
-              Almacena la energía que generan tus placas solares y úsala cuando más la necesites. Consigue la independencia energética total con nuestros sistemas de almacenamiento de última generación.
+              {copy.hero.intro}
             </p>
             <Link href="/contacto" style={{
               background: accentAlt,
@@ -145,11 +80,11 @@ export default function BateriasPage() {
               textDecoration: "none",
               display: "inline-block",
             }}>
-              Solicitar presupuesto
+              {copy.hero.btnPresupuesto}
             </Link>
           </div>
           <div style={{
-            background: isDark ? "#203147" : "#f5f5dc",
+            background: "var(--bg-service)",
             borderRadius: 24,
             padding: 48,
             minHeight: 300,
@@ -157,7 +92,7 @@ export default function BateriasPage() {
             alignItems: "center",
             justifyContent: "center",
           }}>
-            <BatteryIcon size={160} color={isDark ? "#9BC97A" : accent} />
+            <BatteryIcon size={160} color="var(--title-color)" />
           </div>
         </div>
       </section>
@@ -181,7 +116,7 @@ export default function BateriasPage() {
               textTransform: "uppercase",
               margin: 0,
             }}>
-              Ventajas del Almacenamiento
+              {copy.ventajas.heading}
             </h2>
 
             <div style={{
@@ -189,7 +124,7 @@ export default function BateriasPage() {
               background: cardBg,
               borderRadius: 50,
               padding: 4,
-              border: `1px solid ${isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.1)"}`,
+              border: "1px solid var(--toggle-border)",
             }}>
               <button
                 onClick={() => setConInstalacion(true)}
@@ -205,7 +140,7 @@ export default function BateriasPage() {
                   transition: "background 0.2s",
                 }}
               >
-                Con autoconsumo
+                {copy.ventajas.toggleCon}
               </button>
               <button
                 onClick={() => setConInstalacion(false)}
@@ -221,7 +156,7 @@ export default function BateriasPage() {
                   transition: "background 0.2s",
                 }}
               >
-                Sin autoconsumo
+                {copy.ventajas.toggleSin}
               </button>
             </div>
           </div>
@@ -254,25 +189,25 @@ export default function BateriasPage() {
       </section>
 
       {/* Tipos */}
-      <section style={{ background: isDark ? "#0d1520" : "#1e2d45", padding: "80px 24px" }}>
+      <section style={{ background: "var(--hero-bg)", padding: "80px 24px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <h2 style={{
             fontSize: "clamp(28px, 3.5vw, 48px)",
             fontWeight: 900,
             fontStyle: "italic",
-            color: "#f5f5dc",
+            color: "var(--color-cream-text)",
             textTransform: "uppercase",
             marginBottom: 48,
           }}>
-            Tipos de Soluciones
+            {copy.tipos.heading}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 24 }}>
-            {tipos.map((t, i) => (
+            {copy.tipos.items.map((t, i) => (
               <div key={i} style={{
-                background: "rgba(255,255,255,0.08)",
+                background: "var(--on-dark-08)",
                 borderRadius: 20,
                 padding: "32px 24px",
-                border: "1px solid rgba(255,255,255,0.15)",
+                border: "1px solid var(--on-dark-15)",
               }}>
                 <h3 style={{
                   fontSize: 18,
@@ -284,7 +219,7 @@ export default function BateriasPage() {
                 }}>
                   {t.titulo}
                 </h3>
-                <p style={{ fontSize: 14, fontStyle: "italic", color: "rgba(245,245,220,0.75)", lineHeight: 1.7, margin: 0 }}>
+                <p style={{ fontSize: 14, fontStyle: "italic", color: "var(--on-cream-75)", lineHeight: 1.7, margin: 0 }}>
                   {t.descripcion}
                 </p>
               </div>
@@ -304,10 +239,10 @@ export default function BateriasPage() {
             textTransform: "uppercase",
             marginBottom: 48,
           }}>
-            Preguntas Frecuentes
+            {copy.faqs.heading}
           </h2>
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            {faqs.map((f, i) => (
+            {copy.faqs.items.map((f, i) => (
               <div key={i} style={{
                 background: cardBg,
                 borderRadius: 16,
@@ -332,7 +267,7 @@ export default function BateriasPage() {
         </div>
       </section>
 
-      <CTABanner titulo="¿Quieres almacenar tu energía solar?" color={accentAlt} />
+      <CTABanner titulo={copy.ctaBanner} color={accentAlt} />
     </main>
   );
 }

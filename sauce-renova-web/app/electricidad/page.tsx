@@ -44,7 +44,7 @@ export default function ElectricidadPage() {
           </p>
           <Link href="/contacto" style={{
             background: accentAlt,
-            color: "white",
+            color: "var(--color-white)",
             borderRadius: 50,
             padding: "16px 40px",
             fontWeight: 800,

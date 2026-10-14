@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import { footerCopy } from "@/lib/i18n/footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,7 +28,7 @@ export default function Footer() {
   ];
 
   const headingStyle = {
-    color: "white",
+    color: "var(--color-white)",
     fontWeight: 800,
     fontSize: 14,
     letterSpacing: "0.1em",
@@ -47,6 +48,15 @@ export default function Footer() {
 
   const listTextStyle = { color: "var(--on-dark-80)", fontSize: 14, fontStyle: "italic", lineHeight: 1.7, margin: 0 };
 
+  const linkListStyle = { display: "flex", flexDirection: "column" as const, gap: 8 };
+
+  const footerLinkStyle = {
+    color: "var(--on-dark-80)",
+    fontSize: 14,
+    fontStyle: "italic" as const,
+    lineHeight: 1.7,
+  };
+
   const contactLinkStyle = {
     display: "flex",
     alignItems: "center",
@@ -57,6 +67,16 @@ export default function Footer() {
     marginTop: 10,
     textDecoration: "none",
   };
+
+  const renderLinks = (items: readonly { label: string; href: string }[]) => (
+    <div style={linkListStyle}>
+      {items.map((item) => (
+        <Link key={item.href} href={item.href} className="hover:underline" style={footerLinkStyle}>
+          {item.label}
+        </Link>
+      ))}
+    </div>
+  );
 
   const columns = [
     {
@@ -77,11 +97,11 @@ export default function Footer() {
     },
     {
       heading: copy.empresa,
-      content: <p style={listTextStyle}>{copy.empresaItems.join(" · ")}</p>,
+      content: renderLinks(copy.empresaItems),
     },
     {
       heading: copy.legal,
-      content: <p style={listTextStyle}>{copy.legalItems.join(" · ")}</p>,
+      content: renderLinks(copy.legalItems),
     },
     {
       heading: copy.redes,
@@ -151,9 +171,9 @@ export default function Footer() {
         <div>
           <div style={headingStyle}>{copy.informacion}</div>
           <div style={{ ...subHeadingStyle, marginTop: 0 }}>{copy.empresa}</div>
-          <p style={listTextStyle}>{copy.empresaItems.join(" · ")}</p>
+          {renderLinks(copy.empresaItems)}
           <div style={subHeadingStyle}>{copy.legal}</div>
-          <p style={listTextStyle}>{copy.legalItems.join(" · ")}</p>
+          {renderLinks(copy.legalItems)}
         </div>
       </div>
 

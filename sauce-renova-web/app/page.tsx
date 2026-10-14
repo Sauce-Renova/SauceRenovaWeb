@@ -48,7 +48,7 @@ export default function Home() {
   };
 
   const productBtnStyle = {
-    color: "white",
+    color: "var(--color-white)",
     border: "none",
     borderRadius: "9999px",
     padding: "0.85em 2.2em",
@@ -71,7 +71,7 @@ export default function Home() {
     cursor: "pointer",
     flexShrink: 0,
     transition: "background 0.2s",
-    color: "white",
+    color: "var(--color-white)",
     fontSize: 20,
     fontWeight: "bold",
   } as const;
@@ -115,7 +115,7 @@ export default function Home() {
             <div style={{ display: "flex", flexDirection: "row", gap: "1.25rem", flexWrap: "wrap", justifyContent: "center" }}>
               <button style={{
                 background: "var(--color-green)",
-                color: "white",
+                color: "var(--color-white)",
                 border: "none",
                 borderRadius: "9999px",
                 padding: "1.4em 2em",
@@ -132,7 +132,7 @@ export default function Home() {
               </button>
               <button style={{
                 background: "var(--color-green)",
-                color: "white",
+                color: "var(--color-white)",
                 border: "none",
                 borderRadius: "9999px",
                 padding: "1.4em 2em",
@@ -497,7 +497,7 @@ export default function Home() {
                   <div style={{ color: "var(--color-gold)", fontSize: 22 }}>
                     {"★".repeat(r.stars)}{"☆".repeat(5 - r.stars)}
                   </div>
-                  <p style={{ color: "white", fontSize: 15, lineHeight: 1.75, flex: 1 }}>
+                  <p style={{ color: "var(--color-white)", fontSize: 15, lineHeight: 1.75, flex: 1 }}>
                     {r.text}
                   </p>
                 </div>

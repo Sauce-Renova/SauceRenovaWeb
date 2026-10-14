@@ -59,7 +59,7 @@ export default function CargadoresPage() {
             </p>
             <Link href="/contacto" style={{
               background: accentAlt,
-              color: "white",
+              color: "var(--color-white)",
               borderRadius: 50,
               padding: "16px 40px",
               fontWeight: 800,
@@ -137,7 +137,7 @@ export default function CargadoresPage() {
             fontSize: "clamp(28px, 3.5vw, 48px)",
             fontWeight: 900,
             fontStyle: "italic",
-            color: "white",
+            color: "var(--color-white)",
             textTransform: "uppercase",
             marginBottom: 16,
           }}>

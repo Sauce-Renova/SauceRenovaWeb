@@ -167,7 +167,7 @@ export default function ContactPage() {
                       ...btnBase,
                       border: "none",
                       background: interes.length > 0 ? accent : "var(--color-gray-soft)",
-                      color: "white",
+                      color: "var(--color-white)",
                       cursor: interes.length > 0 ? "pointer" : "not-allowed",
                     }}
                   >
@@ -212,7 +212,7 @@ export default function ContactPage() {
             aria-disabled={!listo}
             style={{
               background: listo ? accentAlt : "var(--color-gray-soft)",
-              color: "white",
+              color: "var(--color-white)",
               border: "none",
               borderRadius: 50,
               padding: "16px 40px",

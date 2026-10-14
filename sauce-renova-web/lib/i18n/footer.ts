@@ -1,0 +1,26 @@
+export const footerCopy = {
+  es: {
+    nosotros: "Nosotros",
+    descripcion: "Empresa especializada en energía solar fotovoltaica, cargadores para vehículos eléctricos y gestión de trámites con la administración.",
+    empresa: "Empresa",
+    empresaItems: ["Quiénes somos", "Nuestro equipo", "Proyectos realizados", "Trabaja con nosotros"],
+    legal: "Legal",
+    legalItems: ["Aviso legal", "Política de privacidad", "Política de cookies", "Términos de servicio"],
+    redes: "Redes",
+    contacto: "Contacto",
+    informacion: "Información",
+    copyright: "© 2026 Sauce Renova. Todos los derechos reservados.",
+  },
+  en: {
+    nosotros: "About Us",
+    descripcion: "Company specializing in photovoltaic solar energy, electric vehicle chargers, and administrative paperwork management.",
+    empresa: "Company",
+    empresaItems: ["About us", "Our team", "Completed projects", "Work with us"],
+    legal: "Legal",
+    legalItems: ["Legal notice", "Privacy policy", "Cookie policy", "Terms of service"],
+    redes: "Social Media",
+    contacto: "Contact",
+    informacion: "Information",
+    copyright: "© 2026 Sauce Renova. All rights reserved.",
+  },
+} as const;

@@ -1,10 +1,8 @@
-interface Props {
-  isDark: boolean;
-}
-
-export default function EVChargerIllustration({ isDark }: Props) {
-  const c = isDark ? "#fafad6" : "#1e2d45";
-  const accent = "#0354bf";
+export default function EVChargerIllustration() {
+  const c = "var(--illus-line)";
+  const accent = "var(--color-blue)";
+  const green = "var(--color-green)";
+  const gold = "var(--color-gold)";
 
   return (
     <svg viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "100%" }}>
@@ -19,12 +17,12 @@ export default function EVChargerIllustration({ isDark }: Props) {
       <path d="M205 155 L215 138 L260 138 L270 155" fill={c} opacity="0.1" stroke={c} strokeWidth="2" />
       <circle cx="213" cy="200" r="10" stroke={c} strokeWidth="2.5" fill="none" />
       <circle cx="262" cy="200" r="10" stroke={c} strokeWidth="2.5" fill="none" />
-      <rect x="225" y="162" width="28" height="14" rx="3" stroke="#78a83f" strokeWidth="2" fill="none" />
-      <rect x="253" y="166" width="4" height="6" rx="1" fill="#78a83f" opacity="0.6" />
-      <rect x="227" y="164" width="18" height="10" rx="2" fill="#78a83f" opacity="0.7" />
+      <rect x="225" y="162" width="28" height="14" rx="3" stroke={green} strokeWidth="2" fill="none" />
+      <rect x="253" y="166" width="4" height="6" rx="1" fill={green} opacity="0.6" />
+      <rect x="227" y="164" width="18" height="10" rx="2" fill={green} opacity="0.7" />
       <path d="M20 215 L300 215" stroke={c} strokeWidth="2" opacity="0.2" />
-      <circle cx="50" cy="50" r="20" fill="#f5b942" opacity="0.7" />
-      <path d="M50 70 Q120 80 150 50" stroke="#f5b942" strokeWidth="2" strokeDasharray="4 3" fill="none" opacity="0.6" />
+      <circle cx="50" cy="50" r="20" fill={gold} opacity="0.7" />
+      <path d="M50 70 Q120 80 150 50" stroke={gold} strokeWidth="2" strokeDasharray="4 3" fill="none" opacity="0.6" />
     </svg>
   );
 }

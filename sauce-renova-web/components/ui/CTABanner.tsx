@@ -11,7 +11,7 @@ export default function CTABanner({
   titulo,
   href = "/contacto",
   textoBtn = "Contáctanos",
-  color = "#6b8c3a",
+  color = "var(--color-green-dark)",
 }: Props) {
   return (
     <section style={{ background: color, padding: "64px 24px" }}>

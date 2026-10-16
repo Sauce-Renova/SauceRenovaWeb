@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import { useRef } from "react";
 import { useTheme } from "@/context/ThemeContext";
@@ -59,6 +60,8 @@ export default function Home() {
     cursor: "pointer",
     transition: "transform 0.15s",
     display: "inline-block",
+    textDecoration: "none",
+    textAlign: "center" as const,
     marginTop: "1.5rem",
   };
 
@@ -113,7 +116,7 @@ export default function Home() {
               {copy.hero.text}
             </p>
             <div style={{ display: "flex", flexDirection: "row", gap: "1.25rem", flexWrap: "wrap", justifyContent: "center" }}>
-              <button style={{
+              <Link href="/preguntas-frecuentes" style={{
                 background: "var(--color-green)",
                 color: "var(--color-white)",
                 border: "none",
@@ -127,10 +130,11 @@ export default function Home() {
                 fontFamily: "var(--font-poppins), sans-serif",
                 lineHeight: 1.2,
                 whiteSpace: "nowrap",
+                textDecoration: "none",
               }}>
                 {copy.hero.btnFaq}
-              </button>
-              <button style={{
+              </Link>
+              <Link href="/contacto" style={{
                 background: "var(--color-green)",
                 color: "var(--color-white)",
                 border: "none",
@@ -144,9 +148,10 @@ export default function Home() {
                 fontFamily: "var(--font-poppins), sans-serif",
                 lineHeight: 1.2,
                 whiteSpace: "nowrap",
+                textDecoration: "none",
               }}>
                 {copy.hero.btnPresupuesto}
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -253,7 +258,7 @@ export default function Home() {
                   }}>
                     {b.text}
                   </p>
-                  <button style={{
+                  <Link href="/solar" style={{
                     background: "var(--band-btn-bg)",
                     color: "var(--band-btn-text)",
                     border: "none",
@@ -266,9 +271,10 @@ export default function Home() {
                     cursor: "pointer",
                     marginTop: "auto",
                     fontStyle: "normal",
+                    textDecoration: "none",
                   }}>
                     {copy.benefits.btnVerMas}
-                  </button>
+                  </Link>
                 </div>
               );
             })}
@@ -318,13 +324,14 @@ export default function Home() {
                 <p style={{ fontSize: "clamp(1.1rem, 1.3vw, 1.3rem)", fontStyle: "italic", lineHeight: 1.75, color: "var(--text-muted)" }}>
                   {copy.products.evText}
                 </p>
-                <button
+                <Link
+                  href="/cargadores"
                   style={{ ...productBtnStyle, background: "var(--accent)" }}
                   onMouseEnter={e => e.currentTarget.style.transform = "scale(1.04)"}
                   onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
                 >
                   {copy.products.evBtn}
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -361,13 +368,14 @@ export default function Home() {
                 <p style={{ fontSize: "clamp(1.1rem, 1.3vw, 1.3rem)", fontStyle: "italic", lineHeight: 1.75, color: "var(--text-muted)" }}>
                   {copy.products.solarText}
                 </p>
-                <button
+                <Link
+                  href="/solar"
                   style={{ ...productBtnStyle, background: "var(--accent)" }}
                   onMouseEnter={e => e.currentTarget.style.transform = "scale(1.04)"}
                   onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
                 >
                   {copy.products.solarBtn}
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -414,11 +422,11 @@ export default function Home() {
             }}>
               {copy.coverage.text}
             </p>
-            <button
+            <Link
+              href="/empresa/proyectos"
               style={{
                 background: "var(--accent-2)",
                 color: "var(--on-accent-2)",
-                border: "none",
                 borderRadius: 50,
                 padding: "14px 36px",
                 fontWeight: 800,
@@ -427,16 +435,18 @@ export default function Home() {
                 textTransform: "uppercase",
                 cursor: "pointer",
                 transition: "transform 0.15s",
+                textDecoration: "none",
+                display: "inline-block",
               }}
               onMouseEnter={e => e.currentTarget.style.transform = "scale(1.04)"}
               onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
             >
               {copy.coverage.btn}
-            </button>
+            </Link>
           </div>
         </div>
       </section>
-
+      {/* TODO: AÑADIR REVIEWS REALES */}
       {/* Reviews */}
       <section style={{ background: "var(--bg-page)", padding: "3vw 5px" }}>
         <h2 style={{

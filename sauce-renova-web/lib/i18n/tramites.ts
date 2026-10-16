@@ -79,8 +79,8 @@ export const tramitesCopy = {
     precios: {
       heading: "Rates & Pricing",
       items: [
-        { rango: "Up to 10 kW", precio: "€950", incluye: ["Building Permit", "CIE Certificate", "Property Tax (IBI)", "Grid Access & Connection", "Technical Visit"] },
-        { rango: "10 - 25 kW", precio: "€1,600", incluye: ["Technical Project", "Building Permit", "CIE Certificate", "Property Tax (IBI)", "Grid Access & Connection", "Site Visits", "OCA Inspection"] },
+        { rango: "Up to 10 kW", precio: "€995", incluye: ["Building Permit", "CIE Certificate", "Property Tax (IBI)", "Grid Access & Connection", "Technical Visit"] },
+        { rango: "10 - 25 kW", precio: "€1,600", incluye: ["Technical Project", "Building Permit", "CIE Certificate", "Property Tax (IBI)", "Grid Access & Connection", "Site Visits"] },
         { rango: "25 - 50 kW", precio: "€2,200", incluye: ["Technical Project", "Building Permit", "CIE Certificate", "Property Tax (IBI)", "Grid Access & Connection", "Site Visits", "OCA Inspection"] },
         { rango: "50 - 75 kW", precio: "€2,400", incluye: ["Technical Project", "Building Permit", "CIE Certificate", "Property Tax (IBI)", "Grid Access & Connection", "Construction Management Visit", "Final Site Inspection", "OCA Inspection"] },
         { rango: "75 - 100 kW", precio: "€2,650", incluye: ["Technical Project", "Building Permit", "CIE Certificate", "Property Tax (IBI)", "Grid Access & Connection", "Construction Management Visit", "Final Site Inspection", "OCA Inspection"] },

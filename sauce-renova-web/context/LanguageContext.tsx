@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const LANGUAGES = [
   { code: "es", label: "ES" },
@@ -19,25 +19,23 @@ const LanguageContext = createContext<LanguageContextType>({
   setLang: () => {},
 });
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<LangCode>("es");
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const stored = localStorage.getItem("lang") as LangCode | null;
-    if (stored && LANGUAGES.some((l) => l.code === stored)) {
-      setLangState(stored);
-    }
-    setMounted(true);
-  }, []);
+export function LanguageProvider({
+  children,
+  initialLang = "es",
+}: {
+  children: React.ReactNode;
+  initialLang?: LangCode;
+}) {
+  const [lang, setLangState] = useState<LangCode>(initialLang);
 
   const setLang = (next: LangCode) => {
     setLangState(next);
-    localStorage.setItem("lang", next);
+    document.cookie = `lang=${next}; path=/; max-age=31536000; samesite=lax`;
+    document.documentElement.lang = next;
   };
 
   return (
-    <LanguageContext.Provider value={{ lang: mounted ? lang : "es", setLang }}>
+    <LanguageContext.Provider value={{ lang, setLang }}>
       {children}
     </LanguageContext.Provider>
   );

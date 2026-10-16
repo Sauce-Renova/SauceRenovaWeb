@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import ThemedImage from "@/components/ui/ThemedImage";
 import { useRef } from "react";
-import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { homeCopy } from "@/lib/i18n/home";
 
@@ -24,20 +23,14 @@ import placasOscuroImg from "@/components/illustrations/placas-y-baterias-oscuro
 import mapaImg from "@/components/illustrations/mapa.webp";
 import mapaOscuroImg from "@/components/illustrations/mapa-oscuro.webp";
 
-const benefitIconsConfig = [
-  { iconLight: "hogarVerde", iconDark: "hogarAzul" },
-  { iconLight: "empresaVerde", iconDark: "empresaAzul" },
-  { iconLight: "comunidadVerde", iconDark: "comunidadAzul" },
-  { iconLight: "hotelVerde", iconDark: "hotelAzul" },
+const benefitIcons = [
+  { light: hogarVerde, dark: hogarAzul },
+  { light: empresaVerde, dark: empresaAzul },
+  { light: comunidadVerde, dark: comunidadAzul },
+  { light: hotelVerde, dark: hotelAzul },
 ];
 
-const benefitIcons: Record<string, typeof hogarAzul> = {
-  hogarAzul, hogarVerde, empresaAzul, empresaVerde,
-  comunidadAzul, comunidadVerde, hotelAzul, hotelVerde,
-};
-
 export default function Home() {
-  const { isDark } = useTheme();
   const { lang } = useLanguage();
   const copy = homeCopy[lang];
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -168,8 +161,9 @@ export default function Home() {
             alignSelf: "start",
             marginTop: "0.5vw",
           }}>
-            <Image
-              src={isDark ? principalOscuroImg : principalImg}
+            <ThemedImage
+              light={principalImg}
+              dark={principalOscuroImg}
               alt={copy.hero.altPrincipal}
               fill
               sizes="(min-width: 1024px) 45vw, 100vw"
@@ -209,7 +203,7 @@ export default function Home() {
             style={{ gap: "1.5vw" }}
           >
             {copy.benefits.items.map((b, i) => {
-              const iconConfig = benefitIconsConfig[i];
+              const icon = benefitIcons[i];
               return (
                 <div
                   key={i}
@@ -229,8 +223,9 @@ export default function Home() {
                   onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
                 >
                   <div style={{ width: 72, height: 72, position: "relative" }}>
-                    <Image
-                      src={benefitIcons[isDark ? iconConfig.iconDark : iconConfig.iconLight]}
+                    <ThemedImage
+                      light={icon.light}
+                      dark={icon.dark}
                       alt={b.subtitle}
                       fill
                       sizes="(min-width: 1024px) 25vw, (min-width: 640px) 45vw, 100vw"
@@ -312,8 +307,9 @@ export default function Home() {
                 overflow: "hidden",
                 position: "relative",
               }}>
-                <Image
-                  src={isDark ? cargadorOscuroImg : cargadorImg}
+                <ThemedImage
+                  light={cargadorImg}
+                  dark={cargadorOscuroImg}
                   alt={copy.products.evAlt}
                   fill
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 45vw, 100vw"
@@ -356,8 +352,9 @@ export default function Home() {
                 overflow: "hidden",
                 position: "relative",
               }}>
-                <Image
-                  src={isDark ? placasOscuroImg : placasImg}
+                <ThemedImage
+                  light={placasImg}
+                  dark={placasOscuroImg}
                   alt={copy.products.solarAlt}
                   fill
                   sizes="(min-width: 1200px) 400px, 33vw"
@@ -394,8 +391,9 @@ export default function Home() {
           alignItems: "center",
         }}>
           <div style={{ position: "relative", width: "100%", aspectRatio: "1 / 1" }}>
-            <Image
-              src={isDark ? mapaOscuroImg : mapaImg}
+            <ThemedImage
+              light={mapaImg}
+              dark={mapaOscuroImg}
               alt={copy.coverage.mapAlt}
               fill
               sizes="(min-width: 1200px) 400px, 33vw"

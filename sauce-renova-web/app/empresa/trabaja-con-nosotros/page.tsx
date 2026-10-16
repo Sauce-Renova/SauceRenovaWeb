@@ -82,7 +82,7 @@ export default function TrabajaConNosotrosPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 32 }}>
             {copy.porqueUnirte.items.map((item, i) => (
-              <div key={i} style={{
+              <div key={i} className="card-hover" style={{
                 background: cardBg,
                 borderRadius: 20,
                 padding: "40px 32px",
@@ -131,7 +131,7 @@ export default function TrabajaConNosotrosPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 32, marginBottom: 48 }}>
             {copy.ofertas.puestos.map((puesto) => (
-              <div key={puesto.id} style={{
+              <div key={puesto.id} className="card-hover" style={{
                 background: cardBg,
                 borderRadius: 20,
                 padding: "36px 32px",

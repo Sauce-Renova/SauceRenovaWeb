@@ -56,7 +56,7 @@ export default function EquipoPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 32 }}>
             {copy.miembros.map((m, i) => (
-              <div key={i} style={{
+              <div key={i} className="card-hover" style={{
                 background: cardBg,
                 borderRadius: 20,
                 padding: "40px 32px",

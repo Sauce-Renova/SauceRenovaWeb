@@ -77,7 +77,7 @@ export default function ContactPage() {
 
   return (
     <main style={{ background: bg, padding: "80px 24px" }}>
-      <div style={{ maxWidth: 640, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <h1 style={{
           fontSize: "clamp(40px, 6vw, 72px)",
           fontWeight: 900,
@@ -86,6 +86,7 @@ export default function ContactPage() {
           textTransform: "uppercase",
           lineHeight: 0.95,
           marginBottom: 16,
+          textAlign: "center",
         }}>
           {copy.heading}
         </h1>
@@ -95,6 +96,7 @@ export default function ContactPage() {
           color: textMuted,
           lineHeight: 1.7,
           marginBottom: 48,
+          textAlign: "center",
         }}>
           {copy.intro}
         </p>

@@ -108,7 +108,7 @@ export default function ProyectosPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 32 }}>
             {proyectosFiltrados.map((item) => (
-              <div key={item.id} style={{
+              <div key={item.id} className="card-hover" style={{
                 background: cardBg,
                 borderRadius: 20,
                 padding: "36px 32px",

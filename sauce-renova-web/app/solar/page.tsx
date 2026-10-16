@@ -120,7 +120,7 @@ export default function SolarPage() {
             style={{ gap: 32 }}
           >
             {copy.servicios.map((s, i) => (
-              <div key={i} style={{
+              <div key={i} className="card-hover" style={{
                 background: cardBg,
                 borderRadius: 20,
                 padding: "40px 32px",

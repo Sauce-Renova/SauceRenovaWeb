@@ -28,14 +28,14 @@ export default function CTABanner({
           fontSize: "clamp(24px, 3vw, 40px)",
           fontWeight: 900,
           fontStyle: "italic",
-          color: "white",
+          color: "var(--color-white)",
           textTransform: "uppercase",
           margin: 0,
         }}>
           {titulo}
         </h2>
         <Link href={href} style={{
-          background: "white",
+          background: "var(--color-white)",
           color: color,
           borderRadius: 50,
           padding: "16px 40px",

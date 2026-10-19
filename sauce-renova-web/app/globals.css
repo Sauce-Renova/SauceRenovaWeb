@@ -4,6 +4,7 @@
   --color-green: #78a83f;
   --color-cream: #faf9d4;
   --color-blue: #0354bf;
+  --color-white: #ffffff;
 
   --color-cream-text: #f5f5dc;
   --color-cream-bg: #f5f2d0;
@@ -73,6 +74,8 @@
   --on-dark-20: rgba(255, 255, 255, 0.2);
   --on-dark-15: rgba(255, 255, 255, 0.15);
   --on-dark-08: rgba(255, 255, 255, 0.08);
+
+  --shadow-card: 0 14px 30px rgba(0, 0, 0, 0.18);
 }
 
 [data-theme="dark"] {
@@ -107,6 +110,7 @@
   --band-btn-text: var(--color-cream);
 
   --review-card-bg: rgba(26, 34, 53, 0.25);
+  --shadow-card: 0 14px 30px rgba(0, 0, 0, 0.45);
 }
 
 html,
@@ -124,4 +128,77 @@ body {
 
 * {
   transition: background-color 0.4s, color 0.4s, border-color 0.4s;
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.page-fade {
+  animation: page-fade-in 0.45s ease backwards;
+}
+
+.card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.4s, color 0.4s, border-color 0.4s;
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .card-hover:hover {
+    transform: none;
+  }
+}
+
+.theme-dark-only {
+  display: none;
+}
+
+[data-theme="dark"] .theme-dark-only {
+  display: block;
+}
+
+[data-theme="dark"] .theme-light-only {
+  display: none;
+}
+
+.theme-fade-light {
+  opacity: 1;
+  z-index: 1;
+  transition: opacity 0.4s;
+}
+
+.theme-fade-dark {
+  opacity: 0;
+  transition: opacity 0s linear 0.4s;
+}
+
+[data-theme="dark"] .theme-fade-light {
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0s linear 0.4s;
+}
+
+[data-theme="dark"] .theme-fade-dark {
+  opacity: 1;
+  z-index: 1;
+  transition: opacity 0.4s;
 }

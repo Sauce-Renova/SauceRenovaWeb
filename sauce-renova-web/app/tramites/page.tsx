@@ -46,7 +46,7 @@ export default function TramitesPage() {
           </p>
           <Link href="/contacto" style={{
             background: accentAlt,
-            color: "white",
+            color: "var(--color-white)",
             borderRadius: 50,
             padding: "16px 40px",
             fontWeight: 800,
@@ -75,7 +75,7 @@ export default function TramitesPage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 32 }}>
             {copy.tramites.items.map((t, i) => (
-              <div key={i} style={{
+              <div key={i} className="card-hover" style={{
                 background: cardBg,
                 borderRadius: 20,
                 padding: "40px 32px",
@@ -120,7 +120,7 @@ export default function TramitesPage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 24 }}>
             {copy.precios.items.map((p, i) => (
-              <div key={i} style={{
+              <div key={i} className="card-hover" style={{
                 background: "var(--on-dark-08)",
                 borderRadius: 20,
                 padding: "32px 24px",

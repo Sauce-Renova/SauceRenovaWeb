@@ -64,7 +64,7 @@ export default function InstalacionPage() {
             </p>
             <Link href="/contacto" style={{
               background: accentAlt,
-              color: "white",
+              color: "var(--color-white)",
               borderRadius: 50,
               padding: "16px 40px",
               fontWeight: 800,
@@ -109,7 +109,7 @@ export default function InstalacionPage() {
             style={{ gap: 32 }}
           >
             {copy.tipos.items.map((t, i) => (
-              <div key={i} style={{
+              <div key={i} className="card-hover" style={{
                 background: cardBg,
                 borderRadius: 20,
                 padding: "40px 32px",
@@ -158,7 +158,7 @@ export default function InstalacionPage() {
             style={{ gap: 24 }}
           >
             {copy.proceso.pasos.map((p, i) => (
-              <div key={i} style={{
+              <div key={i} className="card-hover" style={{
                 background: "var(--on-dark-08)",
                 borderRadius: 20,
                 padding: "32px 24px",

@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
+import Link from "next/link";
+import ThemedImage from "@/components/ui/ThemedImage";
 import { useRef } from "react";
-import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { homeCopy } from "@/lib/i18n/home";
 
@@ -23,20 +23,14 @@ import placasOscuroImg from "@/components/illustrations/placas-y-baterias-oscuro
 import mapaImg from "@/components/illustrations/mapa.webp";
 import mapaOscuroImg from "@/components/illustrations/mapa-oscuro.webp";
 
-const benefitIconsConfig = [
-  { iconLight: "hogarVerde", iconDark: "hogarAzul" },
-  { iconLight: "empresaVerde", iconDark: "empresaAzul" },
-  { iconLight: "comunidadVerde", iconDark: "comunidadAzul" },
-  { iconLight: "hotelVerde", iconDark: "hotelAzul" },
+const benefitIcons = [
+  { light: hogarVerde, dark: hogarAzul },
+  { light: empresaVerde, dark: empresaAzul },
+  { light: comunidadVerde, dark: comunidadAzul },
+  { light: hotelVerde, dark: hotelAzul },
 ];
 
-const benefitIcons: Record<string, typeof hogarAzul> = {
-  hogarAzul, hogarVerde, empresaAzul, empresaVerde,
-  comunidadAzul, comunidadVerde, hotelAzul, hotelVerde,
-};
-
 export default function Home() {
-  const { isDark } = useTheme();
   const { lang } = useLanguage();
   const copy = homeCopy[lang];
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -48,7 +42,7 @@ export default function Home() {
   };
 
   const productBtnStyle = {
-    color: "white",
+    color: "var(--color-white)",
     border: "none",
     borderRadius: "9999px",
     padding: "0.85em 2.2em",
@@ -59,6 +53,8 @@ export default function Home() {
     cursor: "pointer",
     transition: "transform 0.15s",
     display: "inline-block",
+    textDecoration: "none",
+    textAlign: "center" as const,
     marginTop: "1.5rem",
   };
 
@@ -71,7 +67,7 @@ export default function Home() {
     cursor: "pointer",
     flexShrink: 0,
     transition: "background 0.2s",
-    color: "white",
+    color: "var(--color-white)",
     fontSize: 20,
     fontWeight: "bold",
   } as const;
@@ -113,9 +109,9 @@ export default function Home() {
               {copy.hero.text}
             </p>
             <div style={{ display: "flex", flexDirection: "row", gap: "1.25rem", flexWrap: "wrap", justifyContent: "center" }}>
-              <button style={{
+              <Link href="/preguntas-frecuentes" style={{
                 background: "var(--color-green)",
-                color: "white",
+                color: "var(--color-white)",
                 border: "none",
                 borderRadius: "9999px",
                 padding: "1.4em 2em",
@@ -127,12 +123,13 @@ export default function Home() {
                 fontFamily: "var(--font-poppins), sans-serif",
                 lineHeight: 1.2,
                 whiteSpace: "nowrap",
+                textDecoration: "none",
               }}>
                 {copy.hero.btnFaq}
-              </button>
-              <button style={{
+              </Link>
+              <Link href="/contacto" style={{
                 background: "var(--color-green)",
-                color: "white",
+                color: "var(--color-white)",
                 border: "none",
                 borderRadius: "9999px",
                 padding: "1.4em 2em",
@@ -144,9 +141,10 @@ export default function Home() {
                 fontFamily: "var(--font-poppins), sans-serif",
                 lineHeight: 1.2,
                 whiteSpace: "nowrap",
+                textDecoration: "none",
               }}>
                 {copy.hero.btnPresupuesto}
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -163,8 +161,9 @@ export default function Home() {
             alignSelf: "start",
             marginTop: "0.5vw",
           }}>
-            <Image
-              src={isDark ? principalOscuroImg : principalImg}
+            <ThemedImage
+              light={principalImg}
+              dark={principalOscuroImg}
               alt={copy.hero.altPrincipal}
               fill
               sizes="(min-width: 1024px) 45vw, 100vw"
@@ -204,7 +203,7 @@ export default function Home() {
             style={{ gap: "1.5vw" }}
           >
             {copy.benefits.items.map((b, i) => {
-              const iconConfig = benefitIconsConfig[i];
+              const icon = benefitIcons[i];
               return (
                 <div
                   key={i}
@@ -224,8 +223,9 @@ export default function Home() {
                   onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
                 >
                   <div style={{ width: 72, height: 72, position: "relative" }}>
-                    <Image
-                      src={benefitIcons[isDark ? iconConfig.iconDark : iconConfig.iconLight]}
+                    <ThemedImage
+                      light={icon.light}
+                      dark={icon.dark}
                       alt={b.subtitle}
                       fill
                       sizes="(min-width: 1024px) 25vw, (min-width: 640px) 45vw, 100vw"
@@ -253,7 +253,7 @@ export default function Home() {
                   }}>
                     {b.text}
                   </p>
-                  <button style={{
+                  <Link href="/solar" style={{
                     background: "var(--band-btn-bg)",
                     color: "var(--band-btn-text)",
                     border: "none",
@@ -266,9 +266,10 @@ export default function Home() {
                     cursor: "pointer",
                     marginTop: "auto",
                     fontStyle: "normal",
+                    textDecoration: "none",
                   }}>
                     {copy.benefits.btnVerMas}
-                  </button>
+                  </Link>
                 </div>
               );
             })}
@@ -306,8 +307,9 @@ export default function Home() {
                 overflow: "hidden",
                 position: "relative",
               }}>
-                <Image
-                  src={isDark ? cargadorOscuroImg : cargadorImg}
+                <ThemedImage
+                  light={cargadorImg}
+                  dark={cargadorOscuroImg}
                   alt={copy.products.evAlt}
                   fill
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 45vw, 100vw"
@@ -318,13 +320,14 @@ export default function Home() {
                 <p style={{ fontSize: "clamp(1.1rem, 1.3vw, 1.3rem)", fontStyle: "italic", lineHeight: 1.75, color: "var(--text-muted)" }}>
                   {copy.products.evText}
                 </p>
-                <button
+                <Link
+                  href="/cargadores"
                   style={{ ...productBtnStyle, background: "var(--accent)" }}
                   onMouseEnter={e => e.currentTarget.style.transform = "scale(1.04)"}
                   onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
                 >
                   {copy.products.evBtn}
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -349,8 +352,9 @@ export default function Home() {
                 overflow: "hidden",
                 position: "relative",
               }}>
-                <Image
-                  src={isDark ? placasOscuroImg : placasImg}
+                <ThemedImage
+                  light={placasImg}
+                  dark={placasOscuroImg}
                   alt={copy.products.solarAlt}
                   fill
                   sizes="(min-width: 1200px) 400px, 33vw"
@@ -361,13 +365,14 @@ export default function Home() {
                 <p style={{ fontSize: "clamp(1.1rem, 1.3vw, 1.3rem)", fontStyle: "italic", lineHeight: 1.75, color: "var(--text-muted)" }}>
                   {copy.products.solarText}
                 </p>
-                <button
+                <Link
+                  href="/solar"
                   style={{ ...productBtnStyle, background: "var(--accent)" }}
                   onMouseEnter={e => e.currentTarget.style.transform = "scale(1.04)"}
                   onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
                 >
                   {copy.products.solarBtn}
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -386,8 +391,9 @@ export default function Home() {
           alignItems: "center",
         }}>
           <div style={{ position: "relative", width: "100%", aspectRatio: "1 / 1" }}>
-            <Image
-              src={isDark ? mapaOscuroImg : mapaImg}
+            <ThemedImage
+              light={mapaImg}
+              dark={mapaOscuroImg}
               alt={copy.coverage.mapAlt}
               fill
               sizes="(min-width: 1200px) 400px, 33vw"
@@ -414,11 +420,11 @@ export default function Home() {
             }}>
               {copy.coverage.text}
             </p>
-            <button
+            <Link
+              href="/empresa/proyectos"
               style={{
                 background: "var(--accent-2)",
                 color: "var(--on-accent-2)",
-                border: "none",
                 borderRadius: 50,
                 padding: "14px 36px",
                 fontWeight: 800,
@@ -427,16 +433,18 @@ export default function Home() {
                 textTransform: "uppercase",
                 cursor: "pointer",
                 transition: "transform 0.15s",
+                textDecoration: "none",
+                display: "inline-block",
               }}
               onMouseEnter={e => e.currentTarget.style.transform = "scale(1.04)"}
               onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
             >
               {copy.coverage.btn}
-            </button>
+            </Link>
           </div>
         </div>
       </section>
-
+      {/* TODO: AÑADIR REVIEWS REALES */}
       {/* Reviews */}
       <section style={{ background: "var(--bg-page)", padding: "3vw 5px" }}>
         <h2 style={{
@@ -497,7 +505,7 @@ export default function Home() {
                   <div style={{ color: "var(--color-gold)", fontSize: 22 }}>
                     {"★".repeat(r.stars)}{"☆".repeat(5 - r.stars)}
                   </div>
-                  <p style={{ color: "white", fontSize: 15, lineHeight: 1.75, flex: 1 }}>
+                  <p style={{ color: "var(--color-white)", fontSize: 15, lineHeight: 1.75, flex: 1 }}>
                     {r.text}
                   </p>
                 </div>

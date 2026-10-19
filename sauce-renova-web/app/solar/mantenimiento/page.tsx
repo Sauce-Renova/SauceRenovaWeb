@@ -55,7 +55,7 @@ export default function MantenimientoPage() {
           </p>
           <Link href="/contacto" style={{
             background: accentAlt,
-            color: "white",
+            color: "var(--color-white)",
             borderRadius: 50,
             padding: "16px 40px",
             fontWeight: 800,
@@ -85,7 +85,7 @@ export default function MantenimientoPage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 32 }}>
             {copy.beneficios.items.map((b, i) => (
-              <div key={i} style={{
+              <div key={i} className="card-hover" style={{
                 background: cardBg,
                 borderRadius: 20,
                 padding: "40px 32px",
@@ -125,7 +125,7 @@ export default function MantenimientoPage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 24 }}>
             {copy.incluye.items.map((item, i) => (
-              <div key={i} style={{
+              <div key={i} className="card-hover" style={{
                 background: "var(--on-dark-08)",
                 borderRadius: 20,
                 padding: "32px 24px",
@@ -165,7 +165,7 @@ export default function MantenimientoPage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 24 }}>
             {copy.proceso.pasos.map((p, i) => (
-              <div key={i} style={{
+              <div key={i} className="card-hover" style={{
                 background: cardBg,
                 borderRadius: 20,
                 padding: "32px 24px",

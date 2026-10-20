@@ -7,13 +7,12 @@ export const privacidadCopy = {
     sections: [
       {
         titulo: "Responsable del tratamiento",
-        // TODO(contenido): completar razón social, CIF y domicilio
         parrafos: [
-          "Responsable: [PENDIENTE: razón social]",
-          "CIF: [PENDIENTE: CIF]",
-          "Domicilio: [PENDIENTE: dirección completa]",
-          "Correo electrónico de contacto: comercial@saucerenova.com",
-          "Teléfono: 613 115 981",
+          "Responsable: SAUCE RENOVA, S.L.",
+          "CIF: B24899890",
+          "Domicilio: Ptda. Algorós, Pg.1, Nº 114-A, 03293 Elche (Alicante)",
+          "Correo electrónico de contacto: gestion@saucerenova.com",
+          "Teléfono: 601 906 125",
         ],
       },
       {
@@ -53,7 +52,7 @@ export const privacidadCopy = {
       {
         titulo: "Tus derechos",
         parrafos: [
-          "Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad escribiendo a comercial@saucerenova.com e indicando el derecho que quieres ejercer.",
+          "Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad escribiendo a gestion@saucerenova.com e indicando el derecho que quieres ejercer.",
           "Si consideras que tus datos no se tratan correctamente, puedes presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es).",
         ],
       },
@@ -78,13 +77,12 @@ export const privacidadCopy = {
     sections: [
       {
         titulo: "Data controller",
-        // TODO(contenido): completar razón social, CIF y domicilio
         parrafos: [
-          "Controller: [PENDING: company name]",
-          "Tax ID (CIF): [PENDING: tax ID]",
-          "Address: [PENDING: full address]",
-          "Contact email: comercial@saucerenova.com",
-          "Phone: 613 115 981",
+          "Controller: SAUCE RENOVA, S.L.",
+          "Tax ID (CIF): B24899890",
+          "Address: Ptda. Algorós, Pg.1, Nº 114-A, 03293 Elche (Alicante)",
+          "Contact email: gestion@saucerenova.com",
+          "Phone: 601 906 125",
         ],
       },
       {
@@ -124,7 +122,7 @@ export const privacidadCopy = {
       {
         titulo: "Your rights",
         parrafos: [
-          "You can exercise your rights of access, rectification, erasure, objection, restriction of processing and portability by writing to comercial@saucerenova.com and stating the right you wish to exercise.",
+          "You can exercise your rights of access, rectification, erasure, objection, restriction of processing and portability by writing to gestion@saucerenova.com and stating the right you wish to exercise.",
           "If you believe your data is not being processed properly, you can lodge a complaint with the Spanish Data Protection Agency (www.aepd.es).",
         ],
       },

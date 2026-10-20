@@ -71,7 +71,7 @@ export const terminosCopy = {
       {
         titulo: "Contacto",
         parrafos: [
-          "Para cualquier duda sobre estos términos puedes escribirnos a comercial@saucerenova.com o llamar al 613 115 981.",
+          "Para cualquier duda sobre estos términos puedes escribirnos a gestion@saucerenova.com o llamar al 601 906 125.",
         ],
       },
     ],
@@ -147,7 +147,7 @@ export const terminosCopy = {
       {
         titulo: "Contact",
         parrafos: [
-          "If you have any questions about these terms, you can write to us at comercial@saucerenova.com or call 613 115 981.",
+          "If you have any questions about these terms, you can write to us at gestion@saucerenova.com or call 601 906 125.",
         ],
       },
     ],

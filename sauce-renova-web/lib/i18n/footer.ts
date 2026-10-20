@@ -4,10 +4,10 @@ export const footerCopy = {
     descripcion: "Empresa especializada en energía solar fotovoltaica, cargadores para vehículos eléctricos y gestión de trámites con la administración.",
     empresa: "Empresa",
     empresaItems: [
-      { label: "Quiénes somos", href: "/empresa/quienes-somos" },
-      { label: "Nuestro equipo", href: "/empresa/equipo" },
-      { label: "Proyectos realizados", href: "/empresa/proyectos" },
-      { label: "Trabaja con nosotros", href: "/empresa/trabaja-con-nosotros" },
+      { label: "Quiénes somos", href: "/wip" },
+      { label: "Nuestro equipo", href: "/wip" },
+      { label: "Proyectos realizados", href: "/wip" },
+      { label: "Trabaja con nosotros", href: "/wip" },
     ],
     legal: "Legal",
     legalItems: [
@@ -26,10 +26,10 @@ export const footerCopy = {
     descripcion: "Company specializing in photovoltaic solar energy, electric vehicle chargers, and administrative paperwork management.",
     empresa: "Company",
     empresaItems: [
-      { label: "About us", href: "/empresa/quienes-somos" },
-      { label: "Our team", href: "/empresa/equipo" },
-      { label: "Completed projects", href: "/empresa/proyectos" },
-      { label: "Work with us", href: "/empresa/trabaja-con-nosotros" },
+      { label: "About us", href: "/wip" },
+      { label: "Our team", href: "/wip" },
+      { label: "Completed projects", href: "/wip" },
+      { label: "Work with us", href: "/wip" },
     ],
     legal: "Legal",
     legalItems: [

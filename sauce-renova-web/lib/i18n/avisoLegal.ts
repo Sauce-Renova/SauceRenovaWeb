@@ -7,14 +7,13 @@ export const avisoLegalCopy = {
     sections: [
       {
         titulo: "Datos identificativos",
-        // TODO(contenido): completar razón social, CIF, domicilio y Registro Mercantil
         parrafos: [
-          "Titular: [PENDIENTE: razón social]",
-          "CIF: [PENDIENTE: CIF]",
-          "Domicilio social: [PENDIENTE: dirección completa]",
-          "Inscripción en el Registro Mercantil: [PENDIENTE: datos de inscripción]",
-          "Correo electrónico: comercial@saucerenova.com",
-          "Teléfono: 613 115 981",
+          "Titular: SAUCE RENOVA, S.L.",
+          "CIF: B24899890",
+          "Domicilio social: Ptda. Algorós, Pg.1, Nº 114-A, 03293 Elche (Alicante)",
+          "Inscripción en el Registro Mercantil: Inscrita en el Registro Mercantil de Alicante, Diario 2025, Asiento 23237, folio electrónico IRUS: 1000462932356, Hoja A202162, Inscripción 1ª.",
+          "Correo electrónico: gestion@saucerenova.com",
+          "Teléfono: 601 906 125",
         ],
       },
       {
@@ -70,14 +69,13 @@ export const avisoLegalCopy = {
     sections: [
       {
         titulo: "Identification details",
-        // TODO(contenido): completar razón social, CIF, domicilio y Registro Mercantil
         parrafos: [
-          "Owner: [PENDING: company name]",
-          "Tax ID (CIF): [PENDING: tax ID]",
-          "Registered address: [PENDING: full address]",
-          "Commercial Registry entry: [PENDING: registration details]",
-          "Email: comercial@saucerenova.com",
-          "Phone: 613 115 981",
+          "Owner: SAUCE RENOVA, S.L.",
+          "Tax ID (CIF): B24899890",
+          "Registered address: Ptda. Algorós, Pg.1, Nº 114-A, 03293 Elche (Alicante)",
+          "Commercial Registry entry: Registered in the Commercial Registry of Alicante, Journal 2025, Entry 23237, electronic folio IRUS: 1000462932356, Sheet A202162, Registration 1st.",
+          "Email: gestion@saucerenova.com",
+          "Phone: 601 906 125",
         ],
       },
       {

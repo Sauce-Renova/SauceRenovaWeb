@@ -71,7 +71,7 @@ export default function Footer() {
   const renderLinks = (items: readonly { label: string; href: string }[]) => (
     <div style={linkListStyle}>
       {items.map((item) => (
-        <Link key={item.href} href={item.href} className="hover:underline" style={footerLinkStyle}>
+        <Link key={item.label} href={item.href} className="hover:underline" style={footerLinkStyle}>
           {item.label}
         </Link>
       ))}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import { instalacionCopy } from "@/lib/i18n/instalacion";
@@ -9,6 +10,9 @@ import SolarPanelIllustration from "@/components/illustrations/SolarPanelIllustr
 export default function InstalacionPage() {
   const { lang } = useLanguage();
   const copy = instalacionCopy[lang];
+  const [abierta, setAbierta] = useState<number | null>(null);
+  const [ultima, setUltima] = useState(0);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   const bg = "var(--bg-service)";
   const heroBg = "var(--hero-bg)";
@@ -17,6 +21,26 @@ export default function InstalacionPage() {
   const textMuted = "var(--text-muted)";
   const titleColor = "var(--title-color)";
   const cardTitleColor = "var(--title-color)";
+
+  const parrafosDe = (i: number): readonly string[] => copy.tipos.items[i].masInfo;
+
+  const alternar = (i: number) => {
+    if (abierta === i) {
+      setAbierta(null);
+      return;
+    }
+    setAbierta(i);
+    if (parrafosDe(i).length === 0) return;
+    setUltima(i);
+    const reducir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setTimeout(() => {
+      panelRef.current?.scrollIntoView({ behavior: reducir ? "auto" : "smooth", block: "nearest" });
+    }, 380);
+  };
+
+  const panelItem = copy.tipos.items[ultima];
+  const parrafos = parrafosDe(ultima);
+  const panelAbierto = abierta !== null && parrafosDe(abierta).length > 0;
 
   return (
     <main style={{ background: bg, minHeight: "100vh" }}>
@@ -108,34 +132,169 @@ export default function InstalacionPage() {
             className="grid grid-cols-1 sm:grid-cols-2"
             style={{ gap: 32 }}
           >
-            {copy.tipos.items.map((t, i) => (
-              <div key={i} className="card-hover" style={{
-                background: cardBg,
-                borderRadius: 20,
-                padding: "40px 32px",
-                borderLeft: `4px solid ${accentAlt}`,
-              }}>
-                <h3 style={{
-                  fontSize: 22,
-                  fontWeight: 800,
-                  fontStyle: "italic",
-                  color: cardTitleColor,
-                  textTransform: "uppercase",
-                  marginBottom: 12,
+            {copy.tipos.items.map((t, i) => {
+              const open = abierta === i;
+              const enTarjeta = parrafosDe(i).length === 0;
+              return (
+                <div
+                  key={i}
+                  className="card-hover"
+                  onClick={() => alternar(i)}
+                  style={{
+                    background: cardBg,
+                    borderRadius: 20,
+                    padding: "40px 32px",
+                    borderLeft: `4px solid ${accentAlt}`,
+                    cursor: "pointer",
+                    boxShadow: open ? `0 0 0 2px ${accentAlt}` : undefined,
+                  }}
+                >
+                  <h3 style={{
+                    fontSize: 22,
+                    fontWeight: 800,
+                    fontStyle: "italic",
+                    color: cardTitleColor,
+                    textTransform: "uppercase",
+                    marginBottom: 12,
+                  }}>
+                    <button
+                      type="button"
+                      aria-expanded={open}
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: 16,
+                        padding: 0,
+                        background: "transparent",
+                        border: "none",
+                        cursor: "pointer",
+                        textAlign: "left",
+                        font: "inherit",
+                        color: "inherit",
+                        textTransform: "inherit",
+                      }}
+                    >
+                      <span>{t.titulo}</span>
+                      <span aria-hidden="true" style={{
+                        flexShrink: 0,
+                        fontSize: 28,
+                        lineHeight: 1,
+                        color: "var(--card-title)",
+                        transform: open ? "rotate(45deg)" : "rotate(0deg)",
+                        transition: "transform 0.3s ease",
+                      }}>
+                        +
+                      </span>
+                    </button>
+                  </h3>
+                  <p style={{
+                    fontSize: 15,
+                    fontStyle: "italic",
+                    color: textMuted,
+                    lineHeight: 1.7,
+                    margin: 0,
+                  }}>
+                    {t.descripcion}
+                  </p>
+
+                  {enTarjeta && (
+                    <div
+                      inert={!open}
+                      style={{
+                        display: "grid",
+                        gridTemplateRows: open ? "1fr" : "0fr",
+                        transition: "grid-template-rows 0.35s ease",
+                      }}
+                    >
+                      <div style={{ overflow: "hidden" }}>
+                        <div style={{ paddingTop: 24 }}>
+                          <Link
+                            href="/contacto"
+                            onClick={(e) => e.stopPropagation()}
+                            style={{
+                              background: accentAlt,
+                              color: "var(--color-white)",
+                              borderRadius: 50,
+                              padding: "14px 32px",
+                              fontWeight: 800,
+                              fontSize: 13,
+                              letterSpacing: "0.05em",
+                              textTransform: "uppercase",
+                              textDecoration: "none",
+                              textAlign: "center",
+                              display: "inline-block",
+                            }}
+                          >
+                            {t.btn}
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <div
+            ref={panelRef}
+            inert={!panelAbierto}
+            style={{
+              display: "grid",
+              gridTemplateRows: panelAbierto ? "1fr" : "0fr",
+              transition: "grid-template-rows 0.35s ease",
+            }}
+          >
+            <div style={{ overflow: "hidden" }}>
+              <div style={{ paddingTop: 32 }}>
+                <div style={{
+                  background: cardBg,
+                  borderRadius: 20,
+                  padding: "32px",
+                  borderLeft: `4px solid ${accentAlt}`,
                 }}>
-                  {t.titulo}
-                </h3>
-                <p style={{
-                  fontSize: 15,
-                  fontStyle: "italic",
-                  color: textMuted,
-                  lineHeight: 1.7,
-                  margin: 0,
-                }}>
-                  {t.descripcion}
-                </p>
+                  <p style={{
+                    fontSize: 13,
+                    fontWeight: 800,
+                    letterSpacing: "0.15em",
+                    textTransform: "uppercase",
+                    color: "var(--card-title)",
+                    margin: "0 0 12px",
+                  }}>
+                    {panelItem.titulo}
+                  </p>
+                  {parrafos.map((parrafo, j) => (
+                    <p key={j} style={{
+                      fontSize: 15,
+                      fontStyle: "italic",
+                      color: textMuted,
+                      lineHeight: 1.7,
+                      margin: j === 0 ? 0 : "12px 0 0",
+                    }}>
+                      {parrafo}
+                    </p>
+                  ))}
+                  <Link href="/contacto" style={{
+                    background: accentAlt,
+                    color: "var(--color-white)",
+                    borderRadius: 50,
+                    padding: "14px 32px",
+                    fontWeight: 800,
+                    fontSize: 13,
+                    letterSpacing: "0.05em",
+                    textTransform: "uppercase",
+                    textDecoration: "none",
+                    textAlign: "center",
+                    display: "inline-block",
+                    marginTop: 24,
+                  }}>
+                    {panelItem.btn}
+                  </Link>
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>

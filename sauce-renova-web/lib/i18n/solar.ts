@@ -1,8 +1,8 @@
 export const solarCopy = {
   es: {
-    heroTitleLine1: "Energía",
-    heroTitleLine2: "Solar",
-    heroText: "¿Y si pudieras gastar menos sin renunciar a nada? Con una instalación de autoconsumo fotovoltaico empiezas a producir tu propia electricidad desde el primer día, reduciendo tu factura y tu dependencia de la red.",
+    heroTitleLine1: "Te damos",
+    heroTitleLine2: "el poder",
+    heroText: "¿Cómo lo hacemos?",
     ctaPresupuesto: "Solicitar presupuesto",
     beneficios: [
       "Reduce tu factura eléctrica desde el primer día",

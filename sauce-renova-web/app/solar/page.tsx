@@ -33,7 +33,7 @@ export default function SolarPage() {
         >
           <div>
             <h1 style={{
-              fontSize: "clamp(48px, 6vw, 88px)",
+              fontSize: "clamp(40px, 6vw, 58px)",
               fontWeight: 900,
               fontStyle: "italic",
               color: "var(--color-cream-text)",
@@ -41,10 +41,10 @@ export default function SolarPage() {
               lineHeight: 0.95,
               marginBottom: 24,
             }}>
-              {copy.heroTitleLine1}<br />{copy.heroTitleLine2}
+              {copy.heroTitleLine1} {copy.heroTitleLine2}
             </h1>
             <p style={{
-              fontSize: 18,
+              fontSize: 25,
               fontStyle: "italic",
               color: "var(--on-cream-75)",
               lineHeight: 1.7,
@@ -53,20 +53,6 @@ export default function SolarPage() {
             }}>
               {copy.heroText}
             </p>
-            <Link href="/contacto" style={{
-              background: accentAlt,
-              color: "var(--color-white)",
-              borderRadius: 50,
-              padding: "16px 40px",
-              fontWeight: 800,
-              fontSize: 14,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              textDecoration: "none",
-              display: "inline-block",
-            }}>
-              {copy.ctaPresupuesto}
-            </Link>
           </div>
           <div style={{
             background: "var(--bg-service)",

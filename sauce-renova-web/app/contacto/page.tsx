@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { contactoCopy } from "@/lib/i18n/contacto";
@@ -253,6 +254,19 @@ export default function ContactPage() {
               </a>.
             </p>
           </div>
+          <p style={{ fontSize: 12, lineHeight: 1.6, color: textMuted, margin: 0, maxWidth: 1200 }}>
+            <strong style={{ color: labelColor }}>{copy.clausula.intro}.</strong>{" "}
+            {copy.clausula.lineas.map(([etiqueta, texto]) => (
+              <span key={etiqueta}>
+                <strong>{etiqueta}:</strong> {texto}{" "}
+              </span>
+            ))}
+            {copy.clausula.masInfo}{" "}
+            <Link href="/legal/privacidad" style={{ color: accent, textDecoration: "underline" }}>
+              {copy.clausula.enlace}
+            </Link>
+            .
+          </p>
         </div>
       </div>
     </main>

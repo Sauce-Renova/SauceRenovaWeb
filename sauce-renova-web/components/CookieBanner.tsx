@@ -51,7 +51,7 @@ export default function CookieBanner() {
         opacity: entered ? 1 : 0,
         transform: entered ? "translateY(0) scale(1)" : "translateY(24px) scale(0.96)",
         transformOrigin: "bottom center",
-        transition: "opacity 0.4s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)",
+        transition: "opacity 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
       }}
     >
       <div

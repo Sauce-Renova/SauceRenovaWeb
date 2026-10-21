@@ -22,6 +22,19 @@ export const contactoCopy = {
     autoServicioHeading: "¿Quieres hacerlo tú mismo?",
     autoServicioPre: "Escríbenos directamente a",
     autoServicioOr: "o llámanos al",
+    // TODO(contenido): sustituir por la cláusula informativa del cliente
+    clausula: {
+      intro: "Información básica sobre protección de datos",
+      lineas: [
+        ["Responsable", "SAUCE RENOVA, S.L."],
+        ["Finalidad", "atender tu solicitud de información y, en su caso, preparar un presupuesto."],
+        ["Legitimación", "tu consentimiento al enviarnos el correo y la aplicación de medidas precontractuales a petición tuya."],
+        ["Destinatarios", "no se cederán datos a terceros salvo obligación legal."],
+        ["Derechos", "acceso, rectificación, supresión, oposición, limitación y portabilidad, escribiendo a gestion@saucerenova.com."],
+      ],
+      masInfo: "Puedes consultar la información adicional en nuestra",
+      enlace: "política de privacidad",
+    },
     mail: {
       subject: "Solicitud de información - SauceRenova",
       tienePlacas: "¿Tiene instalación de placas solares?",
@@ -57,6 +70,18 @@ export const contactoCopy = {
     autoServicioHeading: "Want to do it yourself?",
     autoServicioPre: "Email us directly at",
     autoServicioOr: "or call us at",
+    clausula: {
+      intro: "Basic data protection information",
+      lineas: [
+        ["Controller", "SAUCE RENOVA, S.L."],
+        ["Purpose", "to answer your information request and, where applicable, prepare a quote."],
+        ["Legal basis", "your consent when sending us the email and the application of pre-contractual measures at your request."],
+        ["Recipients", "your data will not be shared with third parties except where legally required."],
+        ["Rights", "access, rectification, erasure, objection, restriction and portability, by writing to gestion@saucerenova.com."],
+      ],
+      masInfo: "You can read the additional information in our",
+      enlace: "privacy policy",
+    },
     mail: {
       subject: "Information request - SauceRenova",
       tienePlacas: "Do you have a solar panel installation?",

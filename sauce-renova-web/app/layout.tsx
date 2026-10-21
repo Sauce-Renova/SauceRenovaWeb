@@ -3,6 +3,8 @@ import { cookies } from "next/headers";
 import BackToTop from "@/components/ui/BackToTop";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CookieBanner from "@/components/CookieBanner";
+
 import "./globals.css";
 import { Shrikhand, Poppins } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeContext";
@@ -40,6 +42,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             {children}
             <Footer />
             <BackToTop />
+            <CookieBanner />
           </LanguageProvider>
         </ThemeProvider>
       </body>

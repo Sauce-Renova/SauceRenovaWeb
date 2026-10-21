@@ -17,10 +17,8 @@ export const privacidadCopy = {
       },
       {
         titulo: "Datos que tratamos",
-        // TODO(contenido): revisar si se reactiva el envío por Resend (/api/contact) o se añade analítica
         parrafos: [
-          "Este sitio web no almacena en sus servidores los datos que introduces en el cuestionario de contacto: el cuestionario prepara un correo electrónico en tu propio programa de correo, y eres tú quien decide enviarlo.",
-          "Si nos escribes o nos llamas, tratamos los datos que nos facilites voluntariamente: nombre, teléfono, correo electrónico y la información sobre tu vivienda o instalación que decidas compartir.",
+          "Los datos que introduces en el formulario de contacto (nombre, teléfono, correo electrónico, comentario y las respuestas del cuestionario) se envían por correo electrónico a Sauce Renova a través de Resend, el proveedor que usamos para el envío. Este sitio web no los guarda en una base de datos propia.",
         ],
       },
       {
@@ -44,9 +42,8 @@ export const privacidadCopy = {
       },
       {
         titulo: "Destinatarios",
-        // TODO(contenido): listar proveedores reales con acceso a datos (correo, hosting, gestoría)
         parrafos: [
-          "No cedemos tus datos a terceros salvo obligación legal. Pueden acceder a ellos proveedores que nos prestan servicios necesarios para la actividad, con los que se firman los contratos de encargo de tratamiento exigidos. [PENDIENTE: listado de proveedores]",
+          "No cedemos tus datos a terceros salvo obligación legal. Pueden acceder a ellos proveedores que nos prestan servicios necesarios para la actividad, con los que se firman los contratos de encargo de tratamiento exigidos; entre ellos, Resend (envío de los correos del formulario de contacto) y el proveedor de alojamiento de la web.",
         ],
       },
       {
@@ -87,10 +84,8 @@ export const privacidadCopy = {
       },
       {
         titulo: "Data we process",
-        // TODO(contenido): revisar si se reactiva el envío por Resend (/api/contact) o se añade analítica
         parrafos: [
-          "This website does not store on its servers the data you enter in the contact questionnaire: the questionnaire prepares an email in your own email program, and you decide whether to send it.",
-          "If you write to us or call us, we process the data you voluntarily provide: name, phone number, email address and any information about your home or installation that you choose to share.",
+          "The data you enter in the contact form (name, phone number, email address, comment and the questionnaire answers) is sent by email to Sauce Renova through Resend, the provider we use to send it. This website does not keep it in a database of its own.",
         ],
       },
       {
@@ -107,16 +102,14 @@ export const privacidadCopy = {
       },
       {
         titulo: "Retention period",
-        // TODO(contenido): fijar los plazos reales
         parrafos: [
           "We will keep your data for as long as necessary to handle your request and, afterwards, for the applicable legal periods. [PENDING: specific periods]",
         ],
       },
       {
         titulo: "Recipients",
-        // TODO(contenido): listar proveedores reales con acceso a datos (correo, hosting, gestoría)
         parrafos: [
-          "We do not share your data with third parties except where legally required. Service providers necessary for our activity may access it, under the data processing agreements required by law. [PENDING: list of providers]",
+          "We do not share your data with third parties except where legally required. Service providers necessary for our activity may access it, under the data processing agreements required by law; among them, Resend (delivery of the contact form emails) and the website hosting provider.",
         ],
       },
       {

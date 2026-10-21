@@ -19,6 +19,7 @@ export const cookiesCopy = {
           "El idioma se guarda en una cookie propia llamada «lang», con una duración de un año. Se envía a nuestro servidor para mostrarte la página en tu idioma desde la primera carga. No contiene datos personales ni te identifica.",
           "Ambas son preferencias de personalización que solicitas tú al cambiar el tema o el idioma, y sirven únicamente para recordar tu elección en la siguiente visita.",
           "Para no volver a mostrarte el aviso de cookies, se guarda también en el almacenamiento local de tu navegador la clave «cookieNoticeSeen». Tampoco se envía a nuestros servidores.",
+          "Si cierras una promoción, el sitio guarda en tu navegador la clave «promoClosed» (solo durante la visita) y, si indicas que no te interesa, la clave «promoDismissed» para no volver a mostrártela. Ninguna se envía a nuestros servidores.",
         ],
       },
       {
@@ -60,6 +61,7 @@ export const cookiesCopy = {
           "The language is saved in a first-party cookie called \"lang\", which lasts one year. It is sent to our server so the page can be shown in your language from the first load. It contains no personal data and does not identify you.",
           "Both are personalisation preferences that you request when you change the theme or the language, and they are used only to remember your choice on your next visit.",
           "So that the cookie notice is not shown again, the key \"cookieNoticeSeen\" is also saved in your browser's local storage. It is not sent to our servers either.",
+          "If you close a promotion, the site saves the key \"promoClosed\" in your browser (for the duration of your visit only) and, if you say you are not interested, the key \"promoDismissed\" so it is not shown to you again. Neither is sent to our servers.",
         ],
       },
       {

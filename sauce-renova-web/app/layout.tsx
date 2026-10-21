@@ -4,6 +4,7 @@ import BackToTop from "@/components/ui/BackToTop";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
+import PromoPopup from "@/components/PromoPopup";
 
 import "./globals.css";
 import { Shrikhand, Poppins } from "next/font/google";
@@ -43,6 +44,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <Footer />
             <BackToTop />
             <CookieBanner />
+            <PromoPopup />
           </LanguageProvider>
         </ThemeProvider>
       </body>

@@ -57,7 +57,7 @@ export default function CargadoresPage() {
               </Link>
               {copy.hero.intro2}
             </p>
-            <Link href="/contacto" style={{
+            <Link href="/contacto?servicio=cargadores" style={{
               background: accentAlt,
               color: "var(--color-white)",
               borderRadius: 50,
@@ -153,7 +153,7 @@ export default function CargadoresPage() {
           }}>
             {copy.planMoves.descripcion}
           </p>
-          <Link href="/contacto" style={{
+          <Link href="/contacto?servicio=cargadores" style={{
             background: "white",
             color: accent,
             borderRadius: 50,

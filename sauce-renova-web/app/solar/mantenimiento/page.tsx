@@ -53,7 +53,7 @@ export default function MantenimientoPage() {
           }}>
             {copy.hero.intro}
           </p>
-          <Link href="/contacto" style={{
+          <Link href="/contacto?servicio=mantenimiento" style={{
             background: accentAlt,
             color: "var(--color-white)",
             borderRadius: 50,

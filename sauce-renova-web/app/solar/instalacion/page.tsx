@@ -86,7 +86,7 @@ export default function InstalacionPage() {
             }}>
               {copy.hero.intro}
             </p>
-            <Link href="/contacto" style={{
+            <Link href="/contacto?servicio=solar" style={{
               background: accentAlt,
               color: "var(--color-white)",
               borderRadius: 50,
@@ -211,7 +211,7 @@ export default function InstalacionPage() {
                       <div style={{ overflow: "hidden" }}>
                         <div style={{ paddingTop: 24 }}>
                           <Link
-                            href="/contacto"
+                            href="/contacto?servicio=solar"
                             onClick={(e) => e.stopPropagation()}
                             style={{
                               background: accentAlt,
@@ -276,7 +276,7 @@ export default function InstalacionPage() {
                       {parrafo}
                     </p>
                   ))}
-                  <Link href="/contacto" style={{
+                  <Link href="/contacto?servicio=solar" style={{
                     background: accentAlt,
                     color: "var(--color-white)",
                     borderRadius: 50,

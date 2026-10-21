@@ -3,7 +3,7 @@ export const cookiesCopy = {
   es: {
     title: "Política de cookies",
     intro: "Esta política explica qué información almacena este sitio web en tu dispositivo y para qué.",
-    updated: "14 de octubre de 2026",
+    updated: "21 de octubre de 2026",
     sections: [
       {
         titulo: "Qué son las cookies",
@@ -13,10 +13,12 @@ export const cookiesCopy = {
       },
       {
         titulo: "Qué almacena este sitio web",
-        // TODO(contenido): revisar si se añade analítica, mapas, vídeos u otros servicios de terceros
         parrafos: [
-          "Este sitio web no utiliza cookies propias ni de terceros. Solo guarda en el almacenamiento local de tu navegador dos preferencias que tú eliges: el tema claro u oscuro (clave «theme») y el idioma (clave «lang»).",
-          "Estos datos se quedan en tu dispositivo, no se envían a nuestros servidores, no te identifican y sirven únicamente para recordar tu elección en la siguiente visita.",
+          "Este sitio web solo guarda dos preferencias que tú eliges: el tema claro u oscuro y el idioma.",
+          "El tema se guarda en el almacenamiento local de tu navegador (clave «theme») y no se envía a nuestros servidores.",
+          "El idioma se guarda en una cookie propia llamada «lang», con una duración de un año. Se envía a nuestro servidor para mostrarte la página en tu idioma desde la primera carga. No contiene datos personales ni te identifica.",
+          "Ambas son preferencias de personalización que solicitas tú al cambiar el tema o el idioma, y sirven únicamente para recordar tu elección en la siguiente visita.",
+          "Para no volver a mostrarte el aviso de cookies, se guarda también en el almacenamiento local de tu navegador la clave «cookieNoticeSeen». Tampoco se envía a nuestros servidores.",
         ],
       },
       {
@@ -28,7 +30,7 @@ export const cookiesCopy = {
       {
         titulo: "Cómo borrar o bloquear estos datos",
         parrafos: [
-          "Puedes eliminar los datos guardados desde la configuración de tu navegador, en el apartado de privacidad o datos de sitios. Si los borras, el sitio volverá al tema y al idioma por defecto.",
+          "Puedes eliminar la cookie y los datos guardados desde la configuración de tu navegador, en el apartado de privacidad o datos de sitios. Si los borras, el sitio volverá al tema y al idioma por defecto.",
         ],
       },
       {
@@ -42,7 +44,7 @@ export const cookiesCopy = {
   en: {
     title: "Cookie policy",
     intro: "This policy explains what information this website stores on your device and why.",
-    updated: "14 October 2026",
+    updated: "21 October 2026",
     sections: [
       {
         titulo: "What cookies are",
@@ -52,10 +54,12 @@ export const cookiesCopy = {
       },
       {
         titulo: "What this website stores",
-        // TODO(contenido): revisar si se añade analítica, mapas, vídeos u otros servicios de terceros
         parrafos: [
-          "This website does not use its own or third-party cookies. It only saves two preferences that you choose in your browser's local storage: the light or dark theme (key \"theme\") and the language (key \"lang\").",
-          "This data stays on your device, is not sent to our servers, does not identify you, and is used only to remember your choice on your next visit.",
+          "This website only saves two preferences that you choose: the light or dark theme and the language.",
+          "The theme is saved in your browser's local storage (key \"theme\") and is not sent to our servers.",
+          "The language is saved in a first-party cookie called \"lang\", which lasts one year. It is sent to our server so the page can be shown in your language from the first load. It contains no personal data and does not identify you.",
+          "Both are personalisation preferences that you request when you change the theme or the language, and they are used only to remember your choice on your next visit.",
+          "So that the cookie notice is not shown again, the key \"cookieNoticeSeen\" is also saved in your browser's local storage. It is not sent to our servers either.",
         ],
       },
       {
@@ -67,7 +71,7 @@ export const cookiesCopy = {
       {
         titulo: "How to delete or block this data",
         parrafos: [
-          "You can delete the stored data from your browser settings, in the privacy or site data section. If you delete it, the site will return to the default theme and language.",
+          "You can delete the cookie and the stored data from your browser settings, in the privacy or site data section. If you delete them, the site will return to the default theme and language.",
         ],
       },
       {

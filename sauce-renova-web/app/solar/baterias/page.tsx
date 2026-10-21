@@ -68,7 +68,7 @@ export default function BateriasPage() {
             }}>
               {copy.hero.intro}
             </p>
-            <Link href="/contacto" style={{
+            <Link href="/contacto?servicio=baterias" style={{
               background: accentAlt,
               color: "var(--color-white)",
               borderRadius: 50,

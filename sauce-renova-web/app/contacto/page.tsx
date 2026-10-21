@@ -1,14 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import { contactoCopy } from "@/lib/i18n/contacto";
+import { emailValido, telefonoValido } from "@/lib/validarContacto";
 
 const DESTINO = "comercial@saucerenova.com";
 
-export default function ContactPage() {
+const SERVICIOS_URL = ["solar", "mantenimiento", "baterias", "cargadores", "electricidad", "tramites", "promo"];
+const PROMO_INDEX = 6;
+const PLAN_URL = ["esencial", "rendimiento", "premium"];
+const PLAN_IDS = ["esencial", "rendimiento", "premium", "indeciso"];
+
+function ContactForm() {
   const { lang } = useLanguage();
   const copy = contactoCopy[lang];
+  const params = useSearchParams();
+
+  const idxPlanUrl = PLAN_URL.indexOf(params.get("plan") ?? "");
+  const idxServicioUrl = SERVICIOS_URL.indexOf(params.get("servicio") ?? "");
+  const idxServicioInicial = idxPlanUrl >= 0 ? PROMO_INDEX : idxServicioUrl;
 
   const bg = "var(--bg-service)";
   const heroBg = "var(--hero-bg)";
@@ -22,8 +35,23 @@ export default function ContactPage() {
 
   const [paso, setPaso] = useState(1);
   const [tienePlacas, setTienePlacas] = useState<"si" | "no" | null>(null);
-  const [interes, setInteres] = useState<string[]>([]);
+  const [interes, setInteres] = useState<string[]>(() =>
+    idxServicioInicial >= 0 ? [copy.opcionesInteres[idxServicioInicial]] : []
+  );
+  const [plan, setPlan] = useState<number | null>(idxPlanUrl >= 0 ? idxPlanUrl : null);
   const [tipoPropiedad, setTipoPropiedad] = useState<string | null>(null);
+
+  const [nombre, setNombre] = useState("");
+  const [telefono, setTelefono] = useState("");
+  const [email, setEmail] = useState("");
+  const [mensaje, setMensaje] = useState("");
+  const [acepta, setAcepta] = useState(false);
+  const [estado, setEstado] = useState<"idle" | "enviando" | "ok">("idle");
+  const [error, setError] = useState<string | null>(null);
+
+  const esPromo = interes.includes(copy.opcionesInteres[PROMO_INDEX]);
+  const planOk = !esPromo || plan !== null;
+  const puedeSiguiente = interes.length > 0 && planOk;
 
   const elegirPlacas = (valor: "si" | "no") => {
     setTienePlacas(valor);
@@ -40,20 +68,58 @@ export default function ContactPage() {
     setTipoPropiedad(valor);
   };
 
-  const listo = tienePlacas !== null && interes.length > 0 && tipoPropiedad !== null;
+  const listo = tienePlacas !== null && puedeSiguiente && tipoPropiedad !== null;
 
-  const buildMailtoHref = () => {
-    const subject = copy.mail.subject;
-    const body = [
-      `${copy.mail.tienePlacas}: ${tienePlacas === "si" ? copy.mail.si : copy.mail.no}`,
-      `${copy.mail.interesadoEn}: ${interes.join(", ")}`,
-      `${copy.mail.tipoPropiedad}: ${tipoPropiedad}`,
-      "",
-      `${copy.mail.nombre}: `,
-      `${copy.mail.telefono}: `,
-      `${copy.mail.comentario}: `,
-    ].join("\n");
-    return `mailto:${DESTINO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const enviar = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (estado === "enviando" || !acepta) return;
+    setError(null);
+
+    if (!nombre.trim() || (!telefono.trim() && !email.trim())) {
+      setError(copy.errores.campos);
+      return;
+    }
+    if (telefono.trim() && !telefonoValido(telefono)) {
+      setError(copy.errores.telefono);
+      return;
+    }
+    if (email.trim() && !emailValido(email)) {
+      setError(copy.errores.email);
+      return;
+    }
+
+    setEstado("enviando");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nombre,
+          telefono,
+          email,
+          mensaje,
+          tienePlacas: tienePlacas === "si" ? "Sí" : "No",
+          interes,
+          plan: esPromo && plan !== null ? PLAN_IDS[plan] : "",
+          tipoPropiedad,
+          aceptaPrivacidad: acepta,
+        }),
+      });
+
+      if (res.ok) {
+        setEstado("ok");
+        return;
+      }
+
+      const data = await res.json().catch(() => ({}));
+      if (data.error === "invalid_phone") setError(copy.errores.telefono);
+      else if (data.error === "invalid_email") setError(copy.errores.email);
+      else if (data.error === "missing_fields") setError(copy.errores.campos);
+      else setError(copy.errores.envio);
+    } catch {
+      setError(copy.errores.envio);
+    }
+    setEstado("idle");
   };
 
   const btnBase = {
@@ -74,6 +140,28 @@ export default function ContactPage() {
     color: accentAlt,
     marginBottom: 8,
   };
+
+  const fieldLabelStyle = {
+    display: "block",
+    fontWeight: 700,
+    fontSize: 14,
+    color: labelColor,
+    marginBottom: 6,
+  };
+
+  const inputStyle = {
+    width: "100%",
+    background: cardBg,
+    color: labelColor,
+    border: `2px solid ${cardBorder}`,
+    borderRadius: 14,
+    padding: "12px 16px",
+    fontSize: 16,
+    fontFamily: "inherit",
+    outline: "none",
+  };
+
+  const puedeEnviar = acepta && estado !== "enviando";
 
   return (
     <main style={{ background: bg, padding: "80px 24px" }}>
@@ -161,16 +249,40 @@ export default function ContactPage() {
                     );
                   })}
                 </div>
+
+                {esPromo && (
+                  <div style={{ marginBottom: 20 }}>
+                    <label style={{ display: "block", fontWeight: 700, fontSize: 16, fontStyle: "italic", color: labelColor, marginBottom: 12 }}>
+                      {copy.preguntaPlan}
+                    </label>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+                      {copy.opcionesPlan.map((opcion, i) => (
+                        <button
+                          key={opcion}
+                          onClick={() => setPlan(i)}
+                          style={{
+                            ...btnBase,
+                            background: plan === i ? accent : "transparent",
+                            color: plan === i ? "white" : labelColor,
+                          }}
+                        >
+                          {opcion}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {paso === 2 && (
                   <button
                     onClick={() => setPaso(3)}
-                    disabled={interes.length === 0}
+                    disabled={!puedeSiguiente}
                     style={{
                       ...btnBase,
                       border: "none",
-                      background: interes.length > 0 ? accent : "var(--color-gray-soft)",
+                      background: puedeSiguiente ? accent : "var(--color-gray-soft)",
                       color: "var(--color-white)",
-                      cursor: interes.length > 0 ? "pointer" : "not-allowed",
+                      cursor: puedeSiguiente ? "pointer" : "not-allowed",
                     }}
                   >
                     {copy.siguiente}
@@ -209,29 +321,145 @@ export default function ContactPage() {
             </>
           )}
 
-          <a
-            href={listo ? buildMailtoHref() : undefined}
-            aria-disabled={!listo}
-            style={{
-              background: listo ? accentAlt : "var(--color-gray-soft)",
-              color: "var(--color-white)",
-              border: "none",
-              borderRadius: 50,
-              padding: "16px 40px",
-              fontWeight: 800,
-              fontSize: 14,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              textDecoration: "none",
-              textAlign: "center",
-              cursor: listo ? "pointer" : "not-allowed",
-              pointerEvents: listo ? "auto" : "none",
-              alignSelf: "flex-start",
-              transition: "background 0.2s",
-            }}
-          >
-            {copy.abrirCorreo}
-          </a>
+          {listo && estado !== "ok" && (
+            <>
+              <div style={{ borderTop: `1px solid ${cardBorder}` }} />
+
+              <form onSubmit={enviar} noValidate style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+                <div>
+                  <p style={pasoLabelStyle}>{copy.datosHeading}</p>
+                  <p style={{ fontSize: 14, fontStyle: "italic", color: textMuted, margin: 0 }}>
+                    {copy.datosNota}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 16 }}>
+                  <div>
+                    <label htmlFor="contacto-nombre" style={fieldLabelStyle}>{copy.campos.nombre}</label>
+                    <input
+                      id="contacto-nombre"
+                      type="text"
+                      autoComplete="name"
+                      maxLength={100}
+                      value={nombre}
+                      onChange={(e) => setNombre(e.target.value)}
+                      style={inputStyle}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contacto-telefono" style={fieldLabelStyle}>{copy.campos.telefono}</label>
+                    <input
+                      id="contacto-telefono"
+                      type="tel"
+                      autoComplete="tel"
+                      maxLength={30}
+                      value={telefono}
+                      onChange={(e) => setTelefono(e.target.value)}
+                      style={inputStyle}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contacto-email" style={fieldLabelStyle}>{copy.campos.email}</label>
+                    <input
+                      id="contacto-email"
+                      type="email"
+                      autoComplete="email"
+                      maxLength={120}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      style={inputStyle}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="contacto-mensaje" style={fieldLabelStyle}>{copy.campos.mensaje}</label>
+                  <textarea
+                    id="contacto-mensaje"
+                    rows={4}
+                    maxLength={2000}
+                    value={mensaje}
+                    onChange={(e) => setMensaje(e.target.value)}
+                    style={{ ...inputStyle, resize: "vertical" }}
+                  />
+                </div>
+
+                <p style={{ fontSize: 12, lineHeight: 1.6, color: textMuted, margin: 0, maxWidth: 1200 }}>
+                  <strong style={{ color: labelColor }}>{copy.clausula.intro}.</strong>{" "}
+                  {copy.clausula.lineas.map(([etiqueta, texto]) => (
+                    <span key={etiqueta}>
+                      <strong>{etiqueta}:</strong> {texto}{" "}
+                    </span>
+                  ))}
+                  {copy.clausula.masInfo}{" "}
+                  <Link href="/legal/privacidad" style={{ color: accent, textDecoration: "underline" }}>
+                    {copy.clausula.enlace}
+                  </Link>
+                  .
+                </p>
+
+                <label style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: 14, color: labelColor, cursor: "pointer" }}>
+                  <input
+                    type="checkbox"
+                    checked={acepta}
+                    onChange={(e) => setAcepta(e.target.checked)}
+                    style={{ marginTop: 3, width: 18, height: 18, accentColor: accentAlt, flexShrink: 0 }}
+                  />
+                  <span>
+                    {copy.aceptoPre}{" "}
+                    <Link href="/legal/privacidad" style={{ color: accent, textDecoration: "underline" }}>
+                      {copy.aceptoEnlace}
+                    </Link>
+                  </span>
+                </label>
+
+                {error && (
+                  <p role="alert" style={{ fontSize: 14, fontWeight: 700, color: "var(--color-gold)", margin: 0 }}>
+                    {error}
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={!puedeEnviar}
+                  style={{
+                    background: puedeEnviar ? accentAlt : "var(--color-gray-soft)",
+                    color: "var(--color-white)",
+                    border: "none",
+                    borderRadius: 50,
+                    padding: "16px 40px",
+                    fontWeight: 800,
+                    fontSize: 14,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    cursor: puedeEnviar ? "pointer" : "not-allowed",
+                    alignSelf: "flex-start",
+                    transition: "background 0.2s",
+                  }}
+                >
+                  {estado === "enviando" ? copy.enviando : copy.enviar}
+                </button>
+              </form>
+            </>
+          )}
+
+          {estado === "ok" && (
+            <div
+              role="status"
+              style={{
+                background: cardBg,
+                border: `2px solid ${accentAlt}`,
+                borderRadius: 20,
+                padding: "28px 28px",
+                fontSize: 16,
+                fontWeight: 700,
+                color: labelColor,
+                lineHeight: 1.6,
+              }}
+            >
+              {copy.exito}
+            </div>
+          )}
 
           <div style={{
             background: heroBg,
@@ -256,5 +484,13 @@ export default function ContactPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={null}>
+      <ContactForm />
+    </Suspense>
   );
 }

@@ -42,7 +42,7 @@ export default function ElectricidadPage() {
           }}>
             {copy.hero.intro}
           </p>
-          <Link href="/contacto" style={{
+          <Link href="/contacto?servicio=electricidad" style={{
             background: accentAlt,
             color: "var(--color-white)",
             borderRadius: 50,

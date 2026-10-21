@@ -2,8 +2,6 @@ import { Resend } from "resend";
 import { NextResponse } from "next/server";
 import { emailValido, telefonoValido } from "@/lib/validarContacto";
 
-const EMAIL_REGEX = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
-
 const clean = (value: unknown, max: number) =>
   String(value ?? "").replace(/[\r\n]+/g, " ").trim().slice(0, max);
 
@@ -15,6 +13,13 @@ const escapeHtml = (value: string) =>
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 
+const PLANES_MANTENIMIENTO = new Map([
+  ["esencial", "Plan Esencial"],
+  ["rendimiento", "Plan Rendimiento"],
+  ["premium", "Plan Premium"],
+  ["indeciso", "Aún no sabe qué plan"],
+]);
+
 type Solicitud = {
   nombre: string;
   telefono: string;
@@ -23,6 +28,7 @@ type Solicitud = {
   tienePlacas: string;
   tipoPropiedad: string;
   interes: string[];
+  plan: string;
 };
 
 const fila = (etiqueta: string, valor: string) => `
@@ -96,6 +102,7 @@ const construirHtml = (s: Solicitud, fecha: string) => {
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 ${fila("Tiene placas", escapeHtml(s.tienePlacas || "-"))}
                 ${fila("Tipo de propiedad", escapeHtml(s.tipoPropiedad || "-"))}
+                                ${s.plan ? fila("Plan de mantenimiento", escapeHtml(s.plan)) : ""}
               </table>
               <p style="margin:16px 0 8px;font-size:13px;color:#4a5568;">Interesado/a en</p>
               <div>${chips}</div>
@@ -133,6 +140,7 @@ const construirTexto = (s: Solicitud, fecha: string) =>
     "",
     `Tiene placas: ${s.tienePlacas || "-"}`,
     `Tipo de propiedad: ${s.tipoPropiedad || "-"}`,
+    ...(s.plan ? [`Plan de mantenimiento: ${s.plan}`] : []),
     `Interesado/a en: ${s.interes.join(", ") || "-"}`,
     "",
     "Comentario:",
@@ -157,6 +165,7 @@ export async function POST(req: Request) {
     mensaje: String(body.mensaje ?? "").trim().slice(0, 2000),
     tienePlacas: clean(body.tienePlacas, 20),
     tipoPropiedad: clean(body.tipoPropiedad, 80),
+    plan: PLANES_MANTENIMIENTO.get(clean(body.plan, 20)) ?? "",
     interes: Array.isArray(body.interes)
       ? body.interes.slice(0, 10).map((i) => clean(i, 80))
       : [],

@@ -6,6 +6,8 @@ import { useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { homeCopy } from "@/lib/i18n/home";
 
+import { mantenimientoCopy } from "@/lib/i18n/mantenimientoPromo";
+
 import principalImg from "@/components/illustrations/principal.webp";
 import principalOscuroImg from "@/components/illustrations/principalOscuro.webp";
 import hogarAzul from "@/components/illustrations/hogar-azul.svg";
@@ -30,9 +32,18 @@ const benefitIcons = [
   { light: hotelVerde, dark: hotelAzul },
 ];
 
+const planColores = [
+  { bg: "var(--color-green-dark)", fg: "var(--color-white)" },
+  { bg: "var(--color-blue-mid)", fg: "var(--color-white)" },
+  { bg: "var(--color-gold)", fg: "var(--color-navy-800)" },
+];
+
+const planIds = ["esencial", "rendimiento", "premium"];
+
 export default function Home() {
   const { lang } = useLanguage();
   const copy = homeCopy[lang];
+  const mant = mantenimientoCopy[lang];
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (dir: "left" | "right") => {
@@ -74,6 +85,211 @@ export default function Home() {
 
   return (
     <main>
+      {/* Promo */}
+      <section style={{ background: "var(--bg-page)", padding: "2rem 0 0" }} id="mantenimiento">
+        <div
+          className="mx-4 md:mx-10"
+          style={{
+            background: "var(--band-bg)",
+            borderRadius: "1.5rem",
+            padding: "1.5rem 2vw",
+            maxWidth: "100%",
+            position: "relative",
+          }}
+        >
+          <div style={{
+            position: "absolute",
+            top: "0.75rem",
+            left: "-0.75rem",
+          }}>
+            <span style={{
+              display: "inline-block",
+              background: "var(--color-gold)",
+              color: "var(--color-navy-800)",
+              fontFamily: "var(--font-poppins), sans-serif",
+              fontWeight: 800,
+              fontSize: "clamp(0.65rem, 0.75vw, 0.8rem)",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              padding: "0.3em 1em",
+              borderRadius: "9999px",
+              transform: "rotate(-6.7deg)",
+              boxShadow: "var(--shadow-card)",
+            }}>
+              ★ {mant.badge}
+            </span>
+          </div>
+          <h2 style={{
+            fontSize: "clamp(1.3rem, 2.2vw, 2.2rem)",
+            fontWeight: 900,
+            color: "var(--color-cream)",
+            textAlign: "center",
+            lineHeight: 1.1,
+            marginBottom: "0.5rem",
+            fontFamily: "var(--font-shrikhand), sans-serif",
+            marginTop: "1.2rem",
+          }}>
+            {mant.heading}
+          </h2>
+          <p style={{
+            color: "var(--on-dark-90)",
+            fontSize: "clamp(0.8rem, 0.95vw, 0.95rem)",
+            textAlign: "center",
+            lineHeight: 1.4,
+            margin: "0 auto 1.2rem",
+            fontFamily: "var(--font-poppins), sans-serif",
+            maxWidth: "45rem",
+          }}>
+            {mant.text}
+          </p>
+
+          <h3 style={{
+            fontSize: "clamp(1.1rem, 1.8vw, 1.8rem)",
+            fontWeight: 900,
+            color: "var(--color-cream)",
+            textAlign: "center",
+            fontFamily: "var(--font-shrikhand), sans-serif",
+          }}>
+            {mant.plansHeading}
+          </h3>
+          <p style={{
+            color: "var(--on-dark-90)",
+            fontSize: "clamp(0.8rem, 0.95vw, 0.95rem)",
+            textAlign: "center",
+            lineHeight: 1.4,
+            margin: "0 auto 1.2rem",
+            fontFamily: "var(--font-poppins), sans-serif",
+            maxWidth: "45rem",
+          }}>
+            {mant.plansText}
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "0.75rem" }}>
+            {mant.plans.map((plan, i) => (
+              <div
+                key={i}
+                className="card-hover"
+                style={{
+                  background: "var(--card-bg)",
+                  borderRadius: "0.85rem",
+                  overflow: "hidden",
+                  display: "flex",
+                  flexDirection: "column",
+                  boxShadow: "var(--shadow-card)",
+                }}
+              >
+                <div style={{
+                  background: planColores[i].bg,
+                  color: planColores[i].fg,
+                  textAlign: "center",
+                  padding: "0.6rem",
+                  fontFamily: "var(--font-poppins), sans-serif",
+                  fontSize: "clamp(0.9rem, 1.1vw, 1.1rem)",
+                  letterSpacing: "0.05em",
+                  textTransform: "uppercase",
+                }}>
+                  {mant.planLabel} <strong style={{ fontWeight: 800 }}>{plan.name}</strong>
+                </div>
+                <div style={{
+                  padding: "1rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.4rem",
+                  flex: 1,
+                  fontFamily: "var(--font-poppins), sans-serif",
+                }}>
+                  <h4 style={{
+                    color: "var(--label-color)",
+                    fontSize: "clamp(0.9rem, 1.05vw, 1.05rem)",
+                    fontWeight: 700,
+                    margin: 0,
+                  }}>
+                    {plan.subtitle}
+                  </h4>
+                  <p style={{
+                    color: "var(--text-muted)",
+                    fontSize: "clamp(0.8rem, 0.9vw, 0.9rem)",
+                    lineHeight: 1.4,
+                    margin: 0,
+                    flex: 1,
+                  }}>
+                    {plan.text}
+                  </p>
+                  <div style={{
+                    borderTop: "1px solid var(--card-border)",
+                    paddingTop: "0.6rem",
+                    textAlign: "center",
+                  }}>
+                    <p style={{ color: "var(--text-muted)", fontSize: "0.75rem", margin: 0 }}>{mant.desde}</p>
+                    <p style={{ margin: 0, lineHeight: 1.1, color: "var(--title-color)" }}>
+                      <span style={{ fontSize: "clamp(1.5rem, 2.2vw, 2.2rem)", fontWeight: 800 }}>{plan.price}</span>{" "}
+                      <span style={{ fontSize: "0.9rem", fontWeight: 700 }}>{mant.perMonth}</span>
+                    </p>
+                    <p style={{ color: "var(--text-muted)", fontSize: "0.7rem", margin: "0.15rem 0 0" }}>{mant.iva}</p>
+                    {plan.note && (
+                      <p style={{ color: "var(--text-muted)", fontSize: "0.7rem", fontStyle: "italic", margin: "0.3rem 0 0" }}>
+                        {plan.note}
+                      </p>
+                    )}
+                  </div>
+                  <Link
+                    href={`/contacto?servicio=promo&plan=${planIds[i]}`}
+                    style={{
+                      background: planColores[i].bg,
+                      color: planColores[i].fg,
+                      borderRadius: "9999px",
+                      padding: "0.85em 1.5em",
+                      fontWeight: 800,
+                      fontSize: "clamp(0.75rem, 0.9vw, 0.875rem)",
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      textDecoration: "none",
+                      textAlign: "center",
+                      marginTop: "0.5rem",
+                    }}
+                  >
+                    {mant.planCta}
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p style={{
+            color: "var(--color-cream)",
+            fontWeight: 700,
+            fontStyle: "italic",
+            textAlign: "center",
+            margin: "1.2rem 0 0.8rem",
+            fontSize: "clamp(0.85rem, 1vw, 1rem)",
+          }}>
+            {mant.tagline}
+          </p>
+          <div style={{ textAlign: "center" }}>
+            <Link
+              href="/contacto?servicio=promo"
+              style={{
+                background: "var(--band-btn-bg)",
+                color: "var(--band-btn-text)",
+                borderRadius: "9999px",
+                padding: "0.65em 1.75em",
+                fontWeight: 800,
+                fontSize: "clamp(0.7rem, 0.8vw, 0.8rem)",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                textDecoration: "none",
+                display: "inline-block",
+                transition: "transform 0.15s",
+              }}
+              onMouseEnter={e => e.currentTarget.style.transform = "scale(1.04)"}
+              onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
+            >
+              {mant.cta}
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Hero */}
       <section style={{ background: "var(--bg-page)", minHeight: "auto", display: "flex", flexDirection: "column" }} id="inicio">
         <div
@@ -447,6 +663,7 @@ export default function Home() {
 
       {/* TODO: AÑADIR REVIEWS REALES */}
       {/* Reviews */}
+      {/* 
       <section style={{ background: "var(--bg-page)", padding: "3vw 5px" }}>
         <h2 style={{
           fontSize: "clamp(28px, 3.5vw, 48px)",
@@ -525,6 +742,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      */}
     </main>
   );
 }

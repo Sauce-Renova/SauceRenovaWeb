@@ -1,4 +1,3 @@
-// TODO(contenido): texto provisional del banner, sustituir por el del cliente
 export const cookieBannerCopy = {
   es: {
     title: "Cookies y preferencias",

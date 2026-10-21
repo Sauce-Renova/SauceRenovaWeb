@@ -19,9 +19,15 @@ export default function CookieBanner() {
       seen = !!localStorage.getItem(STORAGE_KEY);
     } catch {}
     if (seen) return;
-    setVisible(true);
-    const id = requestAnimationFrame(() => requestAnimationFrame(() => setEntered(true)));
-    return () => cancelAnimationFrame(id);
+    let inner = 0;
+    const outer = requestAnimationFrame(() => {
+      setVisible(true);
+      inner = requestAnimationFrame(() => requestAnimationFrame(() => setEntered(true)));
+    });
+    return () => {
+      cancelAnimationFrame(outer);
+      cancelAnimationFrame(inner);
+    };
   }, []);
 
   const accept = () => {
@@ -46,12 +52,13 @@ export default function CookieBanner() {
         zIndex: 60,
         background: "var(--hero-bg)",
         borderTop: "1px solid var(--on-dark-15)",
+        borderRadius: "2rem 2rem 0 0",
         boxShadow: "var(--shadow-card)",
         padding: "1.5rem 5vw",
         opacity: entered ? 1 : 0,
         transform: entered ? "translateY(0) scale(1)" : "translateY(24px) scale(0.96)",
         transformOrigin: "bottom center",
-        transition: "opacity 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+        transition: "opacity 0.4s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)",
       }}
     >
       <div

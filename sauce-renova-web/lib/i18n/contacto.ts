@@ -14,10 +14,13 @@ export const contactoCopy = {
       "Cargadores eléctricos",
       "Electricidad / Ingeniería",
       "Trámites y legalizaciones",
+      "Promoción de mantenimiento",
     ],
     siguiente: "Siguiente →",
     pregunta3: "¿Qué tipo de propiedad es?",
     opcionesPropiedad: ["Vivienda", "Empresa", "Comunidad de vecinos"],
+    preguntaPlan: "¿Qué plan de mantenimiento te interesa?",
+    opcionesPlan: ["Plan Esencial", "Plan Rendimiento", "Plan Premium", "Aún no lo sé"],
     datosHeading: "Tus datos de contacto",
     datosNota: "Indica al menos un teléfono o un correo electrónico.",
     campos: {
@@ -40,7 +43,6 @@ export const contactoCopy = {
     autoServicioHeading: "¿Quieres hacerlo tú mismo?",
     autoServicioPre: "Escríbenos directamente a",
     autoServicioOr: "o llámanos al",
-    // TODO(contenido): sustituir por la cláusula informativa del cliente
     clausula: {
       intro: "Información básica sobre protección de datos",
       lineas: [
@@ -69,10 +71,13 @@ export const contactoCopy = {
       "EV chargers",
       "Electrical / Engineering",
       "Paperwork and legalizations",
+      "Maintenance promotion",
     ],
     siguiente: "Next →",
     pregunta3: "What type of property is it?",
     opcionesPropiedad: ["Home", "Business", "Homeowners' association"],
+    preguntaPlan: "Which maintenance plan are you interested in?",
+    opcionesPlan: ["Essential plan", "Performance plan", "Premium plan", "I'm not sure yet"],
     datosHeading: "Your contact details",
     datosNota: "Please provide at least a phone number or an email address.",
     campos: {

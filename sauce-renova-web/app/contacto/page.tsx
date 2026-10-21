@@ -1,16 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import { contactoCopy } from "@/lib/i18n/contacto";
 import { emailValido, telefonoValido } from "@/lib/validarContacto";
 
 const DESTINO = "comercial@saucerenova.com";
 
-export default function ContactPage() {
+const SERVICIOS_URL = ["solar", "mantenimiento", "baterias", "cargadores", "electricidad", "tramites", "promo"];
+const PROMO_INDEX = 6;
+const PLAN_URL = ["esencial", "rendimiento", "premium"];
+const PLAN_IDS = ["esencial", "rendimiento", "premium", "indeciso"];
+
+function ContactForm() {
   const { lang } = useLanguage();
   const copy = contactoCopy[lang];
+  const params = useSearchParams();
+
+  const idxPlanUrl = PLAN_URL.indexOf(params.get("plan") ?? "");
+  const idxServicioUrl = SERVICIOS_URL.indexOf(params.get("servicio") ?? "");
+  const idxServicioInicial = idxPlanUrl >= 0 ? PROMO_INDEX : idxServicioUrl;
 
   const bg = "var(--bg-service)";
   const heroBg = "var(--hero-bg)";
@@ -24,7 +35,10 @@ export default function ContactPage() {
 
   const [paso, setPaso] = useState(1);
   const [tienePlacas, setTienePlacas] = useState<"si" | "no" | null>(null);
-  const [interes, setInteres] = useState<string[]>([]);
+  const [interes, setInteres] = useState<string[]>(() =>
+    idxServicioInicial >= 0 ? [copy.opcionesInteres[idxServicioInicial]] : []
+  );
+  const [plan, setPlan] = useState<number | null>(idxPlanUrl >= 0 ? idxPlanUrl : null);
   const [tipoPropiedad, setTipoPropiedad] = useState<string | null>(null);
 
   const [nombre, setNombre] = useState("");
@@ -34,6 +48,10 @@ export default function ContactPage() {
   const [acepta, setAcepta] = useState(false);
   const [estado, setEstado] = useState<"idle" | "enviando" | "ok">("idle");
   const [error, setError] = useState<string | null>(null);
+
+  const esPromo = interes.includes(copy.opcionesInteres[PROMO_INDEX]);
+  const planOk = !esPromo || plan !== null;
+  const puedeSiguiente = interes.length > 0 && planOk;
 
   const elegirPlacas = (valor: "si" | "no") => {
     setTienePlacas(valor);
@@ -50,7 +68,7 @@ export default function ContactPage() {
     setTipoPropiedad(valor);
   };
 
-  const listo = tienePlacas !== null && interes.length > 0 && tipoPropiedad !== null;
+  const listo = tienePlacas !== null && puedeSiguiente && tipoPropiedad !== null;
 
   const enviar = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -61,7 +79,6 @@ export default function ContactPage() {
       setError(copy.errores.campos);
       return;
     }
-
     if (telefono.trim() && !telefonoValido(telefono)) {
       setError(copy.errores.telefono);
       return;
@@ -83,6 +100,7 @@ export default function ContactPage() {
           mensaje,
           tienePlacas: tienePlacas === "si" ? "Sí" : "No",
           interes,
+          plan: esPromo && plan !== null ? PLAN_IDS[plan] : "",
           tipoPropiedad,
           aceptaPrivacidad: acepta,
         }),
@@ -96,8 +114,6 @@ export default function ContactPage() {
       const data = await res.json().catch(() => ({}));
       if (data.error === "invalid_phone") setError(copy.errores.telefono);
       else if (data.error === "invalid_email") setError(copy.errores.email);
-
-      if (data.error === "invalid_email") setError(copy.errores.email);
       else if (data.error === "missing_fields") setError(copy.errores.campos);
       else setError(copy.errores.envio);
     } catch {
@@ -233,16 +249,40 @@ export default function ContactPage() {
                     );
                   })}
                 </div>
+
+                {esPromo && (
+                  <div style={{ marginBottom: 20 }}>
+                    <label style={{ display: "block", fontWeight: 700, fontSize: 16, fontStyle: "italic", color: labelColor, marginBottom: 12 }}>
+                      {copy.preguntaPlan}
+                    </label>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+                      {copy.opcionesPlan.map((opcion, i) => (
+                        <button
+                          key={opcion}
+                          onClick={() => setPlan(i)}
+                          style={{
+                            ...btnBase,
+                            background: plan === i ? accent : "transparent",
+                            color: plan === i ? "white" : labelColor,
+                          }}
+                        >
+                          {opcion}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {paso === 2 && (
                   <button
                     onClick={() => setPaso(3)}
-                    disabled={interes.length === 0}
+                    disabled={!puedeSiguiente}
                     style={{
                       ...btnBase,
                       border: "none",
-                      background: interes.length > 0 ? accent : "var(--color-gray-soft)",
+                      background: puedeSiguiente ? accent : "var(--color-gray-soft)",
                       color: "var(--color-white)",
-                      cursor: interes.length > 0 ? "pointer" : "not-allowed",
+                      cursor: puedeSiguiente ? "pointer" : "not-allowed",
                     }}
                   >
                     {copy.siguiente}
@@ -444,5 +484,13 @@ export default function ContactPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={null}>
+      <ContactForm />
+    </Suspense>
   );
 }

@@ -7,7 +7,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { homeCopy } from "@/lib/i18n/home";
 
 import principalImg from "@/components/illustrations/principal.webp";
-import principalOscuroImg from "@/components/illustrations/IMG_PRINCIPAL_oscuro.webp";
+import principalOscuroImg from "@/components/illustrations/principalOscuro.webp";
 import hogarAzul from "@/components/illustrations/hogar-azul.svg";
 import hogarVerde from "@/components/illustrations/casa-verde.svg";
 import empresaAzul from "@/components/illustrations/Empresa-azulsvg.svg";
@@ -155,7 +155,7 @@ export default function Home() {
             alignItems: "center",
             justifyContent: "center",
             aspectRatio: "3 / 4",
-            width: "100%",
+            width: "82%",
             padding: 0,
             position: "relative",
             alignSelf: "start",
@@ -444,6 +444,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* TODO: AÑADIR REVIEWS REALES */}
       {/* Reviews */}
       <section style={{ background: "var(--bg-page)", padding: "3vw 5px" }}>
